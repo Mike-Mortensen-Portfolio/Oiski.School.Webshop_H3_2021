@@ -69,5 +69,21 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - Project Solution
     - Console Application Project - _For testing features_
     - Datalayer Class Library project - _The backend stuff (EF Core)_
+- **[v0.1.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.1.0)**
+  - **Added**
+   - `WebShopContext` with ConnectionString.
+ - **Prepared**
+   - Properties of `DbSet<>` of Entities.
+   - DataSeeding for Initialize of Database.
+- **[v0.2.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.2.0)**
+- **Added**
+    - `Customer` class
+    - `CustomerLogin` class - _The login Info for a customer_
+    - `Order` class
+    - `Product` class
+    - `ProductImage` class
+    - `Type` class - _A product type container (Many to Many)_
+- Modified
+    - README file to include a section for diagrams and added class diagram over entities
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
