@@ -52,11 +52,11 @@ See the [Wiki](https://github.com/ZhakalenDk/Oiski.School.Wepshop_H3_2021/wiki) 
 Versioning is coordinated according to the following template: [_Major_].[_Minor_].[Patch].\
 Each `Feature` must be branched out and developed on an isolated branch and merged back into the `Developer` branch when done.
 
-The syntax for the structure of branch folders must be presented as: [DeveloperName]/[MajorVersion]/[BranchName], where as [BranchName] should be formatted as follows: [Feature]_[SubFeature].\
+The syntax for the structure of branch folders must be presented as: [MajorVersion]/[DeveloperName]/[BranchName], where as [BranchName] should be formatted as follows: [Feature]_[SubFeature].\
 **Example:**
->**Folder Structure:** _Oiski/v1_ \
+>**Folder Structure:** _v1/Oiski_ \
 >**Branch Name:** _Interface_MainMenu_ \
->**Full Path:** _Oiski/v1/MainMenu_UIOverhaul_
+>**Full Path:** _v1/Oiski/MainMenu_UIOverhaul_
 
 ### Change Log
 - **[v0.0.0](LinkToVersion)**
