@@ -59,6 +59,10 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 >**Full Path:** _v1/Oiski/MainMenu_UIOverhaul_
 
 ### Change Log
-- **[v0.0.0](LinkToVersion)**
+- **[v0.0.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.0.0)**
+  - Added
+    - Project Solution
+    - Console Application Project - _For testing features_
+    - Datalayer Class Library project - _The backend stuff (EF Core)_
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
