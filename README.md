@@ -1,7 +1,7 @@
 # EF Core Webshop
 
 ## About The Project
-The project and its specifications are defined by the assignment in relation to our lectures on `EF Core` and `Linq`, for which the project is to be handed in as a group project. Our group is formed by **Jasmin Nielsen** and **Mike '_Oiski_' Mortensen**
+The project and its specifications are defined by the assignment in relation to our lectures on `EF Core` and `Linq`, for which the project is to be handed in as a group project. Our group is formed by **Jasmin 'Jeongoks' Nielsen** and **Mike '_Oiski_' Mortensen**
 
 ## Dependencies
 - [Microsoft.EntityFramworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/)
@@ -12,27 +12,27 @@ The project and its specifications are defined by the assignment in relation to 
 
 - **Specifications**
   - **Frontpage**
-    - Forsiden viser et antal produkter med et billede af hver, prisen, navn og en knap til at lægge varen i kurven
-    - Der benyttes Paging således at forsiden kun viser et bestemt antal produkter ad gangen. Man kan se at der evt. er flere produkter
-    - Der er mulighed for at søge på "Brand" og på "Type" eller lignende
-    - Der er også fritekst-søgning
-    - Der er mulighed for stigende og faldende sortering
-    - Der vises et ikon med en varekurv og et antal varer i kurven. Klikkes på ikonet, vises varekurven
-    - Lægges en vare i kurven, vises den opdaterede varekurv
+    - Front page shows an amount of product with a picture, the price, the name and a button to place the product in the cart.
+    - Paging is used, so that the front page only shows a certain amount of products on each page. Showcase there's more than one product.
+    - Search feature where the user has the option to search on "Brand" or "Type" of the product.
+    - Search feature with free-text searching.
+    - Option to make the filtering of the products shown ASC or DESC.
+    - An icon of a cart is shown, as well of the quantity of the products laying in it. If the icon is clicked, it will show the shop cart.
+    - If a product is added to the cart, it will be shown on the icon, as well as the updated shop cart.
   - **Shop Cart**
-    - Varekurven viser en opdateret liste af valgte produkter, med billede, navn, styk-pris, antal (skal kunne ændres) samt linjepriseen.
-    - Der skal være en Update knap, som opdaterer priserne hvis man ændrer antallet.
-    - Det skal være muligt at fjerne et produkt fra varekurven, hvis man fortryder valget
-    - Der skal være en Checkout knap, som fører til Checkout-siden
-    - Der skal være en knap, der giver mulighed for at fortsætte med at handle, inden man går til checkout
+    - The shop cart shows an updated list of chosen products, with picture, name, price per product, quantity (can changes).
+    - There needs to be an Update button, which will update the prices if the user changes the quantity already in the cart.
+    - It needs to be possible to remove a product from the cart, if the user regrets that choice.
+    - There needs to be a Checkout button, which leads to the Checkout-page.
+    - There needs to be a button, which gives the user the opportunity to continue shopping, before going to the checkout.
   - **Checkout**
-    - Brugeren skal afgive oplysninger om email, navn, adresse, valg af betalingsmiddel og forsendelse
-    - Når brugeren trykke på Køb knappen, skal der udsendes en mail som bekræftelse af købet
+    - The user has to give information about their Email, Name, Address, choice of Payment Method and Delivery type.
+    - When the user clicks on the 'Buy' button, they have to receive a mail as a confirmation on their order.
   - **Additional Chosen Specifications**
-    - Når musen passerer henover et billede af et produkt, fremhæves billedet (evt. med en skygge eller ramme)
-    - Mulighed for at logge ind, f.eks. når man går til Checkout. 
-    - Hvis brugeren er logget ind, slipper brugeren for at registrere sig igen
-    - En Admin side, der giver en administrator en liste over alle produkter og mulighed for at redigere produkterne.
+    - When the mouse hovers over a picture of a product, add some shadow behind it, to highlight it.
+    - Opportunity to log in, perhaps when the user is on the Checkout page.
+    - If the user is already logged in, then they won't have to write their information again.
+    - Make an admin page, giving an administrator a list of all products and the opportunity to update and modify them.
 
 ## The program
 The assignments states that the following criteria:
