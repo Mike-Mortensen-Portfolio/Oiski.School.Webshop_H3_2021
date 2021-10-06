@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
 {
@@ -14,9 +15,13 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         public int OrderID { get; set; }
 
         /// <summary>
-        /// Foreign Key to the attached <see cref="Customer"/>
+        /// Foreign Key to the attached <see cref="Entities.Customer"/>
         /// </summary>
         public int CustomerID { get; set; }
+        /// <summary>
+        /// Reference Navigational Property to <see cref="Entities.Customer"/>
+        /// </summary>
+        public Customer Customer { get; set; }
 
         public DateTime OrderDate { get; set; }
 

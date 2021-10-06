@@ -5,7 +5,7 @@
         /// <summary>
         /// Primary Key
         /// </summary>
-        public int ImageID { get; set; }
+        public int ProductImageID { get; set; }
 
         /// <summary>
         /// The <see cref="byte"/> data of the image (_The actual image_)
