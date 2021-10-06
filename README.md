@@ -1,2 +1,40 @@
-# Oiski.School.Webshop_H3_2021
-A three part school project that is based on EF Core and Razor Pages.
+# EF Core Webshop
+
+## About The Project
+This repository is part of the `Oiski.School` namespace collection, which includes projects build as school assignments.
+
+
+## Dependencies
+
+### Terms of Development
+
+- **Specifications**
+
+## The program
+The assignments states that the following criteria:
+
+**Goal**
+> Demonstrate that one can design, program and test a database model that meets the specifications written under _Terms of Development_. The core is to be able to browse through > a collection of shop items, add shop items to a cart, sign up and simulate a purchase.
+
+**Input**
+> Input will be provided through a web interface, which is implemented in the second part of the assignment.
+
+**Output**
+> Data will be stored in a local SQL Database, which will be controlled and accessed through an EF Core datalayer project.
+
+See the [Wiki](https://github.com/ZhakalenDk/Oiski.School.Wepshop_H3_2021/wiki) for more in depth information about the project.
+
+## Versioning
+Versioning is coordinated according to the following template: [_Major_].[_Minor_].[_Path_].\
+Each `Feature` must be branched out and developed on an isolated branch and merged back into the `Developer` branch when done.
+
+The syntax for the structure of branch folders must be presented as: [DeveloperName]/[MajorVersion]/[BranchName], where as [BranchName] should be formatted as follows: [Feature]_[SubFeature].\
+**Example:**
+>**Folder Structure:** _Oiski/v1_ \
+>**Branch Name:** _Interface_MainMenu_ \
+>**Full Path:** _Oiski/v1/MainMenu_UIOverhaul_
+
+### Change Log
+- **[v0.0.0](LinkToVersion)**
+
+## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
