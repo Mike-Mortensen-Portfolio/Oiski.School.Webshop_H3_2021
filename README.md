@@ -48,6 +48,11 @@ The assignments states that the following criteria:
 
 See the [Wiki](https://github.com/ZhakalenDk/Oiski.School.Wepshop_H3_2021/wiki) for more in depth information about the project.
 
+## Diagrams
+
+### Class Diagram over Entities
+![ClassDiagram](./Images/Webshop_ClassDiagram.png)
+
 ## Versioning
 Versioning is coordinated according to the following template: [_Major_].[_Minor_].[Patch].\
 Each `Feature` must be branched out and developed on an isolated branch and merged back into the `Developer` branch when done.
