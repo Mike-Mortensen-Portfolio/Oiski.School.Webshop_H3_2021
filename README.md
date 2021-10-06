@@ -88,5 +88,10 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **[v0.2.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.2.1)**
     - **Fixed**
       - Password is now a string as intended
+- **[v0.3.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.3.0)**
+    - **Fixed**
+      - `ImageID` changed to `ProductImageID`, to create Primary Key.
+      - Added a Reference Navigational Property to `Customer` inside of `Order`. 
+   
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
