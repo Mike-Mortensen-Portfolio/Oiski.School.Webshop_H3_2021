@@ -1,10 +1,12 @@
 # EF Core Webshop
 
 ## About The Project
-This repository is part of the `Oiski.School` namespace collection, which includes projects build as school assignments.
-
+The project and its specifications are defined by the assignment in relation to our lectures on `EF Core` and `Linq`, for which the project is to be handed in as a group project. Our group is formed by **Jasmin Nielsen** and **Mike '_Oiski_' Mortensen**
 
 ## Dependencies
+- [Microsoft.EntityFramworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/)
+- [Microsoft.EntityFrameworkCore.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design/5.0.10)
+- [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools/5.0.10)
 
 ### Terms of Development
 
