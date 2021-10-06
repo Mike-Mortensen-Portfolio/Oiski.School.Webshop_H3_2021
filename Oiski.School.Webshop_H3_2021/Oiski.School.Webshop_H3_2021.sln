@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oiski.School.Webshop_H3_2021.Datalayer", "Oiski.School.Webshop_H3_2021.Datalayer\Oiski.School.Webshop_H3_2021.Datalayer.csproj", "{8B398624-32B7-4A97-AFF1-D3569AF27931}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oiski.School.Weshop_H3_2021.TestApplication", "Oiski.School.Weshop_H3_2021.TestApplication\Oiski.School.Weshop_H3_2021.TestApplication.csproj", "{DF330044-EF4C-415F-BFD0-ED33CA8C4902}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B398624-32B7-4A97-AFF1-D3569AF27931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B398624-32B7-4A97-AFF1-D3569AF27931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B398624-32B7-4A97-AFF1-D3569AF27931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B398624-32B7-4A97-AFF1-D3569AF27931}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF330044-EF4C-415F-BFD0-ED33CA8C4902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF330044-EF4C-415F-BFD0-ED33CA8C4902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF330044-EF4C-415F-BFD0-ED33CA8C4902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF330044-EF4C-415F-BFD0-ED33CA8C4902}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B7C80AB-4AAB-4348-8597-6678205B84EA}
+	EndGlobalSection
+EndGlobal
