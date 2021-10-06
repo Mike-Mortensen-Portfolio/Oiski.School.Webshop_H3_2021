@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,9 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
     public class WebShopContext : DbContext
     {
         // Preparing for Entities.
-        //public DbSet<Customer> Customers { get; set; }
-        //public DbSet<Order> Orders { get; set; }
-        //public DbSet<Product> Products { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder _optionsBuilder)
         {
