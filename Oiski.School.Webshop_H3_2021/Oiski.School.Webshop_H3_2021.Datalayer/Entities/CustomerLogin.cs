@@ -23,7 +23,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         /// </summary>
         public Customer Customer { get; set; }
 
-        public int Password { get; set; }
+        public string Password { get; set; }
 
         /// <summary>
         /// Collection Navigational Property to the attached collection of <see cref="Order"/>s previously made by the <see cref="Entities.Customer"/>
