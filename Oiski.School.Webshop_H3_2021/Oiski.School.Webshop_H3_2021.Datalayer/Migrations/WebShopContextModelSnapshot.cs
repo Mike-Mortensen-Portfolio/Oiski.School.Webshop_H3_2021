@@ -8,7 +8,7 @@ using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 {
-    [DbContext(typeof(WebShopContext))]
+    [DbContext(typeof(WebshopContext))]
     partial class WebShopContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

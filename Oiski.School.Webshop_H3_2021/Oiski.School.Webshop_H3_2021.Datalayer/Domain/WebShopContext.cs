@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
 {
-    public class WebShopContext : DbContext
+    public class WebshopContext : DbContext
     {
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
