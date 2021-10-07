@@ -1,4 +1,6 @@
-﻿using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
+using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using System;
 using System.Linq;
 
@@ -6,7 +8,11 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
 {
     public class WebshopService
     {
-        private WebshopService() { context = new WebshopContext(); }   //  Private to ensure no instantiation outside of scope
+        private WebshopService() //  Private to ensure no instantiation outside of scope
+        {
+            var option = new DbContextOptions<WebshopContext>();
+            context = new WebshopContext(option);
+        }
 
         private WebshopContext context;
 
@@ -68,6 +74,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         /// <param name="_entity">The entity to push to DB</param>
         public void Remove<T>(T _entity)
         {
+            EntityState state = context.Entry(_entity).State;
             context.Remove(_entity);
 
             context.SaveChanges();
@@ -79,13 +86,26 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         /// <typeparam name="T"></typeparam>
         /// <param name="_condition"></param>
         /// <returns>An extendable query expression that targets a sequence of type <typeparamref name="T"/></returns>
+        [Obsolete("Method is unpredictable; Needs fix")]
         public IQueryable<T> Find<T>(Func<T, bool> _condition) where T : class
         {
-            var query = context.Set<T>("EntityCollection")
+            var query = context.Set<T>()
                 .Where(_condition)
                 .AsQueryable();
 
             return query;
+        }
+
+        public IQueryable<Customer> FindCustomer(Func<Customer, bool> _condition)
+        {
+            return context.Customers.Where(_condition)
+                .AsQueryable();
+        }
+
+        public IQueryable<Product> FindProduct(Func<Product, bool> _condition)
+        {
+            return context.Products.Where(_condition)
+                .AsQueryable();
         }
     }
 }
