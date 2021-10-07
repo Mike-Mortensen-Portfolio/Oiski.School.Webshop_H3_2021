@@ -92,6 +92,9 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - **Fixed**
       - `ImageID` changed to `ProductImageID`, to create Primary Key.
       - Added a Reference Navigational Property to `Customer` inside of `Order`. 
+- **[v0.3.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.3.1)**
+    - **Added**
+      - Inside of `WebShopContext` and in the `OnModelCreating()` there's added a `region` called DATA SEEDING, all of the data is in a comment.
    
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
