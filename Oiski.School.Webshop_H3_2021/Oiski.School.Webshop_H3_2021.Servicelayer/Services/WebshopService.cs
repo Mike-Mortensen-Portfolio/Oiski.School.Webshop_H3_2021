@@ -11,8 +11,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         private WebshopService() //  Private to ensure no instantiation outside of scope
         {
             var option = new DbContextOptions<WebshopContext>();
-            context = new WebshopContext(option); 
-        }   
+            context = new WebshopContext(option);
+        }
 
         private WebshopContext context;
 
@@ -74,6 +74,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         /// <param name="_entity">The entity to push to DB</param>
         public void Remove<T>(T _entity)
         {
+            EntityState state = context.Entry(_entity).State;
             context.Remove(_entity);
 
             context.SaveChanges();
@@ -88,7 +89,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         [Obsolete("Method is unpredictable; Needs fix")]
         public IQueryable<T> Find<T>(Func<T, bool> _condition) where T : class
         {
-            var query = context.Set<T>("EntityCollection")
+            var query = context.Set<T>()
                 .Where(_condition)
                 .AsQueryable();
 

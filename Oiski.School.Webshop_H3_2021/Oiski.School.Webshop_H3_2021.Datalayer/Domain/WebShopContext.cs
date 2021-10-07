@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
