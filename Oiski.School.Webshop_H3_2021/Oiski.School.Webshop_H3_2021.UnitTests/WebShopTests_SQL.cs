@@ -140,7 +140,7 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             // ASSERT:
             using (var context = new WebshopContext())
             {
-                var product = WebshopService.Access.Find<Product>(p => p.ProductID == 2)
+                var product = WebshopService.Access.FindProduct(p => p.ProductID == 2)
                     .Include(p => p.Types)
                     .ThenInclude(pt => pt.Type)
                     .FirstOrDefault();
