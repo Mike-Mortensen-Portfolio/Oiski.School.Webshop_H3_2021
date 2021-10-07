@@ -48,6 +48,122 @@ The assignments states that the following criteria:
 
 See the [Wiki](https://github.com/ZhakalenDk/Oiski.School.Wepshop_H3_2021/wiki) for more in depth information about the project.
 
+## Scripts
+
+<details>
+  <summary>SQL Installationsscript.</summary>
+  
+  ```SQL
+  CREATE DATABASE WebShopDB
+GO
+USE WebShopDB
+GO
+BEGIN TRANSACTION;
+GO
+
+CREATE TABLE [CustomerLogins] (
+    [CustomerLoginID] int NOT NULL IDENTITY,
+    [CustomerID] int NOT NULL,
+    [Password] nvarchar(max) NULL,
+    CONSTRAINT [PK_CustomerLogins] PRIMARY KEY ([CustomerLoginID])
+);
+GO
+
+CREATE TABLE [Products] (
+    [ProductID] int NOT NULL IDENTITY,
+    [Title] nvarchar(max) NULL,
+    [Description] nvarchar(max) NULL,
+    [BrandName] nvarchar(max) NULL,
+    [Price] decimal(18,2) NOT NULL,
+    [InStock] int NOT NULL,
+    CONSTRAINT [PK_Products] PRIMARY KEY ([ProductID])
+);
+GO
+
+CREATE TABLE [Types] (
+    [TypeID] int NOT NULL IDENTITY,
+    [Name] nvarchar(max) NULL,
+    CONSTRAINT [PK_Types] PRIMARY KEY ([TypeID])
+);
+GO
+
+CREATE TABLE [Customers] (
+    [CustomerID] int NOT NULL IDENTITY,
+    [CustomerLoginID] int NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [Email] nvarchar(max) NULL,
+    [Country] nvarchar(max) NULL,
+    [City] nvarchar(max) NULL,
+    [ZipCode] int NOT NULL,
+    [Address] nvarchar(max) NULL,
+    [PhoneNumber] nvarchar(max) NULL,
+    [PaymentMethod] int NOT NULL,
+    [DeliveryType] int NOT NULL,
+    CONSTRAINT [PK_Customers] PRIMARY KEY ([CustomerID]),
+    CONSTRAINT [FK_Customers_CustomerLogins_CustomerLoginID] FOREIGN KEY ([CustomerLoginID]) REFERENCES [CustomerLogins] ([CustomerLoginID]) ON DELETE NO ACTION
+);
+GO
+
+CREATE TABLE [ProductImages] (
+    [ProductImageID] int NOT NULL IDENTITY,
+    [ProductID] int NOT NULL,
+    [ImageStream] varbinary(max) NULL,
+    [Title] nvarchar(max) NULL,
+    CONSTRAINT [PK_ProductImages] PRIMARY KEY ([ProductImageID]),
+    CONSTRAINT [FK_ProductImages_Products_ProductID] FOREIGN KEY ([ProductID]) REFERENCES [Products] ([ProductID]) ON DELETE CASCADE
+);
+GO
+
+CREATE TABLE [ProductTypes] (
+    [ProductID] int NOT NULL,
+    [TypeID] int NOT NULL,
+    CONSTRAINT [PK_ProductTypes] PRIMARY KEY ([ProductID], [TypeID]),
+    CONSTRAINT [FK_ProductTypes_Products_ProductID] FOREIGN KEY ([ProductID]) REFERENCES [Products] ([ProductID]) ON DELETE CASCADE,
+    CONSTRAINT [FK_ProductTypes_Types_TypeID] FOREIGN KEY ([TypeID]) REFERENCES [Types] ([TypeID]) ON DELETE CASCADE
+);
+GO
+
+CREATE TABLE [Orders] (
+    [OrderID] int NOT NULL IDENTITY,
+    [CustomerID] int NOT NULL,
+    [OrderDate] datetime2 NOT NULL,
+    CONSTRAINT [PK_Orders] PRIMARY KEY ([OrderID]),
+    CONSTRAINT [FK_Orders_Customers_CustomerID] FOREIGN KEY ([CustomerID]) REFERENCES [Customers] ([CustomerID]) ON DELETE CASCADE
+);
+GO
+
+CREATE TABLE [OrderProducts] (
+    [ProductID] int NOT NULL,
+    [OrderID] int NOT NULL,
+    CONSTRAINT [PK_OrderProducts] PRIMARY KEY ([ProductID], [OrderID]),
+    CONSTRAINT [FK_OrderProducts_Orders_OrderID] FOREIGN KEY ([OrderID]) REFERENCES [Orders] ([OrderID]) ON DELETE CASCADE,
+    CONSTRAINT [FK_OrderProducts_Products_ProductID] FOREIGN KEY ([ProductID]) REFERENCES [Products] ([ProductID]) ON DELETE CASCADE
+);
+GO
+
+CREATE UNIQUE INDEX [IX_Customers_CustomerLoginID] ON [Customers] ([CustomerLoginID]) WHERE [CustomerLoginID] IS NOT NULL;
+GO
+
+CREATE INDEX [IX_OrderProducts_OrderID] ON [OrderProducts] ([OrderID]);
+GO
+
+CREATE INDEX [IX_Orders_CustomerID] ON [Orders] ([CustomerID]);
+GO
+
+CREATE INDEX [IX_ProductImages_ProductID] ON [ProductImages] ([ProductID]);
+GO
+
+CREATE INDEX [IX_ProductTypes_TypeID] ON [ProductTypes] ([TypeID]);
+GO
+
+COMMIT;
+GO
+
+  ```
+  
+ </details>
+
 ## Diagrams
 
 ### Class Diagram over Entities
