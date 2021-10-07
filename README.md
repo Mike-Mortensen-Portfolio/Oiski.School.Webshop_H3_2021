@@ -109,7 +109,7 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
       - Defined `CustomerLogin` property as Foreign Key in `Customer`
       - Added an Orders Collection Navigational Property in `Customer`
       - Specified custom table names for all classes
-    - Removed
+    - **Removed**
       - Orders Navigational Property in `CustomerLogin`
       - Added `OrderProduct` Navigational Property in `Order`
       - Added `OrderProduct` Navigational Property in `Product`
@@ -117,7 +117,7 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
       - Added `ProductID` Property in `ProductImage`
       - Added `ProductType` Navigational Property in `Type`
       - Added DB ER-Diagram
-    - Changed
+    - **Changed**
       - Rearranged Class Diagram
       - Added DB ER-Diagram to README
       - Rebuilded Initial Migration configuration
