@@ -3,6 +3,16 @@
 ## About The Project
 The project and its specifications are defined by the assignment in relation to our lectures on `EF Core` and `Linq`, for which the project is to be handed in as a group project. Our group is formed by **Jasmin 'Jeongoks' Nielsen** and **Mike '_Oiski_' Mortensen**
 
+### DB Drawing of the Project Build
+The structure approach is _Folder-By-Type_.
+
+We are using an SQL server as our Data Storage, which we can access from our `DataLayer` inside of our project. The `DataLayer` contains our EF Core Classes in a folder called _Entities_ and our `DBContext` is in the folder called _Domain_. 
+
+Then we have our Webshop `ServiceLayer` where we store all of our services as well as our Generic CRUD and Data Transfer Objects, as well as a folder for _Extensions_ To have our Extension methods in one place.
+
+Our API will use xUnit testing to begin with, to check if our `Data Layer` and `ServiceLayer` works with the Queries that we've created in the `ServiceLayer`. In the future we will be hooking this project up to a Web API, using Razor Pages.
+![DBDrawing](./Images/Webshop_DBDrawing.png)
+
 ## Dependencies
 - [Microsoft.EntityFramworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/)
 - [Microsoft.EntityFrameworkCore.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design/5.0.10)
@@ -172,9 +182,6 @@ GO
 ### Entity Relation Diagram over DB
 ![ERDiagram](./Images/Webshop_DBDiagram.png)
 
-### DB Drawing of the Project Build
-![DBDrawing](./Images/Webshop_DBDrawing.png)
-
 ## Versioning
 Versioning is coordinated according to the following template: [_Major_].[_Minor_].[Patch].\
 Each `Feature` must be branched out and developed on an isolated branch and merged back into the `Developer` branch when done.
@@ -237,5 +244,8 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
       - Rearranged Class Diagram
       - Added DB ER-Diagram to README
       - Rebuilded Initial Migration configuration
+- **[v0.4.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.4.0)**
+    - **Added**
+      - Added an extension to `IQueryable<Product>` to sum up a total of all prices in a sequence.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
