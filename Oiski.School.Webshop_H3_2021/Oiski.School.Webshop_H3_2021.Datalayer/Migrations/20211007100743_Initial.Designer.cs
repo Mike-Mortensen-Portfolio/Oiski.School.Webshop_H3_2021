@@ -9,7 +9,7 @@ using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 {
-    [DbContext(typeof(WebShopContext))]
+    [DbContext(typeof(WebshopContext))]
     [Migration("20211007100743_Initial")]
     partial class Initial
     {
