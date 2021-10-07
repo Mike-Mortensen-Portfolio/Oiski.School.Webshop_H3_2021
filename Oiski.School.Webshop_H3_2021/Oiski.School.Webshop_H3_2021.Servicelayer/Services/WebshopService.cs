@@ -1,4 +1,5 @@
-﻿using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 using System;
 using System.Linq;
 
@@ -6,7 +7,11 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
 {
     public class WebshopService
     {
-        private WebshopService() { context = new WebshopContext(); }   //  Private to ensure no instantiation outside of scope
+        private WebshopService() //  Private to ensure no instantiation outside of scope
+        {
+            var option = new DbContextOptions<WebshopContext>();
+            context = new WebshopContext(option); 
+        }   
 
         private WebshopContext context;
 
