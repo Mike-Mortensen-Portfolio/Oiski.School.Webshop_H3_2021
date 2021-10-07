@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
 {
+    [Table("Orders")]
     /// <summary>
     /// Defines an order made by a <see cref="Customer"/>
     /// </summary>
@@ -18,6 +19,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         /// Foreign Key to the attached <see cref="Entities.Customer"/>
         /// </summary>
         public int CustomerID { get; set; }
+
         /// <summary>
         /// Reference Navigational Property to <see cref="Entities.Customer"/>
         /// </summary>
@@ -28,6 +30,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         /// <summary>
         /// Collection Navigational Property to the purchased <see cref="Product"/>s
         /// </summary>
-        public List<Product> Products { get; set; }
+        public ICollection<OrderProduct> Products { get; set; }
     }
 }

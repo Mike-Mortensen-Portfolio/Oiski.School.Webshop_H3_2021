@@ -9,7 +9,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
 {
     public class WebShopContext : DbContext
     {
-        // Preparing for Entities.
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -22,9 +21,14 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
                 .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=WebShopDb;Trusted_Connection=True;");
         }
 
-        // Preparing for DataSeeding
         protected override void OnModelCreating(ModelBuilder _modelBuilder)
         {
+            _modelBuilder.Entity<OrderProduct>()
+                .HasKey(op => new { op.ProductID, op.OrderID });
+
+            _modelBuilder.Entity<ProductType>()
+                .HasKey(pt => new { pt.ProductID, pt.TypeID });
+
             #region DATA SEEDING
             //// PaymentMethod and DeliveryType has not been added yet !! TO-DO !!
             //_modelBuilder.Entity<Customer>().HasData(
