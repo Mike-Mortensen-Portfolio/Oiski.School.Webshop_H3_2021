@@ -9,16 +9,21 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
 {
     public class WebshopContext : DbContext
     {
+        public WebshopContext(DbContextOptions<WebshopContext> _options) : base(_options) { }
+
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder _optionsBuilder)
         {
-            _optionsBuilder
+            if (!_optionsBuilder.IsConfigured)
+            {
+                _optionsBuilder
                 .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
                 .EnableSensitiveDataLogging(true)
                 .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=WebShopDb;Trusted_Connection=True;");
+            }            
         }
 
         protected override void OnModelCreating(ModelBuilder _modelBuilder)
