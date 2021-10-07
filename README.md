@@ -244,8 +244,14 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
       - Rearranged Class Diagram
       - Added DB ER-Diagram to README
       - Rebuilded Initial Migration configuration
-- **[v0.4.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.4.0)**
+- **[v0.4.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.4.1)**
     - **Added**
       - Added an extension to `IQueryable<Product>` to sum up a total of all prices in a sequence.
+- **[v0.5.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.5.0)**
+    - **Added**
+      -  Save Changes to `Add<T>(T)` in `WebshopContext`: _Pushes a new entity to DB_
+      - `Update<T>(T)` to `WebshopContext`: _Updates an existing entity in DB_
+      - `Delete<T>(T)` to `WebshopContext`: _Deletes an entity from DB_
+      - `Find<T>(Func<T, bool>)` to `WebshopContext`: _Builds an extenable query that targets a specific sequence of type T_
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
