@@ -1,48 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Comment CommentText="Product and Type have a shared ProductType, however that is handled by EF Core">
-    <Position X="2.771" Y="3.167" Height="0.865" Width="1.7" />
-  </Comment>
   <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.Customer">
     <Position X="0.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AABBAEQAACAAAAAIIAAAQAAAEAIAAAABAAAAAAAAAAg=</HashCode>
+      <HashCode>AAEBAEQAACAAAAAIIAAAQAAAEAIAAQADAAAAAAAAAAg=</HashCode>
       <FileName>Entities\Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.CustomerLogin">
-    <Position X="0.5" Y="4" Width="1.75" />
+    <Position X="2.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAAAAIAAAAAAAEAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Entities\CustomerLogin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.Order">
-    <Position X="4.75" Y="3.25" Width="1.75" />
+    <Position X="4.5" Y="2.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>CAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <HashCode>CAEAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Entities\Order.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.Product">
-    <Position X="2.75" Y="0.5" Width="1.75" />
+    <Position X="6.5" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>EgAIAAAAAQAgAEAAAAAAAAAAAAAAAABCAAAAAAAAAAA=</HashCode>
+      <HashCode>EgEIAAAAAQAgAEAAAAAAAAAAAAAAAABCAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Product.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.ProductImage">
+    <Position X="8.75" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAEAAAAEAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Entities\ProductImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.Type">
-    <Position X="2.75" Y="4.25" Width="1.75" />
+    <Position X="4.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAgAAAAAAAAAAQ=</HashCode>
       <FileName>Entities\Type.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.ProductImage">
-    <Position X="4.75" Y="1.25" Width="1.75" />
+  <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.OrderProduct">
+    <Position X="6.5" Y="3.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAEAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\ProductImage.cs</FileName>
+      <HashCode>EAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\OrderProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.ProductType">
+    <Position X="2.5" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAAAAAAAAAAAAAAAAAAgAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\ProductType.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

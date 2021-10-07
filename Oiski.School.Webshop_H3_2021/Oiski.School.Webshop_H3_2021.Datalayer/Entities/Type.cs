@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
 {
+    [Table ("Types")]
     /// <summary>
     /// Defines a product type
     /// </summary>
@@ -17,6 +19,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         /// <summary>
         /// Collection Navigational Property to the attached <see cref="Product"/>s
         /// </summary>
-        public ICollection<Product> Products { get; set; }
+        public ICollection<ProductType> Products { get; set; }
     }
 }
