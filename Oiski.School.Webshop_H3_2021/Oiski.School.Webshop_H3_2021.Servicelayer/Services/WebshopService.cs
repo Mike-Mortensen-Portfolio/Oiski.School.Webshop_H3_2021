@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
+using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using System;
 using System.Linq;
 
@@ -84,6 +85,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         /// <typeparam name="T"></typeparam>
         /// <param name="_condition"></param>
         /// <returns>An extendable query expression that targets a sequence of type <typeparamref name="T"/></returns>
+        [Obsolete("Method is unpredictable; Needs fix")]
         public IQueryable<T> Find<T>(Func<T, bool> _condition) where T : class
         {
             var query = context.Set<T>("EntityCollection")
@@ -91,6 +93,18 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .AsQueryable();
 
             return query;
+        }
+
+        public IQueryable<Customer> FindCustomer(Func<Customer, bool> _condition)
+        {
+            return context.Customers.Where(_condition)
+                .AsQueryable();
+        }
+
+        public IQueryable<Product> FindProduct(Func<Product, bool> _condition)
+        {
+            return context.Products.Where(_condition)
+                .AsQueryable();
         }
     }
 }
