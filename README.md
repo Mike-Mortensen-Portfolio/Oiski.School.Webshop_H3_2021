@@ -53,6 +53,9 @@ See the [Wiki](https://github.com/ZhakalenDk/Oiski.School.Wepshop_H3_2021/wiki) 
 ### Class Diagram over Entities
 ![ClassDiagram](./Images/Webshop_ClassDiagram.png)
 
+### Entity Relation Diagram over DB
+![ERDiagram](./Images/Webshop_DBDiagram.png)
+
 ### DB Drawing of the Project Build
 ![DBDrawing](./Images/Webshop_DBDrawing.png)
 
@@ -95,6 +98,9 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - **Fixed**
       - `ImageID` changed to `ProductImageID`, to create Primary Key.
       - Added a Reference Navigational Property to `Customer` inside of `Order`. 
+- **[v0.3.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.3.1)**
+    - **Added**
+      - Inside of `WebShopContext` and in the `OnModelCreating()` there's added a `region` called DATA SEEDING, all of the data is in a comment, due to some `Entities` missing.
    
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me

@@ -26,11 +26,11 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Addresse")
+                    b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("City")
-                        .HasColumnType("int");
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
@@ -61,7 +61,29 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 
                     b.HasKey("CustomerID");
 
+                    b.HasIndex("CustomerLoginID")
+                        .IsUnique()
+                        .HasFilter("[CustomerLoginID] IS NOT NULL");
+
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.CustomerLogin", b =>
+                {
+                    b.Property<int>("CustomerLoginID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomerLoginID");
+
+                    b.ToTable("CustomerLogins");
                 });
 
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Order", b =>
@@ -84,6 +106,21 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.OrderProduct", b =>
+                {
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductID", "OrderID");
+
+                    b.HasIndex("OrderID");
+
+                    b.ToTable("OrderProducts");
+                });
+
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Product", b =>
                 {
                     b.Property<int>("ProductID")
@@ -100,9 +137,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                     b.Property<int>("InStock")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrderID")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -110,8 +144,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductID");
-
-                    b.HasIndex("OrderID");
 
                     b.ToTable("Products");
                 });
@@ -126,7 +158,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                     b.Property<byte[]>("ImageStream")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int?>("ProductID")
+                    b.Property<int>("ProductID")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -136,7 +168,22 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("ProductImage");
+                    b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.ProductType", b =>
+                {
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductID", "TypeID");
+
+                    b.HasIndex("TypeID");
+
+                    b.ToTable("ProductTypes");
                 });
 
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Type", b =>
@@ -151,28 +198,22 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 
                     b.HasKey("TypeID");
 
-                    b.ToTable("Type");
+                    b.ToTable("Types");
                 });
 
-            modelBuilder.Entity("ProductType", b =>
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Customer", b =>
                 {
-                    b.Property<int>("ProductsProductID")
-                        .HasColumnType("int");
+                    b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.CustomerLogin", "CustomerLogin")
+                        .WithOne("Customer")
+                        .HasForeignKey("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Customer", "CustomerLoginID");
 
-                    b.Property<int>("TypesTypeID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductsProductID", "TypesTypeID");
-
-                    b.HasIndex("TypesTypeID");
-
-                    b.ToTable("ProductType");
+                    b.Navigation("CustomerLogin");
                 });
 
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Order", b =>
                 {
                     b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -180,33 +221,57 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Product", b =>
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.OrderProduct", b =>
                 {
                     b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Order", null)
                         .WithMany("Products")
-                        .HasForeignKey("OrderID");
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Product", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.ProductImage", b =>
                 {
                     b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Product", null)
                         .WithMany("ProductImages")
-                        .HasForeignKey("ProductID");
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductType", b =>
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.ProductType", b =>
                 {
-                    b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsProductID")
+                    b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Product", "Product")
+                        .WithMany("Types")
+                        .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Type", null)
-                        .WithMany()
-                        .HasForeignKey("TypesTypeID")
+                    b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Type", "Type")
+                        .WithMany("Products")
+                        .HasForeignKey("TypeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Customer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.CustomerLogin", b =>
+                {
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Order", b =>
@@ -216,7 +281,16 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Product", b =>
                 {
+                    b.Navigation("Orders");
+
                     b.Navigation("ProductImages");
+
+                    b.Navigation("Types");
+                });
+
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Type", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
