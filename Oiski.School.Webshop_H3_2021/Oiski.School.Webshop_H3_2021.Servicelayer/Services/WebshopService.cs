@@ -8,40 +8,12 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
 {
     public class WebshopService
     {
-        private WebshopService() //  Private to ensure no instantiation outside of scope
-        {
-            var option = new DbContextOptions<WebshopContext>();
-            context = new WebshopContext(option);
-        }
-
-        private WebshopContext context;
-
-        /// <summary>
-        /// Simple Singleton pattern
-        /// </summary>
-        private static WebshopService access = null;
-        public static WebshopService Access
-        {
-            get
-            {
-                if (access == null)
-                {
-                    access = new WebshopService();
-                }
-
-                return access;
-            }
-        }
-
-        public void SetContext(WebshopContext _context)
+        public WebshopService(WebshopContext _context)
         {
             context = _context;
         }
 
-        public void FlushContext()
-        {
-            context = null;
-        }
+        private WebshopContext context;
 
         /// <summary>
         /// Adds <paramref name="_entity"/> of type <typeparamref name="T"/> to the tracker and saves the changes (<i>Pushes to DB</i>)
@@ -74,38 +46,19 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         /// <param name="_entity">The entity to push to DB</param>
         public void Remove<T>(T _entity)
         {
-            EntityState state = context.Entry(_entity).State;
             context.Remove(_entity);
 
             context.SaveChanges();
         }
 
         /// <summary>
-        /// Builds an <see cref="IQueryable{T}"/> object as an extendable query, based on the <paramref name="_condition"/> provided
+        /// Builds an <see cref="IQueryable{T}"/> object that targets the type of <typeparamref name="T"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="_condition"></param>
         /// <returns>An extendable query expression that targets a sequence of type <typeparamref name="T"/></returns>
-        [Obsolete("Method is unpredictable; Needs fix")]
-        public IQueryable<T> Find<T>(Func<T, bool> _condition) where T : class
+        public IQueryable<T> GetQueryable<T>() where T : class
         {
-            var query = context.Set<T>()
-                .Where(_condition)
-                .AsQueryable();
-
-            return query;
-        }
-
-        public IQueryable<Customer> FindCustomer(Func<Customer, bool> _condition)
-        {
-            return context.Customers.Where(_condition)
-                .AsQueryable();
-        }
-
-        public IQueryable<Product> FindProduct(Func<Product, bool> _condition)
-        {
-            return context.Products.Where(_condition)
-                .AsQueryable();
+            return context.Set<T>();
         }
     }
 }

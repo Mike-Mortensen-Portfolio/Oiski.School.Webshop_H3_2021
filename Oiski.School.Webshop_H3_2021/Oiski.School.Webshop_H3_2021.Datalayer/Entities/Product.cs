@@ -35,5 +35,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         /// Collection Navigational Property to the attached collection of <see cref="Entities.Type"/>s
         /// </summary>
         public ICollection<ProductType> Types { get; set; }
+
     }
 }

@@ -25,9 +25,9 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             {
                 initialCustomerCount = context.Customers.Count();
 
-                WebshopService.Access.SetContext(context);
+                var service = new WebshopService(context);
 
-                WebshopService.Access.Add(new Customer() { Address = "MyAddress" });
+                service.Add(new Customer() { Address = "MyAddress" });
             }
 
             //  Assert: Compare the service result against a context result
@@ -45,7 +45,7 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
         {
             //  Arrange: Configure context options
             var options = new DbContextOptionsBuilder<WebshopContext>()
-                .UseInMemoryDatabase("Add_Writes_To_DB")
+                .UseInMemoryDatabase("Update_Customer_Name_In_DB")
                 .Options;
 
             //  Arrange: Insert data to update on
@@ -58,19 +58,18 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             //  Act: Update customer name
             using (var context = new WebshopContext(options))
             {
-                WebshopService.Access.SetContext(context);
+                var service = new WebshopService(context);
 
                 var customer = context.Customers.FirstOrDefault();
 
                 customer.FirstName = "Laila";
 
-                WebshopService.Access.Update(customer);
+                service.Update(customer);
             }
 
             //  Assert: Validate that the data was updated correctly
             using (var context = new WebshopContext(options))
             {
-                //Assert.Single(context.Customers);
                 Assert.True((context.Customers.Where(c => c.FirstName == "Laila").Single().FirstName == "Laila"));
             }
         }
@@ -80,7 +79,7 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
         {
             //  Arrange: Configure context options
             var options = new DbContextOptionsBuilder<WebshopContext>()
-                .UseInMemoryDatabase("Add_Writes_To_DB")
+                .UseInMemoryDatabase("Delete_Customer_From_DB")
                 .Options;
 
             // Arrange: ID to compare against
@@ -98,11 +97,11 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             //  Act: Delete data
             using (var context = new WebshopContext(options))
             {
-                WebshopService.Access.SetContext(context);
+                var service = new WebshopService(context);
 
                 var customer = context.Customers.FirstOrDefault();
 
-                WebshopService.Access.Remove(customer);
+                service.Remove(customer);
             }
 
             //  Assert: Validate that the data was deleted in DB
@@ -120,23 +119,37 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
         {
             //  Arrange: Configure context options
             var options = new DbContextOptionsBuilder<WebshopContext>()
-                .UseInMemoryDatabase("Add_Writes_To_DB")
+                .UseInMemoryDatabase("Find_Search_DB_For_Customer_With_Customer_Login_Included")
                 .Options;
+
+            //  Arrange: Result container
+            Customer customer = null;
 
             // Arrange: Insert data to find (We go through Customer to get to CustomerLogin)
             using (var context = new WebshopContext(options))
             {
-                Customer customer = new Customer() { FirstName = "GingerbreadBoy" };
-                customer.CustomerLogin = new CustomerLogin { };
+                Customer cust = new Customer() { FirstName = "GingerbreadBoy" };
+                cust.CustomerLogin = new CustomerLogin { };
 
-                context.Customers.Add(customer);
+                context.Customers.Add(cust);
                 context.SaveChanges();
             }
 
-            //  Act:
+            //  Act:    Locate and extract customer data
             using (var context = new WebshopContext(options))
             {
-                WebshopService.Access.SetContext(context);
+                var service = new WebshopService(context);
+
+                customer = service.GetQueryable<Customer>()
+                   .Where(c => c.FirstName == "GingerbreadBoy")
+                   .Include(c => c.CustomerLogin)
+                   .Single();
+            }
+
+            //Assert:   //  Check if CustomerLogin data is null, and compare context query against our service query
+            using (var context = new WebshopContext(options))
+            {
+                var service = new WebshopService(context);
 
                 Customer contextCustomer = context.Customers.Where(c => c.FirstName == "GingerbreadBoy")
                     .Include(c => c.CustomerLogin)
@@ -144,14 +157,10 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
 
                 CustomerLogin login = contextCustomer.CustomerLogin;
 
-                Customer customer = WebshopService.Access.Find<Customer>(c => c.FirstName == "GingerbreadBoy")
-                    .Include(c => c.CustomerLogin)
-                    .Single();
-
                 Assert.NotNull(customer.CustomerLogin);
+                Assert.True((customer.CustomerLogin.CustomerLoginID == login.CustomerLoginID));
             }
 
-            //Assert:
         }
     }
 }

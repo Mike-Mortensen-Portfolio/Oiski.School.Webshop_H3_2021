@@ -2,9 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
 {
@@ -25,7 +22,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
                 .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
                 .EnableSensitiveDataLogging(true)
                 .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=WebShopDb;Trusted_Connection=True;");
-            }            
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder _modelBuilder)
