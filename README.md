@@ -195,63 +195,68 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 ### Change Log
 - **[v0.0.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.0.0)**
     - Added
-      - Project Solution
-      - Console Application Project - _For testing features_
-      - Datalayer Class Library project - _The backend stuff (EF Core)_
+        - Project Solution
+        - Console Application Project - _For testing features_
+        - Datalayer Class Library project - _The backend stuff (EF Core)_
 - **[v0.1.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.1.0)**
     - **Added**
-      - `WebShopContext` with ConnectionString.
+        - `WebShopContext` with ConnectionString.
     - **Prepared**
-      - Properties of `DbSet<>` of Entities.
-      - DataSeeding for Initialize of Database.
+        - Properties of `DbSet<>` of Entities.
+        - DataSeeding for Initialize of Database.
 - **[v0.2.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.2.0)**
     - **Added**
-      - `Customer` class
-      - `CustomerLogin` class - _The login Info for a customer_
-      - `Order` class
-      - `Product` class
-      - `ProductImage` class
-      - `Type` class - _A product type container (Many to Many)_
+        - `Customer` class
+        - `CustomerLogin` class - _The login Info for a customer_
+        - `Order` class
+        - `Product` class
+        - `ProductImage` class
+        - `Type` class - _A product type container (Many to Many)_
     - Modified
-      - README file to include a section for diagrams and added class diagram over entities
+        - README file to include a section for diagrams and added class diagram over entities
 - **[v0.2.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.2.1)**
     - **Fixed**
-      - Password is now a string as intended
+        - Password is now a string as intended
 - **[v0.3.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.3.0)**
     - **Fixed**
-      - `ImageID` changed to `ProductImageID`, to create Primary Key.
-      - Added a Reference Navigational Property to `Customer` inside of `Order`. 
+        - `ImageID` changed to `ProductImageID`, to create Primary Key.
+        - Added a Reference Navigational Property to `Customer` inside of `Order`. 
 - **[v0.3.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.3.1)**
     - **Added**
-      - Inside of `WebShopContext` and in the `OnModelCreating()` there's added a `region` called DATA SEEDING, all of the data is in a comment, due to some `Entities` missing.
+        - Inside of `WebShopContext` and in the `OnModelCreating()` there's added a `region` called DATA SEEDING, all of the data is in a comment, due to some `Entities` missing.
 - **[v0.4.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.4.0)**
     - **Added**
-      - `ProductType` class
-      - `OrderProduct` class
-      - Combined key for `OrderProduct` and `ProductType` in `WebshopContext`
-      - Defined `CustomerLogin` property as Foreign Key in `Customer`
-      - Added an Orders Collection Navigational Property in `Customer`
-      - Specified custom table names for all classes
+        - `ProductType` class
+        - `OrderProduct` class
+        - Combined key for `OrderProduct` and `ProductType` in `WebshopContext`
+        - Defined `CustomerLogin` property as Foreign Key in `Customer`
+        - Added an Orders Collection Navigational Property in `Customer`
+        - Specified custom table names for all classes
     - **Removed**
-      - Orders Navigational Property in `CustomerLogin`
-      - Added `OrderProduct` Navigational Property in `Order`
-      - Added `OrderProduct` Navigational Property in `Product`
-      - Added Navigational Property for `ProductType` in `Product`
-      - Added `ProductID` Property in `ProductImage`
-      - Added `ProductType` Navigational Property in `Type`
-      - Added DB ER-Diagram
+        - Orders Navigational Property in `CustomerLogin`
+        - Added `OrderProduct` Navigational Property in `Order`
+        - Added `OrderProduct` Navigational Property in `Product`
+        - Added Navigational Property for `ProductType` in `Product`
+        - Added `ProductID` Property in `ProductImage`
+        - Added `ProductType` Navigational Property in `Type`
+        - Added DB ER-Diagram
     - **Changed**
-      - Rearranged Class Diagram
-      - Added DB ER-Diagram to README
-      - Rebuilded Initial Migration configuration
+        - Rearranged Class Diagram
+        - Added DB ER-Diagram to README
+        - Rebuilded Initial Migration configuration
 - **[v0.4.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.4.1)**
     - **Added**
-      - Added an extension to `IQueryable<Product>` to sum up a total of all prices in a sequence.
+        - Added an extension to `IQueryable<Product>` to sum up a total of all prices in a sequence.
 - **[v0.5.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.5.0)**
     - **Added**
-      -  Save Changes to `Add<T>(T)` in `WebshopContext`: _Pushes a new entity to DB_
-      - `Update<T>(T)` to `WebshopContext`: _Updates an existing entity in DB_
-      - `Delete<T>(T)` to `WebshopContext`: _Deletes an entity from DB_
-      - `Find<T>(Func<T, bool>)` to `WebshopContext`: _Builds an extenable query that targets a specific sequence of type T_
+        -  Save Changes to `Add<T>(T)` in `WebshopContext`: _Pushes a new entity to DB_
+        - `Update<T>(T)` to `WebshopContext`: _Updates an existing entity in DB_
+        - `Delete<T>(T)` to `WebshopContext`: _Deletes an entity from DB_
+        - `Find<T>(Func<T, bool>)` to `WebshopContext`: _Builds an extenable query that targets a specific sequence of type T_
+- **[v0.5.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.5.1)**
+    - **Modified**
+        - Removed Singleton pattern and implemented a public construcor in its place.
+        - Renamed (__and fixed__) `Find<T>(Fact<T, bool>)` to `GetQueryable<T>()` and changed its behavior to return a `DBSet<T> `IQueryable` object instead of a conditional `Where<T>` object.
+        - Rearranged **InMemory** and **SQL** XUnit Tests to make use of the new structure.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
