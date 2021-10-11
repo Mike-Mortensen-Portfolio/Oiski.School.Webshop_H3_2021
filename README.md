@@ -258,5 +258,10 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
         - Removed Singleton pattern and implemented a public construcor in its place.
         - Renamed (__and fixed__) `Find<T>(Fact<T, bool>)` to `GetQueryable<T>()` and changed its behavior to return a `DBSet<T> `IQueryable` object instead of a conditional `Where<T>` object.
         - Rearranged **InMemory** and **SQL** XUnit Tests to make use of the new structure.
+- **[v0.6.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.5.1)**
+    - **Added**
+        - Razor Pages project
+    - **Removed**
+        - Console Application Project
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
