@@ -24,28 +24,32 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             }
 
             // ACT: Adding new Product data.
-            WebshopService.Access.Add(new Product
+            using (var context = new WebshopContext())
             {
-                Title = "Skinny Jeans",
-                Description = "Strechable pants with a skinny jeans look.",
-                Price = 30.43M,
-                BrandName = "H&M",
-                InStock = 146,
-            });
-            WebshopService.Access.Add(new Datalayer.Entities.Type
-            {
-                Name = "Skinny-Jeans"
-            });
-            WebshopService.Access.Add(new ProductType
-            {
-                ProductID = 6,
-                TypeID = 1,
-            });
-            WebshopService.Access.Add(new ProductType
-            {
-                ProductID = 6,
-                TypeID = 10,
-            });
+                var service = new WebshopService(context);
+                service.Add(new Product
+                {
+                    Title = "Skinny Jeans",
+                    Description = "Strechable pants with a skinny jeans look.",
+                    Price = 30.43M,
+                    BrandName = "H&M",
+                    InStock = 146,
+                });
+                service.Add(new Datalayer.Entities.Type
+                {
+                    Name = "Skinny-Jeans"
+                });
+                service.Add(new ProductType
+                {
+                    ProductID = 6,
+                    TypeID = 1,
+                });
+                service.Add(new ProductType
+                {
+                    ProductID = 6,
+                    TypeID = 10,
+                });
+            }
 
             // ASSERT: Getting all of the products, then checking if the new Product is in Products
             using (var context = new WebshopContext())
@@ -68,12 +72,14 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             // ACT: Finding the first customer, then changing FirstName, before we then pass it through to Update.
             using (var context = new WebshopContext())
             {
+
+                var service = new WebshopService(context);
                 var customer = context.Customers
                     .FirstOrDefault();
 
                 customer.FirstName = "Bente";
 
-                WebshopService.Access.Update(customer);
+                service.Update(customer);
             }
 
             // ASSERT: Finding all customers, then we check if there is one with the FirstName of "Bente" in Customers.
@@ -99,12 +105,13 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             // ACT: Getting the last Product and saving the ID to then pass it down to remove.
             using (var context = new WebshopContext())
             {
+                var service = new WebshopService(context);
                 var product = context.Products
                     .FirstOrDefault();
 
                 productID = product.ProductID;
 
-                WebshopService.Access.Remove(product);
+                service.Remove(product);
             }
 
             // ASSERT: Finding the deleted productID, then checking to see if it has turned Null.
@@ -125,30 +132,34 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
                 context.Database.EnsureCreated();
             }
 
-            int productID;
+            int typeCount;
+
 
             // ACT:
             using (var context = new WebshopContext())
             {
-                var product = context.Products
+                var service = new WebshopService(context);
+
+                var product = service.GetQueryable<Product>()
                     .Where(p => p.ProductID == 2)
+                    .Include(p => p.Types)
+                    .ThenInclude(pt => pt.Type)
                     .FirstOrDefault();
 
-                productID = product.ProductID;
+                typeCount = product.Types.Count;
             }
 
             // ASSERT:
             using (var context = new WebshopContext())
             {
-                var product = WebshopService.Access.FindProduct(p => p.ProductID == 2)
+                Product product = context.Products.Where(p => p.ProductID == 2)
                     .Include(p => p.Types)
-                    .ThenInclude(pt => pt.Type)
-                    .FirstOrDefault();
+                    .ThenInclude(p => p.Type)
+                    .Single();
 
-                context.Products.Find(2);
-                int count = product.Types.Count();
+                int contextTypeCount = product.Types.Count;
 
-                Assert.Equal(2, count);
+                Assert.Equal(contextTypeCount, typeCount);
             }
         }
     }
