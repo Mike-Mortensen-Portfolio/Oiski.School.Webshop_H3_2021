@@ -38,6 +38,10 @@ Our API will use xUnit testing to begin with, to check if our `Data Layer` and `
   - **Checkout**
     - The user has to give information about their Email, Name, Address, choice of Payment Method and Delivery type.
     - When the user clicks on the 'Buy' button, they have to receive a mail as a confirmation on their order.
+  - **Administrator**
+    - An Admin page, giving the adminstrator a list of all the `Products`.
+    - The Admin page will need the ability to Edit and Delete the `Products`.
+    - There will be docus on demonstrating Update and Delete in a graph of data.
   - **Additional Chosen Specifications**
     - When the mouse hovers over a picture of a product, add some shadow behind it, to highlight it.
     - Opportunity to log in, perhaps when the user is on the Checkout page.
