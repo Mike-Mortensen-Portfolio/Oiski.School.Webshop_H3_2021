@@ -4,7 +4,59 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container text-center">
+    <div class="row m-auto">
+        <form method="post">
+            <div col-4>
+                <select id="BrandSelect" class="form-control">
+                    <option value="0" selected>- Choose Brand -</option>
+                    @foreach (var product in Model.Products)
+                    {
+                        <option>@product.BrandName</option>
+                    }
+                </select>
+            </div>
+            <div col-4>
+                <select id="TypeSelect" class="form-control">
+                    <option value="0" selected>- Choose Type -</option>
+                    @foreach (var product in Model.Products)
+                    {
+                        @foreach (var type in product.Types)
+                        {
+                            <option>@type.Type.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-4">
+                <input type="search" asp-for="SearchString" value="Search" />
+                <input type="submit" asp-action="PerformSearch" />
+            </div>
+        </form>
+        
+    </div>
+    <div class="row m-auto">
+        @foreach (var product in Model.Products)
+        {
+            <div class="card border col-4">
+                <div class="card-body">
+                    <div>
+                        <h3>@product.Title</h3>
+                        <br />
+                        @product.ProductImages
+                        <br />
+                        <p class="border">@product.Description</p>
+                        <br />
+                        <p><b>#</b>&nbsp;<a asp-page="/FrontPage" asp-route-brandName="@product.BrandName">@product.BrandName</a> | Price: <b>$</b>@product.Price</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <form method="post">
+                        <input type="submit" class="btn btn-success" value="Add to cart" />
+                    </form>
+
+                </div>
+            </div>
+        }
+    </div>
 </div>

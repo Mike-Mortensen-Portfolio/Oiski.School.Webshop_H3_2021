@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using System;
+using System.IO;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
 {
@@ -95,23 +96,36 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
 
             // Images need to be put in under ImageStream !! TO-DO !!
             _modelBuilder.Entity<ProductImage>().HasData(
-                new ProductImage { ProductImageID = 1, ProductID = 1, ImageStream = new byte[] { }, Title = "High-Waisted-Jeans-SideWays" },
-                new ProductImage { ProductImageID = 2, ProductID = 1, ImageStream = new byte[] { }, Title = "High-Waisted-Jeans-Front" },
-                new ProductImage { ProductImageID = 3, ProductID = 1, ImageStream = new byte[] { }, Title = "High-Waisted-Jeans-Back" },
-                new ProductImage { ProductImageID = 4, ProductID = 2, ImageStream = new byte[] { }, Title = "Skater-Skirt-SideWays" },
-                new ProductImage { ProductImageID = 5, ProductID = 2, ImageStream = new byte[] { }, Title = "Skater-Skirt-Front" },
-                new ProductImage { ProductImageID = 6, ProductID = 2, ImageStream = new byte[] { }, Title = "Skater-Skirt-Back" },
-                new ProductImage { ProductImageID = 7, ProductID = 3, ImageStream = new byte[] { }, Title = "Summer-Dress-SideWays" },
-                new ProductImage { ProductImageID = 8, ProductID = 3, ImageStream = new byte[] { }, Title = "Summer-Dress-Front" },
-                new ProductImage { ProductImageID = 9, ProductID = 3, ImageStream = new byte[] { }, Title = "Summer-Dress-Back" },
-                new ProductImage { ProductImageID = 10, ProductID = 4, ImageStream = new byte[] { }, Title = "Sneakers-Paradise-SideWays" },
-                new ProductImage { ProductImageID = 11, ProductID = 4, ImageStream = new byte[] { }, Title = "Sneakers-Paradise-Front" },
-                new ProductImage { ProductImageID = 12, ProductID = 4, ImageStream = new byte[] { }, Title = "Sneakers-Paradise-Back" },
-                new ProductImage { ProductImageID = 13, ProductID = 5, ImageStream = new byte[] { }, Title = "Warm-Knitted-Sweater-SideWays" },
-                new ProductImage { ProductImageID = 14, ProductID = 5, ImageStream = new byte[] { }, Title = "Warm-Knitted-Sweater-SideWays" },
-                new ProductImage { ProductImageID = 15, ProductID = 5, ImageStream = new byte[] { }, Title = "Warm-Knitted-Sweater-SideWays" }
+                new ProductImage { ProductImageID = 1, ProductID = 1, ImageStream = new byte[] { }, Title = "High-Waisted-Jeans-Front" },
+                new ProductImage { ProductImageID = 2, ProductID = 1, ImageStream = new byte[] { }, Title = "High-Waisted-Jeans-Back" },
+                new ProductImage { ProductImageID = 3, ProductID = 2, ImageStream = new byte[] { }, Title = "Skater-Skirt-Front" },
+                new ProductImage { ProductImageID = 4, ProductID = 2, ImageStream = new byte[] { }, Title = "Skater-Skirt-Back" },
+                new ProductImage { ProductImageID = 5, ProductID = 3, ImageStream = new byte[] { }, Title = "Summer-Dress-Front" },
+                new ProductImage { ProductImageID = 6, ProductID = 3, ImageStream = new byte[] { }, Title = "Summer-Dress-Back" },
+                new ProductImage { ProductImageID = 7, ProductID = 4, ImageStream = new byte[] { }, Title = "Sneakers-Paradise-Front" },
+                new ProductImage { ProductImageID = 8, ProductID = 4, ImageStream = new byte[] { }, Title = "Sneakers-Paradise-Back" },
+                new ProductImage { ProductImageID = 9, ProductID = 5, ImageStream = new byte[] { }, Title = "Warm-Knitted-Sweater-Front" },
+                new ProductImage { ProductImageID = 10, ProductID = 5, ImageStream = new byte[] { }, Title = "Warm-Knitted-Sweater-Back" }
             );
             #endregion
+        }
+
+        public static byte[] Readfile(string _path)
+        {
+            byte[] imageData = null;
+
+            FileInfo fileInfo = new FileInfo(_path);
+            long numBytes = fileInfo.Length;
+
+            // Opens the FileStream to read file.
+            FileStream fileStream = new FileStream(_path, FileMode.Open, FileAccess.Read);
+
+            // Used to read the file stream into byte array.
+            BinaryReader binaryReader = new BinaryReader(fileStream);
+
+            imageData = binaryReader.ReadBytes((int)numBytes);
+
+            return imageData;
         }
     }
 }
