@@ -129,7 +129,7 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             using (var context = new WebshopContext(options))
             {
                 Customer cust = new Customer() { FirstName = "GingerbreadBoy" };
-                cust.CustomerLogin = new User { };
+                cust.User = new User { };
 
                 context.Customers.Add(cust);
                 context.SaveChanges();
@@ -142,7 +142,7 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
 
                 customer = service.GetQueryable<Customer>()
                    .Where(c => c.FirstName == "GingerbreadBoy")
-                   .Include(c => c.CustomerLogin)
+                   .Include(c => c.User)
                    .Single();
             }
 
@@ -152,13 +152,13 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
                 var service = new WebshopService(context);
 
                 Customer contextCustomer = context.Customers.Where(c => c.FirstName == "GingerbreadBoy")
-                    .Include(c => c.CustomerLogin)
+                    .Include(c => c.User)
                     .FirstOrDefault();
 
-                User login = contextCustomer.CustomerLogin;
+                User login = contextCustomer.User;
 
-                Assert.NotNull(customer.CustomerLogin);
-                Assert.True((customer.CustomerLogin.UserID == login.UserID));
+                Assert.NotNull(customer.User);
+                Assert.True((customer.User.UserID == login.UserID));
             }
 
         }
