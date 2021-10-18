@@ -42,8 +42,9 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
                 );
 
             _modelBuilder.Entity<User>().HasData(
-                new User { UserID = 1, CustomerID = 2, Password = "P@ssw0rd" },
-                new User { UserID = 2, CustomerID = 3, Password = "P@ssw0rd" }
+                new User { UserID = 1, CustomerID = 2, Password = "P@ssw0rd", IsAdmin = true },
+                new User { UserID = 2, CustomerID = 3, Password = "P@ssw0rd", IsAdmin = false },
+                new User { UserID = 3, CustomerID = 1, Password = "P@ssw0rd", IsAdmin = true }
                 );
 
             _modelBuilder.Entity<Order>().HasData(

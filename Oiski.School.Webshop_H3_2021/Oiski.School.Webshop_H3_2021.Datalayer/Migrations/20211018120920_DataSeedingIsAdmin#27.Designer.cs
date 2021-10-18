@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 {
     [DbContext(typeof(WebshopContext))]
-    partial class WebShopContextModelSnapshot : ModelSnapshot
+    [Migration("20211018120920_DataSeedingIsAdmin#27")]
+    partial class DataSeedingIsAdmin27
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -556,13 +558,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         {
                             UserID = 2,
                             CustomerID = 3,
-                            IsAdmin = false,
-                            Password = "P@ssw0rd"
-                        },
-                        new
-                        {
-                            UserID = 3,
-                            CustomerID = 1,
                             IsAdmin = true,
                             Password = "P@ssw0rd"
                         });
