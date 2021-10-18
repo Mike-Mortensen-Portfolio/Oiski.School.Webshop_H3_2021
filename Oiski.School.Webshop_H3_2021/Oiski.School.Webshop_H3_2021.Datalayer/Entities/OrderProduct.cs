@@ -24,5 +24,10 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         /// Reference Navigational Property to the associated <see cref="Entities.Order"/>
         /// </summary>
         public Order Order { get; set; }
+
+        /// <summary>
+        /// The amount of the product
+        /// </summary>
+        public int Quantity { get; set; }
     }
 }

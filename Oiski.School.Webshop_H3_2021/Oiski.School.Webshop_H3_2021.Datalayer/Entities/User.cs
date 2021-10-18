@@ -2,16 +2,16 @@
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
 {
-    [Table("CustomerLogins")]
+    [Table("Users")]
     /// <summary>
     /// Contains the login information of a <see cref="Entities.Customer"/>
     /// </summary>
-    public class CustomerLogin
+    public class User
     {
         /// <summary>
         /// Primary Key
         /// </summary>
-        public int CustomerLoginID { get; set; }
+        public int UserID { get; set; }
 
         /// <summary>
         /// Foreign Key to the attached <see cref="Entities.Customer"/>
@@ -24,5 +24,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         public Customer Customer { get; set; }
 
         public string Password { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }

@@ -17,10 +17,10 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         public int? CustomerLoginID { get; set; }
 
         /// <summary>
-        /// Reference Navigational Property to the attached <see cref="Entities.CustomerLogin"/>
+        /// Reference Navigational Property to the attached <see cref="Entities.User"/>
         /// </summary>
         [ForeignKey(nameof(CustomerLoginID))]
-        public CustomerLogin CustomerLogin { get; set; }
+        public User CustomerLogin { get; set; }
 
         public string FirstName { get; set; }
 

@@ -129,7 +129,7 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             using (var context = new WebshopContext(options))
             {
                 Customer cust = new Customer() { FirstName = "GingerbreadBoy" };
-                cust.CustomerLogin = new CustomerLogin { };
+                cust.CustomerLogin = new User { };
 
                 context.Customers.Add(cust);
                 context.SaveChanges();
@@ -155,10 +155,10 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
                     .Include(c => c.CustomerLogin)
                     .FirstOrDefault();
 
-                CustomerLogin login = contextCustomer.CustomerLogin;
+                User login = contextCustomer.CustomerLogin;
 
                 Assert.NotNull(customer.CustomerLogin);
-                Assert.True((customer.CustomerLogin.CustomerLoginID == login.CustomerLoginID));
+                Assert.True((customer.CustomerLogin.UserID == login.UserID));
             }
 
         }

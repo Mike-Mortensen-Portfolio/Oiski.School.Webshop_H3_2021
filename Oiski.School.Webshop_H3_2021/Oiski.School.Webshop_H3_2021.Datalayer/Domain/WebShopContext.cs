@@ -41,9 +41,9 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
                 new Customer { CustomerID = 3, FirstName = "Ulrik", LastName = "Larsen", Email = "ulrikLarsen@gmail.com", Country = "Denmark", Address = "Nordre Ringvej 20", City = "Vojens", ZipCode = 6500, PhoneNumber = "25496875" }
                 );
 
-            _modelBuilder.Entity<CustomerLogin>().HasData(
-                new CustomerLogin { CustomerLoginID = 1, CustomerID = 2, Password = "P@ssw0rd" },
-                new CustomerLogin { CustomerLoginID = 2, CustomerID = 3, Password = "P@ssw0rd" }
+            _modelBuilder.Entity<User>().HasData(
+                new User { UserID = 1, CustomerID = 2, Password = "P@ssw0rd" },
+                new User { UserID = 2, CustomerID = 3, Password = "P@ssw0rd" }
                 );
 
             _modelBuilder.Entity<Order>().HasData(
