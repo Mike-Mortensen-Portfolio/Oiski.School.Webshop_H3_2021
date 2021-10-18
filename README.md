@@ -42,7 +42,7 @@ Our API will use xUnit testing to begin with, to check if our `Data Layer` and `
     - An Admin page, giving the adminstrator a list of all the `Products`.
     - The Admin page will need the ability to Edit and Delete the `Products`.
     - There will be docus on demonstrating Update and Delete in a graph of data.
-  - **Additional Chosen Specifications**
+  - **Additional Optional Specifications**
     - When the mouse hovers over a picture of a product, add some shadow behind it, to highlight it.
     - Opportunity to log in, perhaps when the user is on the Checkout page.
     - If the user is already logged in, then they won't have to write their information again.
