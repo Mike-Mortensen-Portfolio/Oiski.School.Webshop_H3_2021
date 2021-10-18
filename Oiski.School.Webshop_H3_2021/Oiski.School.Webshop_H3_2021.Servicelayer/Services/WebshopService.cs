@@ -13,7 +13,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
             context = _context;
         }
 
-        private WebshopContext context;
+        private readonly WebshopContext context;
 
         /// <summary>
         /// Adds <paramref name="_entity"/> of type <typeparamref name="T"/> to the tracker and saves the changes (<i>Pushes to DB</i>)
