@@ -7,13 +7,6 @@
       <FileName>Entities\Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.CustomerLogin">
-    <Position X="2.5" Y="0.5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAIAAAAAAAEAAAAAACAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\CustomerLogin.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.Order">
     <Position X="4.5" Y="2.25" Width="1.75" />
     <TypeIdentifier>
@@ -45,15 +38,22 @@
   <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.OrderProduct">
     <Position X="6.5" Y="3.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>EAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAECABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Entities\OrderProduct.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.ProductType">
-    <Position X="2.5" Y="2.25" Width="1.75" />
+    <Position X="2.5" Y="2.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>EAACAAAAAAAAAAAAAAAAAAAAAAAAAAAgAQAAAAAAAAA=</HashCode>
       <FileName>Entities\ProductType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Oiski.School.Webshop_H3_2021.Datalayer.Entities.User">
+    <Position X="2.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAgAGAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
