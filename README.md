@@ -271,5 +271,9 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - **Modified**
         - Changed `CustomerLogin` to `User`
         - Added `IsAdmin` property to `User` class
+- **[v0.6.2](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.6.2)**
+    - **Modified**
+        - `CustomerLoginID` is now `UserID` in `Customer`
+        - `CustomerLogin` is now `User` in `Customer`
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
