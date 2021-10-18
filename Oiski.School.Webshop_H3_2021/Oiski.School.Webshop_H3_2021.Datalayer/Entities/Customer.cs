@@ -12,15 +12,15 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         public int CustomerID { get; set; }
 
         /// <summary>
-        /// Foreign Key to attached <see cref="CustomerLogin"/>
+        /// Foreign Key to attached <see cref="User"/>
         /// </summary>
-        public int? CustomerLoginID { get; set; }
+        public int? UserID { get; set; }
 
         /// <summary>
         /// Reference Navigational Property to the attached <see cref="Entities.User"/>
         /// </summary>
-        [ForeignKey(nameof(CustomerLoginID))]
-        public User CustomerLogin { get; set; }
+        [ForeignKey(nameof(UserID))]
+        public User User { get; set; }
 
         public string FirstName { get; set; }
 
