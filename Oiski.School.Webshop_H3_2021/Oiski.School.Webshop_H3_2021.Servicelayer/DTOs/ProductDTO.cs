@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
+namespace Oiski.School.Webshop_H3_2021.Servicelayer
 {
-    [Table("Products")]
-    public class Product
+    public class ProductDTO
     {
-        /// <summary>
-        /// Primary Key
-        /// </summary>
         public int ProductID { get; set; }
 
         public string Title { get; set; }
@@ -20,11 +18,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         public decimal Price { get; set; }
 
         public int InStock { get; set; }
-
-        /// <summary>
-        /// Collection Navigational Property to the collection of <see cref="Order"/>s that the <see cref="Product"/> exists in
-        /// </summary>
-        public ICollection<OrderProduct> Orders { get; set; }
 
         /// <summary>
         /// Collection Navigational Property to the collection of <see cref="ProductImage"/>s attached to the <see cref="Product"/>

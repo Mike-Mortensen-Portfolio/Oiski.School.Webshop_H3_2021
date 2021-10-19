@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
+using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
@@ -56,10 +58,27 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>An extendable query expression that targets a sequence of type <typeparamref name="T"/></returns>
-        public IQueryable<T> GetQueryable<T>() where T : class
+        internal IQueryable<T> GetQueryable<T>() where T : class
         {
             return context.Set<T>();
         }
+
+        public IList<ProductDTO> GetAllProducts()
+        {
+            return GetQueryable<Product>()
+                .AsNoTracking()
+                .MapToBaseDTO()
+                .ToList();
+        }
+
+        public ProductDTO GetProductByID(int _id)
+        {
+            return GetQueryable<Product>()
+               .MapToBaseDTO()
+                .SingleOrDefault(p => p.ProductID == _id);
+        }
+
+        public 
 
         /// <summary>
         /// 

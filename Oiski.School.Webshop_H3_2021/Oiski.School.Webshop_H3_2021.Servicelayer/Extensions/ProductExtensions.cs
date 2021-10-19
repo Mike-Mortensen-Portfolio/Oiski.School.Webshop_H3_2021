@@ -31,5 +31,25 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
               Types = p.Types
           });
         }
+
+        public static IQueryable<ProductDTO> MapToBaseDTO(this IQueryable<Product> _products)
+        {
+            return _products
+                .Include(p => p.Types)
+                .ThenInclude(pt => pt.Type)
+                .Include(p => p.ProductImages)
+                .Select(p =>
+              new ProductDTO
+              {
+                  BrandName = p.BrandName,
+                  Description = p.Description,
+                  InStock = p.InStock,
+                  Price = p.Price,
+                  ProductID = p.ProductID,
+                  ProductImages = p.ProductImages,
+                  Title = p.Title,
+                  Types = p.Types
+              });
+        }
     }
 }
