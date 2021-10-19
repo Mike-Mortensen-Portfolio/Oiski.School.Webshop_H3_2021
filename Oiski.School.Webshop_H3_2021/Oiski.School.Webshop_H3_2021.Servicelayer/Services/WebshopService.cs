@@ -78,7 +78,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
 
             _options.BuildPageData(query);
 
-            return query.Paging(_options.PageNum - 1, _options.PageSize);
+            return query.Paging(_options.CurrentPage - 1, _options.PageSize);
         }
     }
 }
