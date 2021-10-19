@@ -123,23 +123,5 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
             );
             #endregion
         }
-
-        public static byte[] Readfile(string _path)
-        {
-            byte[] imageData = null;
-
-            FileInfo fileInfo = new FileInfo(_path);
-            long numBytes = fileInfo.Length;
-
-            // Opens the FileStream to read file.
-            FileStream fileStream = new FileStream(_path, FileMode.Open, FileAccess.Read);
-
-            // Used to read the file stream into byte array.
-            BinaryReader binaryReader = new BinaryReader(fileStream);
-
-            imageData = binaryReader.ReadBytes((int)numBytes);
-
-            return imageData;
-        }
     }
 }

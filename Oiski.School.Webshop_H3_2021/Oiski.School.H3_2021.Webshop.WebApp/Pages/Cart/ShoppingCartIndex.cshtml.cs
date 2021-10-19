@@ -13,12 +13,12 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.Cart
 {
     public class ShoppingCartIndexModel : PageModel
     {
-        public readonly WebshopContext _context;
-
         public ShoppingCartIndexModel(WebshopContext context)
         {
             _context = context;
         }
+
+        private readonly WebshopContext _context;
 
         #region PROPERTIES
         [BindProperty]
