@@ -275,5 +275,10 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - **Modified**
         - `CustomerLoginID` is now `UserID` in `Customer`
         - `CustomerLogin` is now `User` in `Customer`
+- **[v0.7.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.0)**
+    - **Added**
+        - Front page added as a template, awaiting for backend coding.
+        - Shopping cart page added as a template, awaiting for backend coding.
+        - Data seeding updated with more `Products` as well as `Types`.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
