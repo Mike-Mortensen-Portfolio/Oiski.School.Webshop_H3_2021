@@ -292,4 +292,8 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
         - `FreeSearchTitle` method in `ProductDisplayDTOExtensions`
     - Modified
         - Corrected spelling mistake in `ProductImage`
+- **[v0.7.2](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.2)**
+    - **Added**
+        - Login page has been added with HTML template, awaiting for backend coding.
+
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
