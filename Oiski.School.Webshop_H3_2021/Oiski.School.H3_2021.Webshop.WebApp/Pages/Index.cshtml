@@ -4,7 +4,75 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container text-center">
+    <form method="post">
+        <div class="row m-auto">
+            <div class="col-3">
+                <select id="BrandSelect" class="form-control">
+                    <option value="0" selected>- Choose Brand -</option>
+                    @foreach (var product in Model.Products)
+                    {
+                        <option>@product.BrandName</option>
+                    }
+                </select>
+            </div>
+            <div class="col-2">
+                <select id="TypeSelect" class="form-control">
+                    <option value="0" selected>- Choose Type -</option>
+                    @foreach (var product in Model.Products)
+                    {
+                        @foreach (var type in product.Types)
+                        {
+                            <option>@type.Type.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-2">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Descending:</span>
+                    </div>
+                    <div class="form-control col-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="DescendingCheckbox" name="DescendingCheckbox" value="true">
+                            <input name="DescendingCheckbox" type="hidden" value="false" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="input-group">
+                    <input type="search" asp-for="SearchString" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                    <input type="submit" asp-action="PerformSearch" value="Search" class="btn btn-info" />
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row m-auto">
+        @foreach (var product in Model.Products)
+        {
+            <div class="card border col-4">
+                <div class="card-body">
+                    <div>
+                        <h3>@product.Title</h3>
+                        <br />
+                        @product.ProductImages
+                        <br />
+                        <p class="border">@product.Description</p>
+                        <br />
+                        <p><b>#</b>&nbsp;<a asp-page="/FrontPage" asp-route-id="@product.BrandName">@product.BrandName</a> | Price: <b>$</b>@product.Price</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <form method="post">
+                        <input type="submit" asp-route-id="@product.ProductID" asp-action="AddToCart" class="btn btn-success" value="Add to cart" />
+                    </form>
+
+                </div>
+            </div>
+        }
+    </div>
+
+
 </div>

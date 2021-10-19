@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using System;
+using System.IO;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
 {
@@ -53,7 +54,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
                 );
 
             _modelBuilder.Entity<OrderProduct>().HasData(
-                new OrderProduct { OrderID = 1, ProductID = 1 },
+                new OrderProduct { OrderID = 1, ProductID = 1, Quantity = 2 },
                 new OrderProduct { OrderID = 1, ProductID = 4 },
                 new OrderProduct { OrderID = 1, ProductID = 5 },
                 new OrderProduct { OrderID = 2, ProductID = 2 },
@@ -66,19 +67,29 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
                 new Product { ProductID = 2, Title = "Skater skirt", Description = "The perfect outfit for your lower body.", Price = 26.25M, BrandName = "TopShop", InStock = 50 },
                 new Product { ProductID = 3, Title = "Summer dress", Description = "Beer parties on the beach? This is your dress.", Price = 53.75M, BrandName = "NA-KD", InStock = 75 },
                 new Product { ProductID = 4, Title = "Sneakers paradise", Description = "Love long walks? Choose these sneakers.", Price = 88, BrandName = "Nike", InStock = 130 },
-                new Product { ProductID = 5, Title = "Warm knitted-sweater", Description = "Drink a warm cup of chocolate while cozing up in this sweater.", Price = 28, BrandName = "H&M", InStock = 109 }
+                new Product { ProductID = 5, Title = "Warm knitted-sweater", Description = "Drink a warm cup of chocolate while cozing up in this sweater.", Price = 28, BrandName = "H&M", InStock = 109 },
+                new Product { ProductID = 6, Title = "Simple Sneakers", Description = "Perfect for the daily life.", Price = 52, BrandName = "Nike Air", InStock = 180 },
+                new Product { ProductID = 7, Title = "Simple T-shirt", Description = "Style it however you'd want to!", Price = 15, BrandName = "H&M Basic", InStock = 256 }
                 );
 
             _modelBuilder.Entity<ProductType>().HasData(
                 new ProductType { ProductID = 1, TypeID = 1 },
+                new ProductType { ProductID = 1, TypeID = 12 },
                 new ProductType { ProductID = 2, TypeID = 2 },
                 new ProductType { ProductID = 2, TypeID = 3 },
+                new ProductType { ProductID = 2, TypeID = 12 },
                 new ProductType { ProductID = 3, TypeID = 4 },
                 new ProductType { ProductID = 3, TypeID = 5 },
+                new ProductType { ProductID = 3, TypeID = 13 },
                 new ProductType { ProductID = 4, TypeID = 6 },
                 new ProductType { ProductID = 4, TypeID = 7 },
                 new ProductType { ProductID = 5, TypeID = 8 },
-                new ProductType { ProductID = 5, TypeID = 9 }
+                new ProductType { ProductID = 5, TypeID = 9 },
+                new ProductType { ProductID = 5, TypeID = 11 },
+                new ProductType { ProductID = 6, TypeID = 6 },
+                new ProductType { ProductID = 6, TypeID = 7 },
+                new ProductType { ProductID = 7, TypeID = 8 },
+                new ProductType { ProductID = 7, TypeID = 11 }
                 );
 
             _modelBuilder.Entity<Entities.Type>().HasData(
@@ -90,26 +101,25 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
                 new Entities.Type { TypeID = 6, Name = "Footwear" },
                 new Entities.Type { TypeID = 7, Name = "Sneakers" },
                 new Entities.Type { TypeID = 8, Name = "Sweater" },
-                new Entities.Type { TypeID = 9, Name = "Knitted-Sweater" }
+                new Entities.Type { TypeID = 9, Name = "Knitted-Sweater" },
+                new Entities.Type { TypeID = 10, Name = "T-shirt" },
+                new Entities.Type { TypeID = 11, Name = "Upper-wear" },
+                new Entities.Type { TypeID = 12, Name = "Bottom" },
+                new Entities.Type { TypeID = 13, Name = "Full-body" }
                 );
 
             // Images need to be put in under ImageStream !! TO-DO !!
             _modelBuilder.Entity<ProductImage>().HasData(
-                new ProductImage { ProductImageID = 1, ProductID = 1, ImageStream = new byte[] { }, Title = "High-Waisted-Jeans-SideWays" },
-                new ProductImage { ProductImageID = 2, ProductID = 1, ImageStream = new byte[] { }, Title = "High-Waisted-Jeans-Front" },
-                new ProductImage { ProductImageID = 3, ProductID = 1, ImageStream = new byte[] { }, Title = "High-Waisted-Jeans-Back" },
-                new ProductImage { ProductImageID = 4, ProductID = 2, ImageStream = new byte[] { }, Title = "Skater-Skirt-SideWays" },
-                new ProductImage { ProductImageID = 5, ProductID = 2, ImageStream = new byte[] { }, Title = "Skater-Skirt-Front" },
-                new ProductImage { ProductImageID = 6, ProductID = 2, ImageStream = new byte[] { }, Title = "Skater-Skirt-Back" },
-                new ProductImage { ProductImageID = 7, ProductID = 3, ImageStream = new byte[] { }, Title = "Summer-Dress-SideWays" },
-                new ProductImage { ProductImageID = 8, ProductID = 3, ImageStream = new byte[] { }, Title = "Summer-Dress-Front" },
-                new ProductImage { ProductImageID = 9, ProductID = 3, ImageStream = new byte[] { }, Title = "Summer-Dress-Back" },
-                new ProductImage { ProductImageID = 10, ProductID = 4, ImageStream = new byte[] { }, Title = "Sneakers-Paradise-SideWays" },
-                new ProductImage { ProductImageID = 11, ProductID = 4, ImageStream = new byte[] { }, Title = "Sneakers-Paradise-Front" },
-                new ProductImage { ProductImageID = 12, ProductID = 4, ImageStream = new byte[] { }, Title = "Sneakers-Paradise-Back" },
-                new ProductImage { ProductImageID = 13, ProductID = 5, ImageStream = new byte[] { }, Title = "Warm-Knitted-Sweater-SideWays" },
-                new ProductImage { ProductImageID = 14, ProductID = 5, ImageStream = new byte[] { }, Title = "Warm-Knitted-Sweater-SideWays" },
-                new ProductImage { ProductImageID = 15, ProductID = 5, ImageStream = new byte[] { }, Title = "Warm-Knitted-Sweater-SideWays" }
+                new ProductImage { ProductImageID = 1, ProductID = 1, ImageStream = new byte[] { }, Title = "High-Waisted-Jeans-Front" },
+                new ProductImage { ProductImageID = 2, ProductID = 1, ImageStream = new byte[] { }, Title = "High-Waisted-Jeans-Back" },
+                new ProductImage { ProductImageID = 3, ProductID = 2, ImageStream = new byte[] { }, Title = "Skater-Skirt-Front" },
+                new ProductImage { ProductImageID = 4, ProductID = 2, ImageStream = new byte[] { }, Title = "Skater-Skirt-Back" },
+                new ProductImage { ProductImageID = 5, ProductID = 3, ImageStream = new byte[] { }, Title = "Summer-Dress-Front" },
+                new ProductImage { ProductImageID = 6, ProductID = 3, ImageStream = new byte[] { }, Title = "Summer-Dress-Back" },
+                new ProductImage { ProductImageID = 7, ProductID = 4, ImageStream = new byte[] { }, Title = "Sneakers-Paradise-Front" },
+                new ProductImage { ProductImageID = 8, ProductID = 4, ImageStream = new byte[] { }, Title = "Sneakers-Paradise-Back" },
+                new ProductImage { ProductImageID = 9, ProductID = 5, ImageStream = new byte[] { }, Title = "Warm-Knitted-Sweater-Front" },
+                new ProductImage { ProductImageID = 10, ProductID = 5, ImageStream = new byte[] { }, Title = "Warm-Knitted-Sweater-Back" }
             );
             #endregion
         }

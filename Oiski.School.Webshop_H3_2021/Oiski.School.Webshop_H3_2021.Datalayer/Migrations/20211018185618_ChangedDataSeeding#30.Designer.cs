@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 {
     [DbContext(typeof(WebshopContext))]
-    partial class WebShopContextModelSnapshot : ModelSnapshot
+    [Migration("20211018185618_ChangedDataSeeding#30")]
+    partial class ChangedDataSeeding30
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,13 +138,13 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         {
                             OrderID = 1,
                             CustomerID = 2,
-                            OrderDate = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            OrderDate = new DateTime(2021, 10, 6, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             OrderID = 2,
                             CustomerID = 1,
-                            OrderDate = new DateTime(2021, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            OrderDate = new DateTime(2021, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -267,24 +269,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                             InStock = 109,
                             Price = 28m,
                             Title = "Warm knitted-sweater"
-                        },
-                        new
-                        {
-                            ProductID = 6,
-                            BrandName = "Nike Air",
-                            Description = "Perfect for the daily life.",
-                            InStock = 180,
-                            Price = 52m,
-                            Title = "Simple Sneakers"
-                        },
-                        new
-                        {
-                            ProductID = 7,
-                            BrandName = "H&M Basic",
-                            Description = "Style it however you'd want to!",
-                            InStock = 256,
-                            Price = 15m,
-                            Title = "Simple T-shirt"
                         });
                 });
 
@@ -405,11 +389,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         },
                         new
                         {
-                            ProductID = 1,
-                            TypeID = 12
-                        },
-                        new
-                        {
                             ProductID = 2,
                             TypeID = 2
                         },
@@ -420,11 +399,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         },
                         new
                         {
-                            ProductID = 2,
-                            TypeID = 12
-                        },
-                        new
-                        {
                             ProductID = 3,
                             TypeID = 4
                         },
@@ -432,11 +406,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         {
                             ProductID = 3,
                             TypeID = 5
-                        },
-                        new
-                        {
-                            ProductID = 3,
-                            TypeID = 13
                         },
                         new
                         {
@@ -457,31 +426,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         {
                             ProductID = 5,
                             TypeID = 9
-                        },
-                        new
-                        {
-                            ProductID = 5,
-                            TypeID = 11
-                        },
-                        new
-                        {
-                            ProductID = 6,
-                            TypeID = 6
-                        },
-                        new
-                        {
-                            ProductID = 6,
-                            TypeID = 7
-                        },
-                        new
-                        {
-                            ProductID = 7,
-                            TypeID = 8
-                        },
-                        new
-                        {
-                            ProductID = 7,
-                            TypeID = 11
                         });
                 });
 
@@ -544,26 +488,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         {
                             TypeID = 9,
                             Name = "Knitted-Sweater"
-                        },
-                        new
-                        {
-                            TypeID = 10,
-                            Name = "T-shirt"
-                        },
-                        new
-                        {
-                            TypeID = 11,
-                            Name = "Upper-wear"
-                        },
-                        new
-                        {
-                            TypeID = 12,
-                            Name = "Bottom"
-                        },
-                        new
-                        {
-                            TypeID = 13,
-                            Name = "Full-body"
                         });
                 });
 
