@@ -280,5 +280,16 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
         - Front page added as a template, awaiting for backend coding.
         - Shopping cart page added as a template, awaiting for backend coding.
         - Data seeding updated with more `Products` as well as `Types`.
-
+- **[v0.7.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.1)**
+    - **Added**
+        - `SearchOptions` to handle specification applied to searching
+        - Added `Order` Extension for  `IQueryable<ProductDisplayDTO>` 
+        - Context field to be readonly in `WebshopService`
+        - `ProductDisplayDTO` to map `Product` in UI
+        - `DTO` mapper for `Products`
+        - `FilterPagingOptions` to hande specific conditions for searchin/filtering and paging
+         - `FilterPaging` method to `WebshopService`
+        - `FreeSearchTitle` method in `ProductDisplayDTOExtensions`
+    - Modified
+        - Corrected spelling mistake in `ProductImage`
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
