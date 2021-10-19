@@ -78,7 +78,13 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .SingleOrDefault(p => p.ProductID == _id);
         }
 
-        public 
+        public OrderDTO GetOrderByID(int _id)
+        {
+            return GetQueryable<Order>()
+                .AsNoTracking()
+                .MapToBaseDTO()
+                .SingleOrDefault(o => o.OrderID == _id);
+        }
 
         /// <summary>
         /// 
