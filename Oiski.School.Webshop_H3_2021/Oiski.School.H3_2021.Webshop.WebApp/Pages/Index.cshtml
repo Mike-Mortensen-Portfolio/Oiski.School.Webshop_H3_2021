@@ -61,12 +61,12 @@
                         <br />
                         <p class="border">@product.Description</p>
                         <br />
-                        <p><b>#</b>&nbsp;<a asp-page="/FrontPage" asp-route-brandName="@product.BrandName">@product.BrandName</a> | Price: <b>$</b>@product.Price</p>
+                        <p><b>#</b>&nbsp;<a asp-page="/FrontPage" asp-route-id="@product.BrandName">@product.BrandName</a> | Price: <b>$</b>@product.Price</p>
                     </div>
                 </div>
                 <div class="card-footer">
                     <form method="post">
-                        <input type="submit" asp-action="AddToCart" class="btn btn-success" value="Add to cart" />
+                        <input type="submit" asp-route-id="@product.ProductID" asp-action="AddToCart" class="btn btn-success" value="Add to cart" />
                     </form>
 
                 </div>

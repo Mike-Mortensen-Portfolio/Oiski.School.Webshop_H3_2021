@@ -21,6 +21,8 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
         [BindProperty]
         public List<Product> Products { get; set; }
         [BindProperty]
+        public Order Order { get; set; }
+        [BindProperty]
         public string SearchString { get; set; }
         [BindProperty]
         public bool DescendingCheckbox { get; set; }

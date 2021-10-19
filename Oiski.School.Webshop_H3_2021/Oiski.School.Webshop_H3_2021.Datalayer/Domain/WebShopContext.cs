@@ -54,7 +54,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
                 );
 
             _modelBuilder.Entity<OrderProduct>().HasData(
-                new OrderProduct { OrderID = 1, ProductID = 1 },
+                new OrderProduct { OrderID = 1, ProductID = 1, Quantity = 2 },
                 new OrderProduct { OrderID = 1, ProductID = 4 },
                 new OrderProduct { OrderID = 1, ProductID = 5 },
                 new OrderProduct { OrderID = 2, ProductID = 2 },
