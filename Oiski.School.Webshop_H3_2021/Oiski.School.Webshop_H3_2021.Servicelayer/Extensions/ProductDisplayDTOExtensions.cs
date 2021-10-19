@@ -9,14 +9,14 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
     public static class ProductDisplayDTOExtensions
     {
         /// <summary>
-        /// If <paramref name="_filterKey"/> is <see langword="null"/> or empty no filter is applied
+        /// Filters a collection of <see cref="ProductDisplayDTO"/> <see langword="objects"/> based on <paramref name="_filterKey"/>. If <paramref name="_filterKey"/> is <see langword="null"/> or empty no filter is applied
         /// </summary>
         /// <param name="_products"></param>
         /// <param name="_filterKey"></param>
-        /// <returns></returns>
+        /// <returns>A collection of <see cref="ProductDisplayDTO"/> <see langword="objects"/> filtered by <strong>Brand</strong></returns>
         public static IQueryable<ProductDisplayDTO> FilterByBrand(this IQueryable<ProductDisplayDTO> _products, string _filterKey)
         {
-            if (string.IsNullOrEmpty(_filterKey))
+            if (string.IsNullOrWhiteSpace(_filterKey))
             {
                 return _products;
             }
@@ -56,18 +56,41 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
                 });
         }
 
+        /// <summary>
+        /// Orders a collection of <see cref="ProductDisplayDTO"/> based on <paramref name="_orderBy"/> in either ascending or descending order depending on the <paramref name="_options"/> provided
+        /// </summary>
+        /// <param name="_products"></param>
+        /// <param name="_orderBy"></param>
+        /// <param name="_options"></param>
+        /// <returns></returns>
         public static IQueryable<ProductDisplayDTO> Order(this IQueryable<ProductDisplayDTO> _products, OrderBy _orderBy, OrderOptions _options = null)
         {
             _options ??= new OrderOptions();
 
             return _orderBy switch
             {
-                OrderBy.Title => _products.OrderBy(p => p.Title),
-                OrderBy.Brand => _products.OrderBy(p => p.BrandName),
-                OrderBy.Price => _products.OrderBy(p => p.Price),
-                OrderBy.InStock => _products.OrderBy(p => p.InStock),
+                OrderBy.Title => ((_options.Ascending) ? (_products.OrderBy(p => p.Title)) : (_products.OrderByDescending(p => p.Title))),
+                OrderBy.Brand => ((_options.Ascending) ? (_products.OrderBy(p => p.BrandName)) : (_products.OrderByDescending(p => p.BrandName))),
+                OrderBy.Price => ((_options.Ascending) ? (_products.OrderBy(p => p.Price)) : (_products.OrderByDescending(p => p.Price))),
+                OrderBy.InStock => ((_options.Ascending) ? (_products.OrderBy(p => p.InStock)) : (_products.OrderByDescending(p => p.InStock))),
                 _ => throw new ArgumentOutOfRangeException(nameof(_orderBy), _orderBy, "Filter not found!"),
             };
+        }
+
+        /// <summary>
+        /// Search in free text for a <see cref="ProductDisplayDTO.Title"/> that contains the <paramref name="_searchKey"/>
+        /// </summary>
+        /// <param name="_products"></param>
+        /// <param name="_searchKey"></param>
+        /// <returns>A collection of all the <see cref="ProductDisplayDTO"/> <see langword="objects"/> that matches the condition</returns>
+        public static IQueryable<ProductDisplayDTO> FreeSearchTitle(this IQueryable<ProductDisplayDTO> _products, string _searchKey)
+        {
+            if (string.IsNullOrWhiteSpace(_searchKey))
+            {
+                return _products;
+            }
+
+            return _products.Where(p => p.Title.ToLower().Contains(_searchKey));
         }
 
         public static IQueryable<ProductDisplayDTO> Paging(this IQueryable<ProductDisplayDTO> _products, int _pageZeroStart, int _pageSize)
@@ -84,6 +107,5 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
 
             return _products.Take(_pageSize);
         }
-
     }
 }

@@ -73,7 +73,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .MapToDisplayDTO()
                 .Order(_options.Order)
                 .FilterByBrand(_options.BrandKey)
-                .FilterByType(_options.TypeIDKey);
+                .FilterByType(_options.TypeIDKey)
+                .FreeSearchTitle(_options.SearchKey);
 
             _options.BuildPageData(query);
 

@@ -11,6 +11,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         public OrderBy Order { get; set; } = OrderBy.Brand;
         public string BrandKey { get; set; } = null;
         public int TypeIDKey { get; set; } = -1;
+        public string SearchKey { get; set; } = null;
 
         public int PageSize { get; set; } = 10;
         public int PageNum { get; set; } = 0;
