@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
-using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
+using Oiski.School.Webshop_H3_2021.Servicelayer.Extensions;
 using System;
 using System.Linq;
 
@@ -13,7 +13,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
             context = _context;
         }
 
-        private WebshopContext context;
+        private readonly WebshopContext context;
 
         /// <summary>
         /// Adds <paramref name="_entity"/> of type <typeparamref name="T"/> to the tracker and saves the changes (<i>Pushes to DB</i>)
@@ -59,6 +59,26 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         public IQueryable<T> GetQueryable<T>() where T : class
         {
             return context.Set<T>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_options"></param>
+        /// <returns>An <see cref="IQueryable{T}"/> <see langword="object"/> that contains a filtered page collection in order</returns>
+        public IQueryable<ProductDisplayDTO> FilterPaging(FilterPagingOptions _options)
+        {
+            var query = context.Products
+                .AsNoTracking()
+                .MapToDisplayDTO()
+                .Order(_options.Order)
+                .FilterByBrand(_options.BrandKey)
+                .FilterByType(_options.TypeIDKey)
+                .FreeSearchTitle(_options.SearchKey);
+
+            _options.BuildPageData(query);
+
+            return query.Paging(_options.CurrentPage - 1, _options.PageSize);
         }
     }
 }
