@@ -22,6 +22,8 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
         public List<Product> Products { get; set; }
         [BindProperty]
         public string SearchString { get; set; }
+        [BindProperty]
+        public bool DescendingCheckbox { get; set; }
         public SelectList BrandSelect { get; set; }
         public SelectList TypeSelect { get; set; }
         #endregion
@@ -40,9 +42,14 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
                 .ToList();
         }
 
-        public async Task<IActionResult> PerformSearch()
+        public void OnPostPerformSearch()
         {
-            return Page();
+            var _service = new WebshopService(_context);
+        }
+
+        public void OnPostAddToCart(int productID)
+        {
+            var _service = new WebshopService(_context);
         }
     }
 }
