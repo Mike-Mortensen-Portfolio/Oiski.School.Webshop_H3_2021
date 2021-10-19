@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
-using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
+using Oiski.School.Webshop_H3_2021.Servicelayer.Extensions;
 using System;
 using System.Linq;
 
@@ -59,6 +59,25 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         public IQueryable<T> GetQueryable<T>() where T : class
         {
             return context.Set<T>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_options"></param>
+        /// <returns>An <see cref="IQueryable{T}"/> <see langword="object"/> that contains a filtered page collection in order</returns>
+        public IQueryable<ProductDisplayDTO> FilterPaging(FilterPagingOptions _options)
+        {
+            var query = context.Products
+                .AsNoTracking()
+                .MapToDisplayDTO()
+                .Order(_options.Order)
+                .FilterByBrand(_options.BrandKey)
+                .FilterByType(_options.TypeIDKey);
+
+            _options.BuildPageData(query);
+
+            return query.Paging(_options.PageNum - 1, _options.PageSize);
         }
     }
 }
