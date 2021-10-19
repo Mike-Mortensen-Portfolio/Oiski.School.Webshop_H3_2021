@@ -1,0 +1,33 @@
+﻿@page
+@model Oiski.School.H3_2021.Webshop.WebApp.Pages.Admin.AdminIndexModel
+@{
+    ViewData["Title"] = "Admin page";
+}
+
+<div class="container text-center">
+    <h2>Welcome to the admin page.</h2>
+    <div class="row m-auto">
+        @foreach (var product in Model.Products)
+        {
+            <div class="card border col-4">
+                <img class="card-img-top" src="" alt="Card image cap" />
+                <div class="card-body">
+                    <div>
+                        <h3>@product.Title</h3>
+                        <br />
+                        <p class="border">@product.Description</p>
+                        <br />
+                        <p><b>#</b>@product.BrandName | Price: <b>$</b>@product.Price</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a asp-page="/ProductCRUD/Edit" asp-route-productID="@product.ProductID" class="btn btn-success">Edit</a>
+                    <a asp-page="/ProductCRUD/Details" asp-route-productID="@product.ProductID" class="btn btn-warning">Details</a>
+                    <a asp-page="/ProductCRUD/Delete" asp-route-productID="@product.ProductID" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        }
+    </div>
+
+
+</div>

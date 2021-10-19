@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
+using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 
 namespace Oiski.School.H3_2021.Webshop.WebApp
 {
@@ -20,6 +21,8 @@ namespace Oiski.School.H3_2021.Webshop.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<WebshopContext>();
+
+            services.AddScoped<WebshopService, WebshopService>();
 
             services.AddRazorPages();
         }

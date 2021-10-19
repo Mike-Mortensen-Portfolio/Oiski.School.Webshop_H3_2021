@@ -1,0 +1,40 @@
+﻿@page
+@model Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD.DetailsModel
+@{
+    ViewData["Title"] = "Product Details page";
+}
+
+<div class="container">
+    <div class="row m-auto">
+        <div class="border col-4">
+            <card>
+                <div class="card-body text-center">
+                    <img class="card-img-top" src="/Images/Clothes/Bottoms/High-Waisted-Jeans-Front.jpg" style="max-height:400px;" alt="Card image cap" />                    
+                </div>
+            </card>
+        </div>
+        <div class="border col-8">
+            <card>
+                <div class="card-body text-center">
+                    <h3 class="card-title">You are viewing @Model.Product.Title</h3>
+                    <hr />
+                    <br />
+                    <p><b>Description:</b> @Model.Product.Description)</p>
+                    <br />
+                    <p><b>In stock:</b> @Model.Product.InStock</p>
+                    <br />
+                    <p><b>Brand:</b> @Model.Product.BrandName | Price: <b>$</b>@Model.Product.Price</p>
+                    <br />
+                    <p>
+                        <b>Types: </b> |
+                        @foreach (var type in Model.Product.Types)
+                        {
+                            <b>#</b>@type.Type.Name <span>|</span>
+                        }
+                    </p>
+                </div>
+            </card>
+        </div>
+        
+    </div>
+</div>

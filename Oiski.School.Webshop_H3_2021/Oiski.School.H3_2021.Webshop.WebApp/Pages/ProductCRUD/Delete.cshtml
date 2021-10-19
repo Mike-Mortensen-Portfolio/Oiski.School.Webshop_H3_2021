@@ -1,0 +1,24 @@
+﻿@page
+@model Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD.DeleteModel
+@{
+    ViewData["Title"] = "Product Delete page";
+}
+
+<div class="container">
+    <div class="row m-auto">
+        <div class="border">
+            <form method="post" asp-page-handler="DeleteProduct">
+                <card>
+                    <div class="card-body">
+                        <h1>You are about to delete @Model.Product.Title!</h1>
+                        <p>Are you sure you want to do this?</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <a asp-page="/Index/" class="btn btn-info">Cancel</a>
+                    </div>
+                </card>
+            </form>            
+        </div>
+    </div>
+</div>
