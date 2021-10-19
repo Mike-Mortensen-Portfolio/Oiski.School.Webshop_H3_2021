@@ -1,0 +1,50 @@
+﻿@page
+@model Oiski.School.H3_2021.Webshop.WebApp.Pages.Login.LoginIndexModel
+@{
+    ViewData["Title"] = "Login page";
+}
+
+<div class="container justify-content-center">
+    <div class="row mt-lg-5">
+        <div class="col-6 border">
+            <card>
+                <div class="card-body">
+                    <h3 class="card-title">Sign in here:</h3>
+                    <hr />
+                    <form method="post">
+                        <div class="form-group">
+                            <label asp-for="EmailInput">Email address</label>
+                            <input type="email" class="form-control" id="EmailInput" placeholder="Enter email..." />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PasswordInput">Password</label>
+                            <input type="password" class="form-control" id="PasswordInput" placeholder="Enter password..." />
+                        </div>
+                        <div class="card-footer">
+                            <input type="submit" asp-action="Login" class="btn btn-primary" value="Sign in" />
+                        </div>
+                    </form>
+                </div>
+            </card>
+        </div>
+        <div class="col-6 border">
+            <card>
+                <div class="card-body text-center">
+                    <h3 class="card-title">Want to sign up?</h3>
+                    <hr />
+                    <form method="post">
+                        <div class="form-group">
+                            <br />
+                            <p>You will avoid having to type in your data every time you wanna shop at this shop, making it more efficient!</p>
+                            <p style="margin-bottom:18px;">Just click the button below and become a primary customer here.</p>
+                            <br />
+                        </div>
+                        <div class="card-footer">
+                            <input type="submit" asp-page="/User/CreateUser" class="btn btn-success" value="Sign up here!" />
+                        </div>
+                    </form>
+                </div>
+            </card>
+        </div>
+    </div>
+</div>

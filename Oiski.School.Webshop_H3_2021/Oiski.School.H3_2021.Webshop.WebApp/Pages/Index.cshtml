@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Front page";
 }
 
 <div class="container text-center">
@@ -53,6 +53,7 @@
         @foreach (var product in Model.Products)
         {
             <div class="card border col-4">
+                <img class="card-img-top" src="" alt="Card image cap"/>
                 <div class="card-body">
                     <div>
                         <h3>@product.Title</h3>
