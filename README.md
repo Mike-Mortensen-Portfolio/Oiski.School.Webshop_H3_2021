@@ -313,4 +313,28 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
             - **Fetch `OrderProducts` by `Customer`.ID**: _With all subtables included.  Use to get `OrderProducts` related to a specific `Customer`._
 
         - `ProductImage` property is now called `DisplayImage`
+- **[v0.7.4](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.4)**
+     - **Added**:
+   - User creation page;
+     - HTML template where a user can create themselves as a `Customer` with a Login.
+   - AdminIndex page;
+     - HTML template where a user who `IsAdmin` can manage all `Products` in a CRUD structure.
+   - ProductCRUD folder;
+     - Edit 
+       - When clicking the edit button, you will route to an Edit page with the `ProductID` which are attached to that `Product`.
+     - Details
+       - Here you can view a `Product` with all of the information given in the database.
+       - This is shown through a Partial page, described below.
+     - Delete
+       - When clicking the delete button, you will be routed to a Delete page with the `ProductID` which are attached to that `Product`. 
+       - This page is to make the Admin make sure they really want to delete the `Product`, a sort of validation page.
+       - The `Product` details are shown through a partial page, so that the Admin can double check if it's the right `Product` they wanna remove.
+   - Partials folders;
+     - _ProductDetailsPartial
+       - Added a view of all the information given to a `Product`.
+       - This is to reuse it on other pages. 
+ - **Modified**:
+   - Folder structure;
+     - LoginIndex and AdminIndex has been moved to the User folder, as these make sense to have in the same folder, instead of each their own.
+
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
