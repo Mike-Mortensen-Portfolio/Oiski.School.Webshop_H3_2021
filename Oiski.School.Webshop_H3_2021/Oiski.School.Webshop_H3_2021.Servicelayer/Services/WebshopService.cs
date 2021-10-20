@@ -90,14 +90,17 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .SingleOrDefault(o => o.OrderID == _orderID);
         }
 
-        public IList<OrderProductDTO> GetOrdersProductsByOrder(int _orderID)
+        public IList<OrderProductDTO> GetOrderProductsByOrder(int _orderID)
         {
-            return GetQueryable<OrderProduct>()
-                .Include(op => op.Product)
+            var list = GetQueryable<OrderProduct>()
                 .Include(op => op.Order)
-                .MapToBaseDTO()
+                .Include(op => op.Product)
                 .Where(op => op.Order.OrderID == _orderID)
+                .AsNoTracking()
+                .MapToBaseDTO()
                 .ToList();
+
+            return list;
         }
 
         public IList<OrderProductDTO> GetOrdersProductsByCustomer(int _customerID)
@@ -105,25 +108,27 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
             return GetQueryable<OrderProduct>()
                 .Include(op => op.Product)
                 .Include(op => op.Order)
-                .MapToBaseDTO()
                 .Where(op => op.Order.CustomerID == _customerID)
+                .AsNoTracking()
+                .MapToBaseDTO()
                 .ToList();
         }
 
         public UserDTO GetUserByID(int _userID)
         {
-            return GetQueryable<User>()
-                .Include(u => u.Customer)
-                .ThenInclude(c => c.Orders)
+            return GetQueryable<Customer>()
+                .Include(u => u.User)
+                .AsNoTracking()
                 .MapToBaseDTO()
                 .SingleOrDefault(u => u.UserID == _userID);
         }
 
         public UserDTO GetUserByEmail(string _email)
         {
-            return GetQueryable<User>()
-                .Include(u => u.Customer)
-                .ThenInclude(c => c.Orders)
+            return GetQueryable<Customer>()
+                .Include(u => u.User)
+                .Include(c => c.Orders)
+                .AsNoTracking()
                 .MapToBaseDTO()
                 .SingleOrDefault(u => u.Email == _email);
         }
