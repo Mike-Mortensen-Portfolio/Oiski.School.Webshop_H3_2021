@@ -1,5 +1,5 @@
 ﻿@page
-@model Oiski.School.H3_2021.Webshop.WebApp.Pages.Login.LoginIndexModel
+@model Oiski.School.H3_2021.Webshop.WebApp.Pages.User.LoginIndexModel
 @{
     ViewData["Title"] = "Login page";
 }
@@ -15,10 +15,12 @@
                         <div class="form-group">
                             <label asp-for="EmailInput">Email address</label>
                             <input type="email" class="form-control" id="EmailInput" placeholder="Enter email..." />
+                            <span asp-validation-for="EmailInput"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="PasswordInput">Password</label>
                             <input type="password" class="form-control" id="PasswordInput" placeholder="Enter password..." />
+                            <span asp-validation-for="PasswordInput"></span>
                         </div>
                         <div class="card-footer">
                             <input type="submit" asp-action="Login" class="btn btn-primary" value="Sign in" />
@@ -40,7 +42,7 @@
                             <br />
                         </div>
                         <div class="card-footer">
-                            <input type="submit" asp-page="/User/CreateUser" class="btn btn-success" value="Sign up here!" />
+                            <input type="submit" asp-page="/User/UserCreate" class="btn btn-success" value="Sign up here!" />
                         </div>
                     </form>
                 </div>

@@ -1,0 +1,51 @@
+﻿@page "{productID:int}";
+@model Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD.EditModel
+@{
+    ViewData["Title"] = "Product Edit page";
+}
+
+<div class="container">
+    <div class="row m-auto">
+        <div class="border">
+            <card>
+                <div class="card-body">
+                    <h3 class="text-center card-title">You are editing: @Model.ProductDTO.Title</h3>
+                    <form method="post" asp-page-handler="UpdateProduct">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ProductDTO.ProductID" />
+                        <div class="form-group col-md-6">
+                            <label asp-for="ProductTitleInput">Title:</label>
+                            <input type="text" class="form-control" asp-for="ProductTitleInput" value="@Model.ProductDTO.Title" />
+                            <span asp-validation-for="ProductTitleInput"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="ProductDescriptionInput">Description</label>
+                            <input type="text" class="form-control" asp-for="ProductDescriptionInput" value="@Model.ProductDTO.Description" />
+                            <span asp-validation-for="ProductDescriptionInput"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="ProductBrandNameInput">Brand Name</label>
+                            <input type="text" class="form-control" asp-for="ProductBrandNameInput" value="@Model.ProductDTO.BrandName" />
+                            <span asp-validation-for="ProductBrandNameInput"></span>
+                        </div>                        
+                        <div class="form-group col-md-6">
+                            <label asp-for="ProductPriceInput">Price</label>
+                            <input type="text" class="form-control" asp-for="ProductPriceInput" value="@Model.ProductDTO.Price" />
+                            <span asp-validation-for="ProductPriceInput"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="ProductInStockInput">Description</label>
+                            <input type="number" class="form-control" asp-for="ProductInStockInput" value="@Model.ProductDTO.InStock" />
+                            <span asp-validation-for="ProductInStockInput"></span>
+                        </div>
+                        <hr />
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-success">Update</button>
+                            <a asp-page="/Admin/AdminIndex" class="btn btn-danger">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </card>
+        </div>
+    </div>
+</div>
