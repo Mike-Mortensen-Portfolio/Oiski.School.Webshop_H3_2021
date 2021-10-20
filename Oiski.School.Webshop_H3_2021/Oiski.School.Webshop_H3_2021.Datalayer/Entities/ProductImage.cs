@@ -18,7 +18,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         /// <summary>
         /// The <see cref="byte"/> data of the image (<i>The actual image</i>)
         /// </summary>
-        public byte[] ImageStream { get; set; }
+        public string ImageURL { get; set; }
 
         public string Title { get; set; }
     }

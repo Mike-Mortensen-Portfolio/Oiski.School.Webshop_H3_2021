@@ -7,6 +7,6 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
 {
     public class ProductDisplayDTO : ProductDTO
     {
-        public byte[] DisplayImage { get; set; }
+        public string DisplayImage { get; set; }
     }
 }
