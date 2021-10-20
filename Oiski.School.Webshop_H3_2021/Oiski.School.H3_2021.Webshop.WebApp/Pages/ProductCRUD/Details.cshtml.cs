@@ -41,11 +41,6 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
         {
             var _service = new WebshopService(_context);
 
-            Product = _service.GetQueryable<Product>()
-                .Where(p => p.ProductID == productID)
-                .Include(p => p.Types)
-                    .ThenInclude(t => t.Type)
-                .FirstOrDefault();
         }
     }
 }

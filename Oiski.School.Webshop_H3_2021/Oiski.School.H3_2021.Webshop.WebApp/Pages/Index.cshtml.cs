@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
+using Oiski.School.Webshop_H3_2021.Servicelayer;
+using Oiski.School.Webshop_H3_2021.Servicelayer.Extensions;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 using System;
 using System.Collections.Generic;
@@ -19,15 +21,28 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
 
         #region PROPERTIES
         [BindProperty]
-        public List<Product> Products { get; set; }
+        public List<ProductDisplayDTO> Products { get; set; }
+        [BindProperty]
+        public string ImageURL { get; set; }
         [BindProperty]
         public Order Order { get; set; }
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
         [BindProperty]
         public bool DescendingCheckbox { get; set; }
+        [BindProperty]
         public SelectList BrandSelect { get; set; }
+        [BindProperty]
         public SelectList TypeSelect { get; set; }
+        [BindProperty]
+        public OrderBy OrderByEnum { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int PageSize { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
+        [BindProperty]
+        public FilterPagingOptions FilterPageOptions { get; set; }
+
         #endregion
 
         public IndexModel(WebshopContext context)
@@ -38,20 +53,57 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
         public void OnGet()
         {
             var _service = new WebshopService(_context);
-            Products = _service.GetQueryable<Product>()
-                .Include(p => p.Types)
-                .ThenInclude(pt => pt.Type)
-                .ToList();
+
+            FilterPageOptions = new FilterPagingOptions()
+            {
+                CurrentPage = this.CurrentPage,
+                PageSize = 5,
+                SearchKey = this.SearchString,
+                SearchOptions = new OrderOptions()
+                {
+                    Ascending = DescendingCheckbox
+                }
+            };
+
+            Products = _service.FilterPaging(FilterPageOptions).ToList();          
         }
 
         public void OnPostPerformSearch()
         {
             var _service = new WebshopService(_context);
+
+            
         }
 
-        public void OnPostAddToCart(int productID)
+        public IActionResult OnPostAddToCart(int productID)
         {
             var _service = new WebshopService(_context);
+
+            if (ModelState.IsValid)
+            {
+                ProductDTO product = _service.GetProductByID(productID);
+
+                Order order = new Order()
+                {
+                    OrderDate = DateTime.Now,
+                    Customer = new Customer(),
+                    Products = new List<OrderProduct>()
+                    {
+                        new OrderProduct()
+                        {
+                            ProductID = product.ProductID
+                        }
+                    }
+                };
+
+                _service.Add(order);
+
+                return Page();
+            }
+            else
+            {
+                return RedirectToPage("/Error");
+            }
         }
     }
 }

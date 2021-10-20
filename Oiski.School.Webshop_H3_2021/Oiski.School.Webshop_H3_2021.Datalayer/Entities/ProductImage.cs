@@ -16,7 +16,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         public int ProductID { get; set; }
 
         /// <summary>
-        /// The <see cref="byte"/> data of the image (<i>The actual image</i>)
+        /// The <see cref="string"/> data of the image (<i>The actual image</i>)
         /// </summary>
         public string ImageURL { get; set; }
 

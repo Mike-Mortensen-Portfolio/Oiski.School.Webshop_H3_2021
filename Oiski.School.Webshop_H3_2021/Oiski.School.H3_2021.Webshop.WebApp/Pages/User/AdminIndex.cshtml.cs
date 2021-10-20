@@ -27,11 +27,7 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
 
         public void OnGet()
         {
-            var _service = new WebshopService(_context);
-            Products = _service.GetQueryable<Product>()
-                .Include(p => p.Types)
-                .ThenInclude(pt => pt.Type)
-                .ToList();
+
         }
     }
 }

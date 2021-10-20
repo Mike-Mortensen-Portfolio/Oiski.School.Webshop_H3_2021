@@ -136,6 +136,9 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         public IQueryable<ProductDisplayDTO> FilterPaging(FilterPagingOptions _options)
         {
             var query = context.Products
+                .Include(p => p.ProductImages)
+                .Include(p => p.Types)
+                    .ThenInclude(pt => pt.Type)
                 .AsNoTracking()
                 .MapToDisplayDTO()
                 .Order(_options.Order)
@@ -145,7 +148,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
 
             _options.BuildPageData(query);
 
-            return query.Paging(_options.CurrentPage - 1, _options.PageSize);
+            return query.Paging(_options.CurrentPage, _options.PageSize);
         }
     }
 }

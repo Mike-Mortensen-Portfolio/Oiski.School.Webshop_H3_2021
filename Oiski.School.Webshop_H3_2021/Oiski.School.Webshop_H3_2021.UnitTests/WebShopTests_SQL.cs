@@ -132,7 +132,7 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
                 context.Database.EnsureCreated();
             }
 
-            int typeCount;
+            //int typeCount;
 
 
             // ACT:
@@ -140,26 +140,26 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             {
                 var service = new WebshopService(context);
 
-                var product = service.GetQueryable<Product>()
-                    .Where(p => p.ProductID == 2)
-                    .Include(p => p.Types)
-                    .ThenInclude(pt => pt.Type)
-                    .FirstOrDefault();
+                //var product = service.GetQueryable<Product>()
+                //    .Where(p => p.ProductID == 2)
+                //    .Include(p => p.Types)
+                //    .ThenInclude(pt => pt.Type)
+                //    .FirstOrDefault();
 
-                typeCount = product.Types.Count;
+                //typeCount = product.Types.Count;
             }
 
             // ASSERT:
             using (var context = new WebshopContext())
             {
-                Product product = context.Products.Where(p => p.ProductID == 2)
-                    .Include(p => p.Types)
-                    .ThenInclude(p => p.Type)
-                    .Single();
+                //Product product = context.Products.Where(p => p.ProductID == 2)
+                //    .Include(p => p.Types)
+                //    .ThenInclude(p => p.Type)
+                //    .Single();
 
-                int contextTypeCount = product.Types.Count;
+                //int contextTypeCount = product.Types.Count;
 
-                Assert.Equal(contextTypeCount, typeCount);
+                //Assert.Equal(contextTypeCount, typeCount);
             }
         }
     }
