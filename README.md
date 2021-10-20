@@ -336,5 +336,9 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
  - **Modified**:
    - Folder structure;
      - LoginIndex and AdminIndex has been moved to the User folder, as these make sense to have in the same folder, instead of each their own.
+- **[v0.7.5](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.5)**
+    - **Modified**
+        - `ProductImage`Table has now a `string` `ImageURL` instead of `byte[]` `ImageStream`.
+        - Added Data seeding with the path to the Images.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
