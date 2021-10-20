@@ -10,57 +10,57 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
 {
     public static class UserExtensions
     {
-        public static UserDTO MapSingleToBaseDTO(this User _user)
+        public static UserDTO MapSingleToBaseDTO(this Customer _customer)
         {
-            if (_user.Customer == null)
+            if (_customer.User == null)
             {
                 using (var context = new WebshopContext())
                 {
                     WebshopService service = new WebshopService(context);
 
-                    _user.Customer = service.GetQueryable<Customer>()
-                        .SingleOrDefault(c => c.CustomerID == _user.CustomerID);
+                    _customer.User = service.GetQueryable<User>()
+                        .SingleOrDefault(u => u.CustomerID == _customer.CustomerID);
                 }
             }
 
             return new UserDTO
             {
-                UserID = _user.UserID,
-                Address = _user.Customer.Address,
-                IsAdmin = _user.IsAdmin,
-                City = _user.Customer.City,
-                Country = _user.Customer.Country,
-                DeliveryType = _user.Customer.DeliveryType,
-                Email = _user.Customer.Email,
-                FirstName = _user.Customer.FirstName,
-                LastName = _user.Customer.LastName,
-                Orders = _user.Customer.Orders.ConvertToDTOList(),
-                Password = _user.Password,
-                PaymentMethod = _user.Customer.PaymentMethod,
-                PhoneNumber = _user.Customer.PhoneNumber,
-                ZipCode = _user.Customer.ZipCode
+                UserID = _customer.CustomerID,
+                Address = _customer.Address,
+                IsAdmin = _customer.User.IsAdmin,
+                City = _customer.City,
+                Country = _customer.Country,
+                DeliveryType = _customer.DeliveryType,
+                Email = _customer.Email,
+                FirstName = _customer.FirstName,
+                LastName = _customer.LastName,
+                Orders = _customer.Orders.ConvertToDTOList(),
+                Password = _customer.User.Password,
+                PaymentMethod = _customer.PaymentMethod,
+                PhoneNumber = _customer.PhoneNumber,
+                ZipCode = _customer.ZipCode
             };
         }
 
-        public static IQueryable<UserDTO> MapToBaseDTO(this IQueryable<User> _users)
+        public static IQueryable<UserDTO> MapToBaseDTO(this IQueryable<Customer> _customers)
         {
-            return _users
-                .Select(u => new UserDTO
+            return _customers
+                .Select(c => new UserDTO
                 {
-                    UserID = u.UserID,
-                    Address = u.Customer.Address,
-                    IsAdmin = u.IsAdmin,
-                    City = u.Customer.City,
-                    Country = u.Customer.Country,
-                    DeliveryType = u.Customer.DeliveryType,
-                    Email = u.Customer.Email,
-                    FirstName = u.Customer.FirstName,
-                    LastName = u.Customer.LastName,
-                    Orders = u.Customer.Orders.ConvertToDTOList(),
-                    Password = u.Password,
-                    PaymentMethod = u.Customer.PaymentMethod,
-                    PhoneNumber = u.Customer.PhoneNumber,
-                    ZipCode = u.Customer.ZipCode
+                    UserID = c.CustomerID,
+                    Address = c.Address,
+                    IsAdmin = c.User.IsAdmin,
+                    City = c.City,
+                    Country = c.Country,
+                    DeliveryType = c.DeliveryType,
+                    Email = c.Email,
+                    FirstName = c.FirstName,
+                    LastName = c.LastName,
+                    Orders = c.Orders.ConvertToDTOList(),
+                    Password = c.User.Password,
+                    PaymentMethod = c.PaymentMethod,
+                    PhoneNumber = c.PhoneNumber,
+                    ZipCode = c.ZipCode
                 });
         }
     }
