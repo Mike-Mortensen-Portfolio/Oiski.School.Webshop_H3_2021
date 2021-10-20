@@ -66,6 +66,9 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         public IList<ProductDTO> GetAllProducts()
         {
             return GetQueryable<Product>()
+                .Include(p => p.Orders)
+                .Include(p => p.ProductImages)
+                .Include(p => p.Types)
                 .AsNoTracking()
                 .MapToBaseDTO()
                 .ToList();
@@ -73,14 +76,15 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
 
         public ProductDTO GetProductByID(int _id)
         {
-            return GetQueryable<Product>()
-               .MapToBaseDTO()
+            return GetAllProducts()
                 .SingleOrDefault(p => p.ProductID == _id);
         }
 
         public OrderDTO GetOrderByID(int _id)
         {
             return GetQueryable<Order>()
+                .Include(o => o.Customer)
+                .Include(o => o.Products)
                 .AsNoTracking()
                 .MapToBaseDTO()
                 .SingleOrDefault(o => o.OrderID == _id);
