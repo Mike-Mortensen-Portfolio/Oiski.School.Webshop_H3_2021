@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
+using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
@@ -56,9 +58,74 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>An extendable query expression that targets a sequence of type <typeparamref name="T"/></returns>
-        public IQueryable<T> GetQueryable<T>() where T : class
+        internal IQueryable<T> GetQueryable<T>() where T : class
         {
             return context.Set<T>();
+        }
+
+        public IList<ProductDTO> GetAllProducts()
+        {
+            return GetQueryable<Product>()
+                .Include(p => p.Orders)
+                .Include(p => p.ProductImages)
+                .Include(p => p.Types)
+                .AsNoTracking()
+                .MapToBaseDTO()
+                .ToList();
+        }
+
+        public ProductDTO GetProductByID(int _productID)
+        {
+            return GetAllProducts()
+                .SingleOrDefault(p => p.ProductID == _productID);
+        }
+
+        public OrderDTO GetOrderByID(int _orderID)
+        {
+            return GetQueryable<Order>()
+                .Include(o => o.Customer)
+                .Include(o => o.Products)
+                .AsNoTracking()
+                .MapToBaseDTO()
+                .SingleOrDefault(o => o.OrderID == _orderID);
+        }
+
+        public IList<OrderProductDTO> GetOrdersProductsByOrder(int _orderID)
+        {
+            return GetQueryable<OrderProduct>()
+                .Include(op => op.Product)
+                .Include(op => op.Order)
+                .MapToBaseDTO()
+                .Where(op => op.Order.OrderID == _orderID)
+                .ToList();
+        }
+
+        public IList<OrderProductDTO> GetOrdersProductsByCustomer(int _customerID)
+        {
+            return GetQueryable<OrderProduct>()
+                .Include(op => op.Product)
+                .Include(op => op.Order)
+                .MapToBaseDTO()
+                .Where(op => op.Order.CustomerID == _customerID)
+                .ToList();
+        }
+
+        public UserDTO GetUserByID(int _userID)
+        {
+            return GetQueryable<User>()
+                .Include(u => u.Customer)
+                .ThenInclude(c => c.Orders)
+                .MapToBaseDTO()
+                .SingleOrDefault(u => u.UserID == _userID);
+        }
+
+        public UserDTO GetUserByEmail(string _email)
+        {
+            return GetQueryable<User>()
+                .Include(u => u.Customer)
+                .ThenInclude(c => c.Orders)
+                .MapToBaseDTO()
+                .SingleOrDefault(u => u.Email == _email);
         }
 
         /// <summary>
