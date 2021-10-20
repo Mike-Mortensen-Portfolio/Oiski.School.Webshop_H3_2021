@@ -131,6 +131,44 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .AsNoTracking()
                 .MapToBaseDTO()
                 .SingleOrDefault(u => u.Email == _email);
+
+            var options = new FilterPagingOptions()
+            {
+                BrandKey = "Nike",
+                CurrentPage = 0,
+                Order = OrderBy.Price,
+                PageSize = 10,
+                SearchKey = "Air",
+                SearchOptions = new OrderOptions()
+                {
+                    Ascending = false
+                },
+                TypeIDKey = 1
+            };
+        }
+
+        public IList<TypeDTO> GetAllypes()
+        {
+            return GetQueryable<Datalayer.Entities.Type>()
+                .AsNoTracking()
+                .Select(t => new TypeDTO
+                {
+                    Name = t.Name,
+                    TypeID = t.TypeID
+                })
+                .ToList();
+        }
+
+        public TypeDTO GetTypeByID(int _typeID)
+        {
+            return GetQueryable<Datalayer.Entities.Type>()
+                .AsNoTracking()
+                .Select(t => new TypeDTO
+                {
+                    Name = t.Name,
+                    TypeID = t.TypeID
+                })
+                .SingleOrDefault(t => t.TypeID == _typeID);
         }
 
         /// <summary>
