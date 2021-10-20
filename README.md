@@ -295,5 +295,22 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **[v0.7.2](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.2)**
     - **Added**
         - Login page has been added with HTML template, awaiting for backend coding.
+- **[v0.7.3](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.3)**
+    - **Added**
+        - `CustomerDTO`
+        - `OrderProductDTO`
+        - `UserDTO`: A fusion between `User` and `Customer` from DB
+        - `OrderExtensions`: Includes mapping functionality and collection conversion
+        - `OrderProductExtensions`: Includes mapping funcitonality
+        - `UserExtensions`
+    - **Modified**
+        - `ProductExtensions`
+        - `WebshopService`
+            - **Fecth all `Products`:** _With all subtables included. Use to collect a list of all `Products` in DB._
+            - **Fecth `Product` by ID**:  _With all subtables included. Use to get a specific `Product`._
+            - **Fetch `Order` by ID:** _With all subtables inluded. Use to get a specific `Order`._
+            - **Fetch `OrderProducts` by `Order`.ID**: _With all subtables includes. Use to get `OrderProducts` related to a specific `Order`._
+            - **Fetch `OrderProducts` by `Customer`.ID**: _With all subtables included.  Use to get `OrderProducts` related to a specific `Customer`._
 
+        - `ProductImage` property is now called `DisplayImage`
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
