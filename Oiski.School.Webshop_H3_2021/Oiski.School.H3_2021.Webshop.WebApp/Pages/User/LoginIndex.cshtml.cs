@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.Login
+namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
 {
     public class LoginIndexModel : PageModel
     {

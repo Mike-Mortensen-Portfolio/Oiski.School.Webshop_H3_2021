@@ -9,7 +9,7 @@ using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 
-namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.Admin
+namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
 {
     public class AdminIndexModel : PageModel
     {
