@@ -51,5 +51,20 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
                   Types = p.Types
               });
         }
+
+        public static ProductDTO MapSingleToBaseDTO(this Product _product)
+        {
+            return new ProductDTO
+            {
+                BrandName = _product.BrandName,
+                Description = _product.Description,
+                InStock = _product.InStock,
+                Price = _product.Price,
+                ProductID = _product.ProductID,
+                ProductImages = _product.ProductImages,
+                Title = _product.Title,
+                Types = _product.Types
+            };
+        }
     }
 }

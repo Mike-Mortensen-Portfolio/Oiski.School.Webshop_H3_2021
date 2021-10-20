@@ -23,5 +23,30 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
                     Products = o.Products
                 });
         }
+
+        public static OrderDTO MapSingleToBaseDTO(this Order _order)
+        {
+            return new OrderDTO
+            {
+                Customer = _order.Customer,
+                CustomerID = _order.CustomerID,
+                OrderDate = _order.OrderDate,
+                Products = _order.Products
+            };
+        }
+
+        public static ICollection<OrderDTO> ConvertToDTOList(this ICollection<Order> _orders)
+        {
+            return _orders
+                .Select(o => new OrderDTO
+                {
+                    Customer = o.Customer,
+                    CustomerID = o.CustomerID,
+                    OrderDate = o.OrderDate,
+                    OrderID = o.OrderID,
+                    Products = o.Products
+                })
+                .ToList();
+        }
     }
 }

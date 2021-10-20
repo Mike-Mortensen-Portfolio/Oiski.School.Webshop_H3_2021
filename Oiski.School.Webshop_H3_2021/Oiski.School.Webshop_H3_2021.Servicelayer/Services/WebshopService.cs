@@ -86,6 +86,44 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .SingleOrDefault(o => o.OrderID == _id);
         }
 
+        public IList<OrderProductDTO> GetOrdersProductsByOrder(int _orderID)
+        {
+            return GetQueryable<OrderProduct>()
+                .Include(op => op.Product)
+                .Include(op => op.Order)
+                .MapToBaseDTO()
+                .Where(op => op.Order.OrderID == _orderID)
+                .ToList();
+        }
+
+        public IList<OrderProductDTO> GetOrdersProductsByCustomer(int _customerID)
+        {
+            return GetQueryable<OrderProduct>()
+                .Include(op => op.Product)
+                .Include(op => op.Order)
+                .MapToBaseDTO()
+                .Where(op => op.Order.CustomerID == _customerID)
+                .ToList();
+        }
+
+        public UserDTO GetUserByID(int _id)
+        {
+            return GetQueryable<User>()
+                .Include(u => u.Customer)
+                .ThenInclude(c => c.Orders)
+                .MapToBaseDTO()
+                .SingleOrDefault(u => u.UserID == _id);
+        }
+
+        public UserDTO GetUserByEmail(string _email)
+        {
+            return GetQueryable<User>()
+                .Include(u => u.Customer)
+                .ThenInclude(c => c.Orders)
+                .MapToBaseDTO()
+                .SingleOrDefault(u => u.Email == _email);
+        }
+
         /// <summary>
         /// 
         /// </summary>
