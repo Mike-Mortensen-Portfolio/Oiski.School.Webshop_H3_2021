@@ -34,14 +34,14 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
         [BindProperty]
         public int ProductInStockInput { get; set; }
         [BindProperty]
-        public Product Product { get; set; }
+        public ProductDisplayDTO ProductDTO { get; set; }
         #endregion
 
         public void OnGet(int productID)
         {
             var _service = new WebshopService(_context);
 
-            Product = _service.GetQueryable<Product>()
+            ProductDTO = _service.GetQueryable<ProductDisplayDTO>()
                 .Where(p => p.ProductID == productID)
                 .FirstOrDefault();
         }        

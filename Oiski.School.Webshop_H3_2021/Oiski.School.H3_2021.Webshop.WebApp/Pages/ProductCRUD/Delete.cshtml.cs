@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using Oiski.School.Webshop_H3_2021.Servicelayer;
@@ -30,6 +31,8 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
 
             Product = _service.GetQueryable<Product>()
                 .Where(p => p.ProductID == productID)
+                .Include(p => p.Types)
+                    .ThenInclude(t => t.Type)
                 .FirstOrDefault();
         }
     }
