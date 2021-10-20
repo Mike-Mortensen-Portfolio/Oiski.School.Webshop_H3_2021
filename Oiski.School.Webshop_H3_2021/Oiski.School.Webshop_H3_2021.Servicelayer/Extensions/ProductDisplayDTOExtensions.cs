@@ -50,7 +50,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
                     InStock = p.InStock,
                     Price = p.Price,
                     ProductID = p.ProductID,
-                    ProductImage = p.ProductImage,
+                    DisplayImage = p.DisplayImage,
                     Title = p.Title,
                     Types = p.Types
                 });

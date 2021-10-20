@@ -26,7 +26,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
               InStock = p.InStock,
               Price = p.Price,
               ProductID = p.ProductID,
-              ProductImage = p.ProductImages.FirstOrDefault().ImageStream,
+              DisplayImage = p.ProductImages.FirstOrDefault().ImageStream,
               Title = p.Title,
               Types = p.Types
           });
