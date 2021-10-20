@@ -340,5 +340,15 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - **Modified**
         - `ProductImage`Table has now a `string` `ImageURL` instead of `byte[]` `ImageStream`.
         - Added Data seeding with the path to the Images.
+- **[v0.7.6](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.6)**
+    - **Added**
+        - `WebshopLoginService`: Can validate a user against DB
+    - **Modified**
+        - `UserExtensions`: Fixed an issue where `UserDTO` wasn't created correctly. Issue should be resolved but it now collects `Customer` objects and bases the DTO off of that instead of `User`.
+        - `WebshopService` should be fixed now
+            - `GetOrderProductsByOrder` to now probably get the objects `AsNoTracking()`
+            - `GetOrderProductsByCustomer` to now also build the proper `OrderProduct` objects `AsNoTracking()`
+            - `GetUserByID` should now build a proper `UserDTO` (_Implements the new Mappers described above_)
+            - `GetUserByEmail` should now also build proper DTO's `AsNoTracking()`
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
