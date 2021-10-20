@@ -74,20 +74,20 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .ToList();
         }
 
-        public ProductDTO GetProductByID(int _id)
+        public ProductDTO GetProductByID(int _productID)
         {
             return GetAllProducts()
-                .SingleOrDefault(p => p.ProductID == _id);
+                .SingleOrDefault(p => p.ProductID == _productID);
         }
 
-        public OrderDTO GetOrderByID(int _id)
+        public OrderDTO GetOrderByID(int _orderID)
         {
             return GetQueryable<Order>()
                 .Include(o => o.Customer)
                 .Include(o => o.Products)
                 .AsNoTracking()
                 .MapToBaseDTO()
-                .SingleOrDefault(o => o.OrderID == _id);
+                .SingleOrDefault(o => o.OrderID == _orderID);
         }
 
         public IList<OrderProductDTO> GetOrdersProductsByOrder(int _orderID)
@@ -110,13 +110,13 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .ToList();
         }
 
-        public UserDTO GetUserByID(int _id)
+        public UserDTO GetUserByID(int _userID)
         {
             return GetQueryable<User>()
                 .Include(u => u.Customer)
                 .ThenInclude(c => c.Orders)
                 .MapToBaseDTO()
-                .SingleOrDefault(u => u.UserID == _id);
+                .SingleOrDefault(u => u.UserID == _userID);
         }
 
         public UserDTO GetUserByEmail(string _email)
