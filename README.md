@@ -417,5 +417,17 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
       - `ProductImageExtensions`
       - `ProductTypeExtensions`
       - `TypeExtensions`
-
+- **[v0.8.2](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.2)**
+- **Modified**
+    - `LoginIndex` to probably submit form
+        - `WebshopContext` to have `Customer` SeedData make use of `User` (_Must perform a DB Update_)
+    - **The following classes to now have prober summaries and null checks for mappers**
+        - `OrderExtensions`
+        - `OrderProductExtensions`
+        - `ProductExtensions`
+        - `ProductImageExtensions`
+        - `ProductTypeExtensions`
+        - `TypeExtensions`
+        - `UserExtensions`
+    - `WebshopLoginService` to now probably validate user even if there's no login present for the given user.
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
