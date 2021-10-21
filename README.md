@@ -434,5 +434,15 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **Added**: 
     - ViewComponent
        - Showing how many pieces are `InStock` through a ViewComponent.
+- **[v0.8.4](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.4)**
+- **Added**
+    - Login Validation to `_Layout` for "_Sign In_" Anchor, which will now log the user out if a user is logged in
+    - `WebshopLoginService` and `IHttpContextAccesso`r dependenciues to `StartUp`
+- **Modified**
+    - `AdminIndex`, which now pulls all products
+    - `LoginIndexModel` to now make use of dependency injection on `WebshopLoginService` to handle "_Sign In_" and "_Sign Out_" functionality
+    - `WebshopLoginService`, which has now been extended to make use of dependency injection and implemented a set of helper methods for handling user logins.
+- **Fixed**
+    - "_Sign in_" button on `LoginIndex`, which will now behave as intended
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
