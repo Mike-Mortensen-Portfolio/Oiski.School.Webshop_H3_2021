@@ -350,6 +350,13 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
             - `GetOrderProductsByCustomer` to now also build the proper `OrderProduct` objects `AsNoTracking()`
             - `GetUserByID` should now build a proper `UserDTO` (_Implements the new Mappers described above_)
             - `GetUserByEmail` should now also build proper DTO's `AsNoTracking()`
+- **[v0.7.7](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.7)**
+    - **Added**
+      - `TypeDTO` to map DB `Type` to
+    - **Modified**
+      - `WebshopService`, which nows includes
+        - `GetAllTypes()`, which will fetch all types in DB and map them to `TypeDTO`
+        - `GetTypeByID(int)`, which fetch the `Type` that matches the provided ID and map it to a `TypeDTO`
 - **[v0.7.8](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.8)**
     - **Modified**
         - Below Classes in ServiceLayer have been modified:
