@@ -10,8 +10,15 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
 {
     public static class UserExtensions
     {
+        /// <summary>
+        /// Maps all properties of <paramref name="_customer"/> to a <see cref="UserDTO"/>
+        /// </summary>
+        /// <param name="_customer"></param>
+        /// <returns>The mapped <see cref="UserDTO"/> if <paramref name="_customer"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
         public static UserDTO MapSingleToBaseDTO(this Customer _customer)
         {
+            if (_customer == null) return null;
+
             if (_customer.User == null)
             {
                 using (var context = new WebshopContext())
@@ -43,8 +50,15 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
             };
         }
 
+        /// <summary>
+        /// Maps a collection of <see cref="Customer"/> <see langword="objects"/> to an <see cref="IQueryable{T}"/> <see langword="object"/> of type <see cref="UserDTO"/>
+        /// </summary>
+        /// <param name="_customers"></param>
+        /// <returns>The mapped <see cref="IQueryable{T}"/> of type <see cref="UserDTO"/> if <paramref name="_customers"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
         public static IQueryable<UserDTO> MapToBaseDTO(this IQueryable<Customer> _customers)
         {
+            if (_customers == null) return null;
+
             return _customers
                 .Select(c => new UserDTO
                 {

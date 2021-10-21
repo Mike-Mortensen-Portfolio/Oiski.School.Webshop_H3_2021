@@ -11,19 +11,19 @@
                 <div class="card-body">
                     <h3 class="card-title">Sign in here:</h3>
                     <hr />
-                    <form method="post">
+                    <form method="post" asp-page-handler="Login">
                         <div class="form-group">
                             <label asp-for="EmailInput">Email address</label>
-                            <input type="email" class="form-control" id="EmailInput" placeholder="Enter email..." />
+                            <input type="email" class="form-control" asp-for="EmailInput" placeholder="Enter email..." />
                             <span asp-validation-for="EmailInput"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="PasswordInput">Password</label>
-                            <input type="password" class="form-control" id="PasswordInput" placeholder="Enter password..." />
+                            <input type="password" class="form-control" asp-for="PasswordInput" placeholder="Enter password..." />
                             <span asp-validation-for="PasswordInput"></span>
                         </div>
                         <div class="card-footer">
-                            <input type="submit" asp-action="Login" class="btn btn-primary" value="Sign in" />
+                            <input type="submit" class="btn btn-primary" value="Sign in" />
                         </div>
                     </form>
                 </div>

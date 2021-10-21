@@ -22,7 +22,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
 
                 var user = service.GetUserByEmail(_email);
 
-                if (user != null && user.Password == _password)
+                if (user != null && user.UserID != null && user.Password == _password)
                 {
                     _user = user;
 
