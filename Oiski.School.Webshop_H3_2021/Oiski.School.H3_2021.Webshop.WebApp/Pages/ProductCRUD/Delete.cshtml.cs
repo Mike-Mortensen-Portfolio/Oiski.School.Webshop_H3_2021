@@ -23,13 +23,41 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
 
         #region PROPERTIES
         [BindProperty]
-        public Product Product { get; set; }
+        public ProductDTO ProductDTO { get; set; }
         #endregion
         public void OnGet(int productID)
         {
             var _service = new WebshopService(_context);
 
-           
+            ProductDTO = _service.GetProductByID(productID);
+        }
+
+        public IActionResult OnPostDeleteProduct()
+        {
+            if (ModelState.IsValid)
+            {
+                var service = new WebshopService(_context);
+
+                if (ProductDTO != null)
+                {
+                    Product product = new Product()
+                    {
+                        ProductID = ProductDTO.ProductID
+                    };
+
+                    service.Remove(product);
+
+                    return RedirectToPage("/Index");
+                }
+                else
+                {
+                    return Page();
+                }
+            }
+            else
+            {
+                return RedirectToPage("/Error");
+            }
         }
     }
 }
