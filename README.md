@@ -458,6 +458,10 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - You can now delete a `Product` when you're logged in as an `Admin`.
     - `OnPostDeleteProduct()` will delete the `Product` if where the `ProductIDs` are equal.
 - **[v0.8.8](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.8)**
-  - Implemented Interface dependcy injection instead of concrete classes.
+  - **Added** 
+    - Implemented Interface dependcy injection instead of concrete classes.
+- **[v0.8.9](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.9)**
+  - **Added**
+    - The ability for a customer to create an user, they can Login
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
