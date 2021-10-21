@@ -350,5 +350,30 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
             - `GetOrderProductsByCustomer` to now also build the proper `OrderProduct` objects `AsNoTracking()`
             - `GetUserByID` should now build a proper `UserDTO` (_Implements the new Mappers described above_)
             - `GetUserByEmail` should now also build proper DTO's `AsNoTracking()`
+- **[v0.7.8](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.8)**
+    - **Modified**
+        - Below Classes in ServiceLayer have been modified:
+          - ProductDisplayDTOExtensions:
+            - Modified Paging(), to now skip the pages in the right way.
+          - ProductExtensions:
+        - Modified MapToDisplayDTO(), to not have it include(p => p.types)
+          - Modified MapToDisplayDTO(), to also return a `ProductImages`.
+        - ProductsCRUD.Delete:
+          - Removed old OnGet data.
+        - ProductsCRUD.Edit:
+          - Removed old OnGet data.
+        - ProductsCRUD.Details:
+          - Removed old OnGet data.
+       -  Below Pages in WebApp have been modified:
+        - AdminIndex:
+          - Removed old OnGet data.
+        - Index.cshtml.cs:
+          - Able to get FilterPagingOptions and attaching them to the Bindproperties used in Index.cshtml.
+          - OnPostAddToCart() can now add a product by its ID to a new Order.
+        - Index.cshtml:
+          - Pagination added.
+ -  Below Classes in DataLayer have been modified:
+      - WebShopContext
+          - Data seeding for the ProductImages have been modified to display them properly up in the WebApp.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
