@@ -140,10 +140,10 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             {
                 var service = new WebshopService(context);
 
-                //customer = service.GetQueryable<Customer>()
-                //   .Where(c => c.FirstName == "GingerbreadBoy")
-                //   .Include(c => c.User)
-                //   .Single();
+                customer = service.GetQueryable<Customer>()
+                   .Where(c => c.FirstName == "GingerbreadBoy")
+                   .Include(c => c.User)
+                   .Single();
             }
 
             //Assert:   //  Check if CustomerLogin data is null, and compare context query against our service query

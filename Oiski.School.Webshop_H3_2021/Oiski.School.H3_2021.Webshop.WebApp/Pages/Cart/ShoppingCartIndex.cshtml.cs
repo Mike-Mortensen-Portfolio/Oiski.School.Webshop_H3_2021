@@ -36,7 +36,7 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.Cart
         {            
             var _service = new WebshopService(_context);
 
-            OrderProducts = _service.GetOrderProductsByOrder(orderID.Value) as List<OrderProductDTO>;
+            //OrderProducts = _service.GetOrderProductsByOrder(orderID.Value) as List<OrderProductDTO>;
         }
     }
 }
