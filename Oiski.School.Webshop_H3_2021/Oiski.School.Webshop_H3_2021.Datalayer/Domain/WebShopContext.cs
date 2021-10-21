@@ -39,7 +39,8 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
             _modelBuilder.Entity<Customer>().HasData(
                 new Customer { CustomerID = 1, UserID = 3, FirstName = "Jasmin", LastName = "Nielsen", Email = "jasminnielsen97@gmail.com", Country = "Denmark", Address = "Nygade 38A, 2", City = "Aabenraa", ZipCode = 6200, PhoneNumber = "26139596" },
                 new Customer { CustomerID = 2, UserID = 1, FirstName = "Mike", LastName = "Mortensen", Email = "zhakalen@gmail.com", Country = "Denmark", Address = "Ringgade 65", City = "Sønderborg", ZipCode = 6400, PhoneNumber = "25987658" },
-                new Customer { CustomerID = 3, UserID = 2, FirstName = "Ulrik", LastName = "Larsen", Email = "ulrikLarsen@gmail.com", Country = "Denmark", Address = "Nordre Ringvej 20", City = "Vojens", ZipCode = 6500, PhoneNumber = "25496875" }
+                new Customer { CustomerID = 3, UserID = 2, FirstName = "Ulrik", LastName = "Larsen", Email = "ulrikLarsen@gmail.com", Country = "Denmark", Address = "Nordre Ringvej 20", City = "Vojens", ZipCode = 6500, PhoneNumber = "25496875" },
+                new Customer { CustomerID = 4, FirstName = "Ulrik", LastName = "Larsen", Email = "ullelarsen@gmail.com", Country = "Denmark", Address = "Nordre Ringvej 20", City = "Vojens", ZipCode = 6500, PhoneNumber = "25496875" }
                 );
 
             _modelBuilder.Entity<User>().HasData(
