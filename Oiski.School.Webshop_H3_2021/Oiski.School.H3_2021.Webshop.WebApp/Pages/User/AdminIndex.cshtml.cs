@@ -10,12 +10,12 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
 {
     public class AdminIndexModel : PageModel
     {
-        public AdminIndexModel(WebshopContext _context)
+        public AdminIndexModel(IWebshopService _service)
         {
-            context = _context;
+            service = _service;
         }
 
-        private readonly WebshopContext context;
+        private readonly IWebshopService service;
 
         #region PROPERTIES
         [BindProperty]
@@ -24,9 +24,8 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
 
         public void OnGet()
         {
-            var service = new WebshopService(context);
             Products = service.GetAllProducts()
-                .ToList();
+                        .ToList();
         }
     }
 }

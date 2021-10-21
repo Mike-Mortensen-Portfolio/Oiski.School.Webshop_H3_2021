@@ -13,11 +13,11 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
 {
     public class EditModel : PageModel
     {
-        private readonly WebshopContext _context;
+        private readonly IWebshopService service;
 
-        public EditModel(WebshopContext context)
+        public EditModel(IWebshopService _service)
         {
-            _context = context;
+            service = _service;
         }
 
         #region PROPERTIES
@@ -39,17 +39,13 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
 
         public void OnGet(int productID)
         {
-            var _service = new WebshopService(_context);
-
-            Product = _service.GetProductByID(productID);
+            Product = service.GetProductByID(productID);
         }
 
         public IActionResult OnPostUpdateProduct()
         {
             if (ModelState.IsValid)
             {
-                var _service = new WebshopService(_context);
-
                 if (Product != null)
                 {
                     Product product = new Product()
@@ -62,7 +58,7 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
                         InStock = ProductInStockInput
                     };
 
-                    _service.Update(product);
+                    service.Update(product);
 
                     return RedirectToPage("/Index");
                 }

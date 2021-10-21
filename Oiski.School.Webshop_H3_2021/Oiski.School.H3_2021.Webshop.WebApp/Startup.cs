@@ -23,8 +23,8 @@ namespace Oiski.School.H3_2021.Webshop.WebApp
         {
             #region Injecting shop services
             services.AddDbContext<WebshopContext>();
-            services.AddScoped<WebshopService, WebshopService>();
-            services.AddScoped<WebshopLoginService, WebshopLoginService>();
+            services.AddScoped<IWebshopService, WebshopService>();
+            services.AddScoped<IWebshopLoginService, WebshopLoginService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             #endregion
 

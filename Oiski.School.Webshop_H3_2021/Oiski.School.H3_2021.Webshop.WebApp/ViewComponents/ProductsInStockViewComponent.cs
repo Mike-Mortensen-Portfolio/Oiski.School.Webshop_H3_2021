@@ -10,17 +10,15 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.ViewComponents
 {
     public class ProductsInStockViewComponent : ViewComponent
     {
-        private readonly WebshopContext _context;
-
-        public ProductsInStockViewComponent(WebshopContext context)
+        public ProductsInStockViewComponent(IWebshopService _service)
         {
-            _context = context;
+            service = _service;
         }
+
+        private readonly IWebshopService service;
 
         public IViewComponentResult Invoke(int productID)
         {
-            var service = new WebshopService(_context);
-
             var products = service.GetProductByID(productID);
 
             return View(products);

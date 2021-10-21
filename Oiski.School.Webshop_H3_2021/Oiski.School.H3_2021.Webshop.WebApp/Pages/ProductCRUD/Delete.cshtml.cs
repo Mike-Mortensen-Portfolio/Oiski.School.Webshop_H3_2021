@@ -14,12 +14,12 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
 {
     public class DeleteModel : PageModel
     {
-        public DeleteModel(WebshopContext context)
+        public DeleteModel(IWebshopService _service)
         {
-            _context = context;
+            service = _service;
         }
 
-        private readonly WebshopContext _context;
+        private readonly IWebshopService service;
 
         #region PROPERTIES
         [BindProperty]
@@ -27,17 +27,13 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
         #endregion
         public void OnGet(int productID)
         {
-            var _service = new WebshopService(_context);
-
-            ProductDTO = _service.GetProductByID(productID);
+            ProductDTO = service.GetProductByID(productID);
         }
 
         public IActionResult OnPostDeleteProduct()
         {
             if (ModelState.IsValid)
             {
-                var service = new WebshopService(_context);
-
                 if (ProductDTO != null)
                 {
                     Product product = new Product()
