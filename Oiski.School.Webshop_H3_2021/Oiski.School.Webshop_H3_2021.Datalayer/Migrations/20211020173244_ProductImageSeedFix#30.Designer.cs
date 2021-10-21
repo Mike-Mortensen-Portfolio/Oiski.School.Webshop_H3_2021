@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 {
     [DbContext(typeof(WebshopContext))]
-    partial class WebShopContextModelSnapshot : ModelSnapshot
+    [Migration("20211020173244_ProductImageSeedFix#30")]
+    partial class ProductImageSeedFix30
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -15,27 +15,23 @@
             </div>
             <hr />
         </div>
-        
+
         <div class="row m-auto">
             <div class="col-md">
                 <table class="table">
                     <tbody>
-                        @foreach (var product in Model.Products)
+                        @foreach (var product in Model.OrderProducts)
                         {
                             <tr>
                                 <td class="col-2">
-                                    @Html.DisplayFor(modelItem => product.Title)
+                                    @Html.DisplayFor(modelItem => product.Product.Title)
 
                                 </td>
                                 <td class="col-2">
-                                    @foreach (var order in product.Orders)
-                                    {
-
-                                        <input type="number" value="@Html.DisplayFor(modelItem => order.Quantity)" />
-                                    }
+                                    <input type="number" value="@Html.DisplayFor(modelItem => product.Quantity)" />
                                 </td>
                                 <td class="col-2">
-                                    <b>$</b>@Html.DisplayFor(modelItem => product.Price)
+                                    <b>$</b>@Html.DisplayFor(modelItem => product.Product.Price)
                                 </td>
                                 <td class="col-2">
                                     <input type="submit" asp-action="RemoveFromOrder" class="btn btn-danger" value="Remove" />

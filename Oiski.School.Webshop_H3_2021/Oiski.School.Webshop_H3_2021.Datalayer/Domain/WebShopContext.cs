@@ -110,20 +110,20 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
 
             // Images need to be put in under ImageStream !! TO-DO !!
             _modelBuilder.Entity<ProductImage>().HasData(
-                new ProductImage { ProductImageID = 1, ProductID = 1, ImageURL = @"./Images/Clothes/Bottoms/High-Waisted-Jeans-Front.jpg", Title = "High-Waisted-Jeans-Front" },
-                new ProductImage { ProductImageID = 2, ProductID = 1, ImageURL = @"./Images/Clothes/Bottoms/High-Waisted-Jeans-Back.jpg", Title = "High-Waisted-Jeans-Back" },
-                new ProductImage { ProductImageID = 3, ProductID = 2, ImageURL = @"./Images/Clothes/Bottoms/Skater-Skirt-Front.jpg", Title = "Skater-Skirt-Front" },
-                new ProductImage { ProductImageID = 4, ProductID = 2, ImageURL = @"./Images/Clothes/Bottoms/Skater-Skirt-Back.jpg", Title = "Skater-Skirt-Back" },
-                new ProductImage { ProductImageID = 5, ProductID = 3, ImageURL = @"./Images/Clothes/FullBody/Summer-Dress-Front.jpg", Title = "Summer-Dress-Front" },
-                new ProductImage { ProductImageID = 6, ProductID = 3, ImageURL = @"./Images/Clothes/FullBody/Summer-Dress-Back.jpg", Title = "Summer-Dress-Back" },
-                new ProductImage { ProductImageID = 7, ProductID = 4, ImageURL = @"./Images/Clothes/Shoes/Sneakers-Paradise-Front.jpg", Title = "Sneakers-Paradise-Front" },
-                new ProductImage { ProductImageID = 8, ProductID = 4, ImageURL = @"./Images/Clothes/Shoes/Sneakers-Paradise-Back.jpg", Title = "Sneakers-Paradise-Back" },
-                new ProductImage { ProductImageID = 9, ProductID = 5, ImageURL = @"./Images/Clothes/Top/Warm-Knitted-Sweater-Front.jpg", Title = "Warm-Knitted-Sweater-Front" },
-                new ProductImage { ProductImageID = 10, ProductID = 5, ImageURL = @"./Images/Clothes/Top/Warm-Knitted-Sweater-Back.jpg", Title = "Warm-Knitted-Sweater-Back" },
-                new ProductImage { ProductImageID = 11, ProductID = 6, ImageURL = @"./Images/Clothes/Shoes/Simple-Sneakersle-Front.jpg", Title = "Simple-Sneakersle-Front" },
-                new ProductImage { ProductImageID = 12, ProductID = 6, ImageURL = @"./Images/Clothes/Shoes/Simple-Sneakers-Back.jpg", Title = "Simple-Sneakers-Back" },
-                new ProductImage { ProductImageID = 13, ProductID = 7, ImageURL = @"./Images/Clothes/Top/Simple-T-shirt-Front.jpg", Title = "Simple-T-shirt-Front" },
-                new ProductImage { ProductImageID = 14, ProductID = 7, ImageURL = @"./Images/Clothes/Top/Simple-T-shirt-Back.jpg", Title = "Simple-T-shirt-Back" }
+                new ProductImage { ProductImageID = 1, ProductID = 1, ImageURL = @"Clothes/Bottoms/High-Waisted-Jeans-Front.jpg", Title = "High-Waisted-Jeans-Front" },
+                new ProductImage { ProductImageID = 2, ProductID = 1, ImageURL = @"Clothes/Bottoms/High-Waisted-Jeans-Back.jpg", Title = "High-Waisted-Jeans-Back" },
+                new ProductImage { ProductImageID = 3, ProductID = 2, ImageURL = @"Clothes/Bottoms/Skater-Skirt-Front.jpg", Title = "Skater-Skirt-Front" },
+                new ProductImage { ProductImageID = 4, ProductID = 2, ImageURL = @"Clothes/Bottoms/Skater-Skirt-Back.jpg", Title = "Skater-Skirt-Back" },
+                new ProductImage { ProductImageID = 5, ProductID = 3, ImageURL = @"Clothes/FullBody/Summer-Dress-Front.jpg", Title = "Summer-Dress-Front" },
+                new ProductImage { ProductImageID = 6, ProductID = 3, ImageURL = @"Clothes/FullBody/Summer-Dress-Back.jpg", Title = "Summer-Dress-Back" },
+                new ProductImage { ProductImageID = 7, ProductID = 4, ImageURL = @"Clothes/Shoes/Sneakers-Paradise-Front.jpg", Title = "Sneakers-Paradise-Front" },
+                new ProductImage { ProductImageID = 8, ProductID = 4, ImageURL = @"Clothes/Shoes/Sneakers-Paradise-Back.jpg", Title = "Sneakers-Paradise-Back" },
+                new ProductImage { ProductImageID = 9, ProductID = 5, ImageURL = @"Clothes/Top/Warm-Knitted-Sweater-Front.jpg", Title = "Warm-Knitted-Sweater-Front" },
+                new ProductImage { ProductImageID = 10, ProductID = 5, ImageURL = @"Clothes/Top/Warm-Knitted-Sweater-Back.jpg", Title = "Warm-Knitted-Sweater-Back" },
+                new ProductImage { ProductImageID = 11, ProductID = 6, ImageURL = @"Clothes/Shoes/Simple-Sneakers-Front.jpg", Title = "Simple-Sneakersle-Front" },
+                new ProductImage { ProductImageID = 12, ProductID = 6, ImageURL = @"Clothes/Shoes/Simple-Sneakers-Back.jpg", Title = "Simple-Sneakers-Back" },
+                new ProductImage { ProductImageID = 13, ProductID = 7, ImageURL = @"Clothes/Top/Simple-T-shirt-Front.jpg", Title = "Simple-T-shirt-Front" },
+                new ProductImage { ProductImageID = 14, ProductID = 7, ImageURL = @"Clothes/Top/Simple-T-shirt-Back.jpg", Title = "Simple-T-shirt-Back" }
             );
             #endregion
         }

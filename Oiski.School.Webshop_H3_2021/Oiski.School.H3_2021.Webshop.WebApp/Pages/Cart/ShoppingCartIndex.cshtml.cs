@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
+using Oiski.School.Webshop_H3_2021.Servicelayer;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 
 namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.Cart
@@ -22,9 +23,11 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.Cart
 
         #region PROPERTIES
         [BindProperty]
-        public List<Product> Products { get; set; }
+        public List<ProductDTO> Products { get; set; }
         [BindProperty]
-        public Order Order { get; set; }
+        public List<OrderProductDTO> OrderProducts { get; set; }
+        [BindProperty]
+        public OrderDTO Order { get; set; }
         [BindProperty]
         public string Message { get; set; }
         #endregion
@@ -32,29 +35,8 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.Cart
         public void OnGet(int? orderID)
         {            
             var _service = new WebshopService(_context);
-            
-            Products = _service.GetQueryable<Product>()
-                    .Include(p => p.Types)
-                        .ThenInclude(pt => pt.Type)
-                    .Include(p => p.Orders)
-                    .ToList();
 
-            if (orderID != null)
-            {
-                Order = (Order)_service.GetQueryable<Order>()
-                    .Where(o => o.OrderID == orderID);
-
-                Products = _service.GetQueryable<Product>()
-                    .Include(p => p.Types)
-                        .ThenInclude(pt => pt.Type)
-                    .Include(p => p.Orders)
-                    .ToList();
-            }
-            else
-            {
-                Message = "You have no items in your cart. Return to home page to browse.";
-            }
-
+            //OrderProducts = _service.GetOrderProductsByOrder(orderID.Value) as List<OrderProductDTO>;
         }
     }
 }

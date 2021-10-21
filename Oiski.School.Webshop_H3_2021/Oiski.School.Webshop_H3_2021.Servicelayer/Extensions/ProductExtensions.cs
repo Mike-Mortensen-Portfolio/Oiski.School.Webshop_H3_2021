@@ -17,7 +17,6 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
         public static IQueryable<ProductDisplayDTO> MapToDisplayDTO(this IQueryable<Product> _products)
         {
             return _products
-                .Include(p => p.Types)
                 .Select(p =>
           new ProductDisplayDTO
           {
@@ -26,6 +25,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
               InStock = p.InStock,
               Price = p.Price,
               ProductID = p.ProductID,
+              ProductImages = p.ProductImages,
               DisplayImage = p.ProductImages.FirstOrDefault().ImageURL,
               Title = p.Title,
               Types = p.Types

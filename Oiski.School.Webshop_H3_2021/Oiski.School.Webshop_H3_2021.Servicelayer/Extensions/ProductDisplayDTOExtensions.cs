@@ -101,8 +101,9 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
             }
 
             if (_pageZeroStart != 0)
-            {
-                _products.Skip(_pageZeroStart * _pageSize);
+            {                
+                var skipAmount = (_pageZeroStart - 1) * _pageSize;
+                _products = _products.Skip(skipAmount);
             }
 
             return _products.Take(_pageSize);

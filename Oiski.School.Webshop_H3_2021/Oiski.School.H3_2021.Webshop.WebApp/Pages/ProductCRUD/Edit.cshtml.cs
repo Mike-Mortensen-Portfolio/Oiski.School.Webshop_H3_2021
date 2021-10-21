@@ -40,10 +40,6 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
         public void OnGet(int productID)
         {
             var _service = new WebshopService(_context);
-
-            ProductDTO = _service.GetQueryable<ProductDisplayDTO>()
-                .Where(p => p.ProductID == productID)
-                .FirstOrDefault();
         }        
 
         public void OnPostUpdateProduct()
