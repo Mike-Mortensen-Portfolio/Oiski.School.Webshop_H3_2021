@@ -30,10 +30,12 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
         public string SearchString { get; set; }
         [BindProperty]
         public bool DescendingCheckbox { get; set; }
-        [BindProperty]
         public SelectList BrandSelect { get; set; }
         [BindProperty]
+        public int SelectedBrand { get; set; }
         public SelectList TypeSelect { get; set; }
+        [BindProperty]
+        public int SelectedType { get; set; }
         [BindProperty]
         public OrderBy OrderByEnum { get; set; }
         [BindProperty(SupportsGet = true)]
@@ -54,6 +56,9 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
         {
             var _service = new WebshopService(_context);
 
+            BrandSelect = new SelectList(_service.GetAllProducts(), nameof(ProductDTO.ProductID), nameof(ProductDTO.BrandName), SelectedBrand);
+            TypeSelect = new SelectList(_service.GetAllTypes(), nameof(ProductTypeDTO.TypeID), nameof(ProductTypeDTO.Type.Name), SelectedType);
+
             FilterPageOptions = new FilterPagingOptions()
             {
                 CurrentPage = this.CurrentPage,
@@ -72,7 +77,24 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
         {
             var _service = new WebshopService(_context);
 
-            
+            FilterPageOptions = new FilterPagingOptions()
+            {
+                CurrentPage = this.CurrentPage,
+                BrandKey = SelectedBrand.ToString(),
+                TypeIDKey = SelectedType,
+                Order = OrderByEnum,
+                PageSize = 5,
+                SearchKey = this.SearchString,
+                SearchOptions = new OrderOptions()
+                {
+                    Ascending = DescendingCheckbox
+                }
+            };
+
+            BrandSelect = new SelectList(_service.GetAllProducts(), nameof(ProductDTO.ProductID), nameof(ProductDTO.BrandName), SelectedBrand);
+            TypeSelect = new SelectList(_service.GetAllTypes(), nameof(ProductTypeDTO.TypeID), nameof(ProductTypeDTO.Type.Name), SelectedType);
+
+            Products = _service.FilterPaging(FilterPageOptions).ToList();
         }
 
         public IActionResult OnPostAddToCart(int productID)

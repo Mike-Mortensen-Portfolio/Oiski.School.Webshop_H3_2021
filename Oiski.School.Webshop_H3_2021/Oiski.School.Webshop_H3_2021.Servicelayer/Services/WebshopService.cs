@@ -141,7 +141,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .SingleOrDefault(u => u.Email == _email);
         }
 
-        public IQueryable<TypeDTO> GetAllypes()
+        public IQueryable<TypeDTO> GetAllTypes()
         {
             return GetQueryable<Datalayer.Entities.Type>()
                 .AsNoTracking()
