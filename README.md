@@ -444,5 +444,10 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - `WebshopLoginService`, which has now been extended to make use of dependency injection and implemented a set of helper methods for handling user logins.
 - **Fixed**
     - "_Sign in_" button on `LoginIndex`, which will now behave as intended
+- **[v0.8.5](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.5)**
+- **Added**: 
+  - Added a template of the Checkout Page, with BindProperties.
+    - Front end is prepared for the Code behind `OnGet()` to view `Products` in an `Order`.
+    - Added the method `OnPostConfirmCheckout()` for the Confirm button.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
