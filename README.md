@@ -393,5 +393,19 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
      - `WebshopService`
      - `WebshopTestsInMemery`
      - `WebshopTests_SQL`
+- **[v0.8.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.0)**
+    - **Added**
+      - `ProductImageDTO`
+      - `ProductTypeDTO`
+      - `ProductImageExtensions`
+      - `ProductTypeExtensions`
+    - **Modified**
+      - `OrderDTO`
+      - `OrderProductDTO`
+      - `ProductDTO`
+      - `OrderExtensions`
+      - `OrderProductExtensions`
+      - `StartUp` to inject a session
+      - All DTO should now implement the proper relational DTO class.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
