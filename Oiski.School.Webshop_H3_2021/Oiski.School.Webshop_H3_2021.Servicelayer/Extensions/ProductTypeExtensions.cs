@@ -21,14 +21,14 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
                 });
         }
 
-        public static ProductImageDTO MapSingleToBaseDTO(this ProductImage _productImage)
+        public static ProductTypeDTO MapSingleToBaseDTO(this ProductType _productType)
         {
-            return new ProductImageDTO
+            return new ProductTypeDTO
             {
-                ImageURL = _productImage.ImageURL,
-                ProductID = _productImage.ProductID,
-                ProductImageID = _productImage.ProductImageID,
-                Title = _productImage.Title
+                Product = _productType.Product.MapSingleToBaseDTO(),
+                ProductID = _productType.ProductID,
+                Type = _productType.Type.MapSingleToBaseDTO(),
+                TypeID = _productType.TypeID
             };
         }
     }
