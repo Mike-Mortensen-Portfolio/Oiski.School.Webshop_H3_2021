@@ -12,13 +12,13 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
 {
     public class LoginIndexModel : PageModel
     {
-        public LoginIndexModel(WebshopLoginService _loginService)
+        public LoginIndexModel(IWebshopLoginService _loginService)
         {
             LoginService = _loginService;
         }
 
         #region PROPERTIES
-        public WebshopLoginService LoginService { get; }
+        public IWebshopLoginService LoginService { get; }
         [BindProperty]
         public string EmailInput { get; set; }
         [BindProperty]

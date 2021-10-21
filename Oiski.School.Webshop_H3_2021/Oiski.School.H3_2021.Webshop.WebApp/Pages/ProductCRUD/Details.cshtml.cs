@@ -14,12 +14,12 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
 {
     public class DetailsModel : PageModel
     {
-        public DetailsModel(WebshopContext context)
+        public DetailsModel(IWebshopService _service)
         {
-            _context = context;
+            service = _service;
         }
 
-        private readonly WebshopContext _context;
+        private readonly IWebshopService service;
 
         #region PROPERTIES
         [BindProperty]
@@ -39,7 +39,6 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
         #endregion
         public void OnGet(int productID)
         {
-            var _service = new WebshopService(_context);
 
         }
     }
