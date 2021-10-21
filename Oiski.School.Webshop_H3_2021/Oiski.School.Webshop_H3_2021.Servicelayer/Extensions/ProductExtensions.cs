@@ -25,10 +25,10 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
               InStock = p.InStock,
               Price = p.Price,
               ProductID = p.ProductID,
-              ProductImages = p.ProductImages,
+              ProductImages = p.ProductImages.ConvertToDTOList(),
               DisplayImage = p.ProductImages.FirstOrDefault().ImageURL,
               Title = p.Title,
-              Types = p.Types
+              Types = p.Types.ConvertToDTOList()
           });
         }
 
@@ -46,9 +46,9 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
                   InStock = p.InStock,
                   Price = p.Price,
                   ProductID = p.ProductID,
-                  ProductImages = p.ProductImages,
+                  ProductImages = p.ProductImages.ConvertToDTOList(),
                   Title = p.Title,
-                  Types = p.Types
+                  Types = p.Types.ConvertToDTOList()
               });
         }
 
@@ -61,9 +61,9 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
                 InStock = _product.InStock,
                 Price = _product.Price,
                 ProductID = _product.ProductID,
-                ProductImages = _product.ProductImages,
+                ProductImages = _product.ProductImages.ConvertToDTOList(),
                 Title = _product.Title,
-                Types = _product.Types
+                Types = _product.Types.ConvertToDTOList()
             };
         }
     }

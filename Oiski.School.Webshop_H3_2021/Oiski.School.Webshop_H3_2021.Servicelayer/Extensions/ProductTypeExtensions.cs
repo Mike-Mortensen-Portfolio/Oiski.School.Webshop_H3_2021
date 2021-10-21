@@ -14,7 +14,6 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
                 .Select(
                 pt => new ProductTypeDTO
                 {
-                    Product = pt.Product.MapSingleToBaseDTO(),
                     ProductID = pt.ProductID,
                     Type = pt.Type.MapSingleToBaseDTO(),
                     TypeID = pt.TypeID
@@ -25,11 +24,22 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
         {
             return new ProductTypeDTO
             {
-                Product = _productType.Product.MapSingleToBaseDTO(),
                 ProductID = _productType.ProductID,
                 Type = _productType.Type.MapSingleToBaseDTO(),
                 TypeID = _productType.TypeID
             };
+        }
+
+        public static ICollection<ProductTypeDTO> ConvertToDTOList(this ICollection<ProductType> _productType)
+        {
+            return _productType
+                .Select(pt => new ProductTypeDTO
+                {
+                    ProductID = pt.ProductID,
+                    Type = pt.Type.MapSingleToBaseDTO(),
+                    TypeID = pt.TypeID
+                })
+                .ToList();
         }
     }
 }

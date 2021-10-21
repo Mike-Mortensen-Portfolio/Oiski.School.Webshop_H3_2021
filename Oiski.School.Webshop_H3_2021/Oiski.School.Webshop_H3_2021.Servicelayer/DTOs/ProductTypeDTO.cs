@@ -8,8 +8,6 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
     {
         public int ProductID { get; set; }
 
-        public ProductDTO Product { get; set; }
-
         public int TypeID { get; set; }
 
         public TypeDTO Type { get; set; }

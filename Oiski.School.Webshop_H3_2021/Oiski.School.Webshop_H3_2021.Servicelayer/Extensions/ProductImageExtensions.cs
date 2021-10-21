@@ -32,5 +32,18 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
                 Title = _productImage.Title
             };
         }
+
+        public static ICollection<ProductImageDTO> ConvertToDTOList(this ICollection<ProductImage> _productImages)
+        {
+            return _productImages
+                .Select(pi => new ProductImageDTO
+                {
+                    ImageURL = pi.ImageURL,
+                    ProductID = pi.ProductID,
+                    ProductImageID = pi.ProductImageID,
+                    Title = pi.Title
+                })
+                .ToList();
+        }
     }
 }
