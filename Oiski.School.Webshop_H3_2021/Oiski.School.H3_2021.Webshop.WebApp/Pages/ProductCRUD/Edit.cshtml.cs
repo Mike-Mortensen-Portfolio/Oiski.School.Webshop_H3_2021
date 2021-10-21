@@ -30,21 +30,51 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
         [BindProperty]
         public string ProductTypeInput { get; set; }
         [BindProperty]
-        public string ProductPriceInput { get; set; }
+        public decimal ProductPriceInput { get; set; }
         [BindProperty]
         public int ProductInStockInput { get; set; }
         [BindProperty]
-        public ProductDisplayDTO ProductDTO { get; set; }
+        public ProductDTO Product { get; set; }
         #endregion
 
         public void OnGet(int productID)
         {
             var _service = new WebshopService(_context);
-        }        
 
-        public void OnPostUpdateProduct()
+            Product = _service.GetProductByID(productID);
+        }
+
+        public IActionResult OnPostUpdateProduct()
         {
+            if (ModelState.IsValid)
+            {
+                var _service = new WebshopService(_context);
 
+                if (Product != null)
+                {
+                    Product product = new Product()
+                    {
+                        ProductID = Product.ProductID,
+                        Title = ProductTitleInput,
+                        Description = ProductDescriptionInput,
+                        BrandName = ProductBrandNameInput,
+                        Price = ProductPriceInput,
+                        InStock = ProductInStockInput
+                    };
+
+                    _service.Update(product);
+
+                    return RedirectToPage("/Index");
+                }
+                else
+                {
+                    return Page();
+                }
+            }
+            else
+            {
+                return RedirectToPage("/Error");
+            }
         }
     }
 }
