@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{searchString?}";
 @model IndexModel
 @{
     ViewData["Title"] = "Front page";
@@ -7,16 +7,6 @@
 <div class="container text-center">
     <form method="post" asp-page-handler="PerformSearch">
         <div class="row">
-            <div class="col-2">
-                <select asp-for="SelectedType" asp-items="Model.TypeSelect" class="form-control">
-                    <option selected>Choose Type</option>
-                </select>
-            </div>
-            <div class="col-2">
-                <select asp-for="SelectedBrand" asp-items="Model.BrandSelect" class="form-control">
-                    <option selected>Choose brand</option>
-                </select>
-            </div>
             <div class="col-3">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -41,7 +31,7 @@
             </div>
             <div class="col-3">
                 <div class="input-group">
-                    <input type="search" asp-for="SearchString" class="form-control rounded" placeholder="Search"/>
+                    <input type="search" asp-for="SearchString" class="form-control rounded" placeholder="Search" />
                     <button type="submit" class="btn btn-info">Search</button>
                 </div>
             </div>

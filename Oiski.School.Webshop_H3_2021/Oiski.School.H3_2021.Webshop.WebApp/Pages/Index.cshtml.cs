@@ -31,8 +31,8 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
         [BindProperty]
         public bool DescendingCheckbox { get; set; }
         public SelectList BrandSelect { get; set; }
-        [BindProperty]
-        public int SelectedBrand { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SelectedBrand { get; set; }
         public SelectList TypeSelect { get; set; }
         [BindProperty]
         public int SelectedType { get; set; }
@@ -51,14 +51,11 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
         {
             _context = context;
         }
-
+        
         public void OnGet()
         {
             var _service = new WebshopService(_context);
-
-            BrandSelect = new SelectList(_service.GetAllProducts(), nameof(ProductDTO.ProductID), nameof(ProductDTO.BrandName), SelectedBrand);
-            TypeSelect = new SelectList(_service.GetAllTypes(), nameof(ProductTypeDTO.TypeID), nameof(ProductTypeDTO.Type.Name), SelectedType);
-
+                        
             FilterPageOptions = new FilterPagingOptions()
             {
                 CurrentPage = this.CurrentPage,
@@ -80,8 +77,6 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
             FilterPageOptions = new FilterPagingOptions()
             {
                 CurrentPage = this.CurrentPage,
-                BrandKey = SelectedBrand.ToString(),
-                TypeIDKey = SelectedType,
                 Order = OrderByEnum,
                 PageSize = 5,
                 SearchKey = this.SearchString,
@@ -90,9 +85,6 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
                     Ascending = DescendingCheckbox
                 }
             };
-
-            BrandSelect = new SelectList(_service.GetAllProducts(), nameof(ProductDTO.ProductID), nameof(ProductDTO.BrandName), SelectedBrand);
-            TypeSelect = new SelectList(_service.GetAllTypes(), nameof(ProductTypeDTO.TypeID), nameof(ProductTypeDTO.Type.Name), SelectedType);
 
             Products = _service.FilterPaging(FilterPageOptions).ToList();
         }
