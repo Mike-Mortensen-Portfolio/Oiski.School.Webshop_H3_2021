@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
+using Oiski.School.Webshop_H3_2021.Servicelayer;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 using System.Linq;
 using Xunit;
@@ -123,7 +124,7 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
                 .Options;
 
             //  Arrange: Result container
-            Customer customer = null;
+            UserDTO customer = null;
 
             // Arrange: Insert data to find (We go through Customer to get to CustomerLogin)
             using (var context = new WebshopContext(options))
@@ -140,9 +141,8 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             {
                 var service = new WebshopService(context);
 
-                customer = service.GetQueryable<Customer>()
+                customer = service.GetAllCustomers()
                    .Where(c => c.FirstName == "GingerbreadBoy")
-                   .Include(c => c.User)
                    .Single();
             }
 
@@ -157,8 +157,8 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
 
                 User login = contextCustomer.User;
 
-                Assert.NotNull(customer.User);
-                Assert.True((customer.User.UserID == login.UserID));
+                Assert.NotNull(customer);
+                Assert.True((customer.UserID == login.UserID));
             }
 
         }

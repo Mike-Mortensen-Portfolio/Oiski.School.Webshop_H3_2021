@@ -140,7 +140,7 @@ namespace Oiski.School.Webshop_H3_2021.UnitTests
             {
                 var service = new WebshopService(context);
 
-                var product = service.GetQueryable<Product>()
+                var product = service.GetAllProducts()
                     .Where(p => p.ProductID == 2)
                     .Include(p => p.Types)
                     .ThenInclude(pt => pt.Type)

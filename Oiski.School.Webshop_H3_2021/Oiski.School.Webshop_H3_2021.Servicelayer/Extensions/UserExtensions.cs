@@ -25,7 +25,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
 
             return new UserDTO
             {
-                UserID = _customer.CustomerID,
+                CustomerID = _customer.CustomerID,
+                UserID = _customer.UserID,
                 Address = _customer.Address,
                 IsAdmin = _customer.User.IsAdmin,
                 City = _customer.City,
@@ -47,7 +48,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
             return _customers
                 .Select(c => new UserDTO
                 {
-                    UserID = c.CustomerID,
+                    CustomerID = c.CustomerID,
+                    UserID = c.UserID,
                     Address = c.Address,
                     IsAdmin = c.User.IsAdmin,
                     City = c.City,
