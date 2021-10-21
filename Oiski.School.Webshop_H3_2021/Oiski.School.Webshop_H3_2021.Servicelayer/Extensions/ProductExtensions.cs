@@ -14,8 +14,15 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
             return _products.Sum(p => p.Price);
         }
 
+        /// <summary>
+        /// Maps a collection of <see cref="Product"/> <see langword="objects"/> to an <see cref="IQueryable{T}"/> <see langword="object"/> of type <see cref="ProductDisplayDTO"/>
+        /// </summary>
+        /// <param name="_products"></param>
+        /// <returns>The mapped <see cref="IQueryable{T}"/> of type <see cref="ProductDisplayDTO"/> if <paramref name="_products"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
         public static IQueryable<ProductDisplayDTO> MapToDisplayDTO(this IQueryable<Product> _products)
         {
+            if (_products == null) return null;
+
             return _products
                 .Select(p =>
           new ProductDisplayDTO
@@ -32,8 +39,15 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
           });
         }
 
+        /// <summary>
+        /// Maps a collection of <see cref="Product"/> <see langword="objects"/> to an <see cref="IQueryable{T}"/> <see langword="object"/> of type <see cref="ProductDTO"/>
+        /// </summary>
+        /// <param name="_products"></param>
+        /// <returns>The mapped <see cref="IQueryable{T}"/> of type <see cref="ProductDTO"/> if <paramref name="_products"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
         public static IQueryable<ProductDTO> MapToBaseDTO(this IQueryable<Product> _products)
         {
+            if (_products == null) return null;
+
             return _products
                 .Include(p => p.Types)
                 .ThenInclude(pt => pt.Type)
@@ -52,8 +66,15 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
               });
         }
 
+        /// <summary>
+        /// Maps all properties <paramref name="_product"/> to a <see cref="ProductDTO"/>
+        /// </summary>
+        /// <param name="_product"></param>
+        /// <returns>The mapped <see cref="ProductDTO"/> if <paramref name="_productType"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
         public static ProductDTO MapSingleToBaseDTO(this Product _product)
         {
+            if (_product == null) return null;
+
             return new ProductDTO
             {
                 BrandName = _product.BrandName,

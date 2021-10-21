@@ -8,8 +8,15 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
 {
     public static class OrderProductExtensions
     {
+        /// <summary>
+        /// Maps a collection of <see cref="OrderProduct"/> <see langword="objects"/> to an <see cref="IQueryable{T}"/> <see langword="object"/> of type <see cref="OrderProductDTO"/>
+        /// </summary>
+        /// <param name="_orderProducts"></param>
+        /// <returns>The mapped <see cref="IQueryable{T}"/> of type <see cref="OrderProductDTO"/> if <paramref name="_orderProducts"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
         public static IQueryable<OrderProductDTO> MapToBaseDTO(this IQueryable<OrderProduct> _orderProducts)
         {
+            if (_orderProducts == null) return null;
+
             return _orderProducts
                 .Select(op => new OrderProductDTO
                 {
@@ -19,8 +26,15 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
                 });
         }
 
+        /// <summary>
+        /// Maps a collection of <see cref="OrderProduct"/> <see langword="objects"/> to an <see cref="IQueryable{T}"/> <see langword="object"/> of type <see cref="OrderProductDTO"/>
+        /// </summary>
+        /// <param name="_orderProducts"></param>
+        /// <returns>The mapped <see cref="IQueryable{T}"/> of type <see cref="OrderProductDTO"/> if <paramref name="_types"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
         public static ICollection<OrderProductDTO> ConvertToDTOList(this ICollection<OrderProduct> _orderProducts)
         {
+            if (_orderProducts == null) return null;
+
             return _orderProducts
                 .Select(op => new OrderProductDTO
                 {
