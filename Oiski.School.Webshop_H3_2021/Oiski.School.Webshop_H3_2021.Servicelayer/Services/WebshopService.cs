@@ -63,15 +63,14 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
             return context.Set<T>();
         }
 
-        public IList<ProductDTO> GetAllProducts()
+        public IQueryable<ProductDTO> GetAllProducts()
         {
             return GetQueryable<Product>()
                 .Include(p => p.Orders)
                 .Include(p => p.ProductImages)
                 .Include(p => p.Types)
                 .AsNoTracking()
-                .MapToBaseDTO()
-                .ToList();
+                .MapToBaseDTO();
         }
 
         public ProductDTO GetProductByID(int _productID)
@@ -114,6 +113,15 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .ToList();
         }
 
+        public IQueryable<UserDTO> GetAllCustomers()
+        {
+            return GetQueryable<Customer>()
+            .Include(c => c.Orders)
+            .Include(c => c.User)
+            .AsNoTracking()
+            .MapToBaseDTO();
+        }
+
         public UserDTO GetUserByID(int _userID)
         {
             return GetQueryable<Customer>()
@@ -131,23 +139,9 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .AsNoTracking()
                 .MapToBaseDTO()
                 .SingleOrDefault(u => u.Email == _email);
-
-            var options = new FilterPagingOptions()
-            {
-                BrandKey = "Nike",
-                CurrentPage = 0,
-                Order = OrderBy.Price,
-                PageSize = 10,
-                SearchKey = "Air",
-                SearchOptions = new OrderOptions()
-                {
-                    Ascending = false
-                },
-                TypeIDKey = 1
-            };
         }
 
-        public IList<TypeDTO> GetAllypes()
+        public IQueryable<TypeDTO> GetAllypes()
         {
             return GetQueryable<Datalayer.Entities.Type>()
                 .AsNoTracking()
@@ -155,8 +149,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 {
                     Name = t.Name,
                     TypeID = t.TypeID
-                })
-                .ToList();
+                });
         }
 
         public TypeDTO GetTypeByID(int _typeID)
