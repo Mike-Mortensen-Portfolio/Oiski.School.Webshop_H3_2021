@@ -14,12 +14,16 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
 {
     public class UserCreateModel : PageModel
     {
-        public UserCreateModel(WebshopContext _context)
+        public UserCreateModel(WebshopContext _context, WebshopService _service, WebshopLoginService _loginService)
         {
             context = _context;
+            service = _service;
+            loginService = _loginService;
         }
 
         private readonly WebshopContext context;
+        private readonly WebshopService service;
+        private readonly WebshopLoginService loginService;
 
         #region PROPERTIES
         [BindProperty]
@@ -53,12 +57,9 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
         {
             if (ModelState.IsValid)
             {
-                var service = new WebshopService(context);
-
                 UserDTO userDTO = service.GetUserByEmail(EmailInput);
                 Customer customer;
 
-                #region Legacy
                 if (userDTO == null)
                 {
                     customer = new Customer()
@@ -82,11 +83,13 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
 
                     service.Add(customer);
 
+                    loginService.ValidateUser(customer.Email, user.Password, out UserDTO _virginUser);
+
                     return RedirectToPage("/Index");
                 }
-                #endregion
 
-                #region Legacy
+                if (userDTO.UserID != null) return Page();
+
                 customer = new Customer()
                 {
                     CustomerID = userDTO.CustomerID,
@@ -107,7 +110,8 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
                 };
 
                 service.Update(customer);
-                #endregion
+
+                loginService.ValidateUser(customer.Email, customer.User.Password, out UserDTO _user);
 
                 return RedirectToPage("/Index");
             }
