@@ -96,8 +96,6 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
                     }
                 };
 
-                _service.Add(order);
-
                 return Page();
             }
             else
