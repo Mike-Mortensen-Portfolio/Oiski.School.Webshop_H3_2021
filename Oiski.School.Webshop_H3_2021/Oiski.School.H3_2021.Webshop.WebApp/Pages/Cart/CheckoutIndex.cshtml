@@ -6,13 +6,14 @@
 <div class="container">
     <h2 class="text-center">Checking out your order.</h2>
     <hr />
-    <div class="row m-auto">
-        <div class="col-6">
-            <div class="border">
-                <card>
-                    <div class="card-body">
-                        <h4 class="card-title text-center">Enter your information below:</h4>
-                        <form method="post" asp-page-handler="ConfirmCheckOut">
+    <form method="post" asp-page-handler="ConfirmCheckout">
+        <div class="row m-auto">
+            <div class="col-6">
+                <div class="border">
+                    <card>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">Enter your information below:</h4>
+
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label asp-for="FirstNameInput">First Name</label>
@@ -63,63 +64,61 @@
                                 <button type="submit" class="btn btn-success">Confirm checkout</button>
                                 <button type="submit" asp-page="/Index" class="btn btn-danger">Cancel checkout</button>
                             </div>
-                        </form>
-                    </div>
-                </card>
-            </div>
 
-        </div>
-        <div class="col-6">
-            <div class="border">
-                <table class="table">
-                    <tbody>
-                        @*@foreach (var product in Model.OrderProducts)
-        {*@
-                        <tr>
-                            <td class="col-5">
-                                @*@Html.DisplayFor(modelItem => product.Product.Title)*@
-                                <p>This is the product title.</p>
-                            </td>
-                            <td class="col-2">
-                                @*<input type="number" value="@Html.DisplayFor(modelItem => product.Quantity)" />*@
-                                <p>4 items</p>
-                            </td>
-                            <td class="col-2">
-                                <p><b>$</b>35,65</p>
-                                @*<b>$</b>@Html.DisplayFor(modelItem => product.Product.Price)*@
-                            </td>
-                        </tr>
-                        <hr />
-                        <tr>
-                            <td class="col-5">
-                                @*@Html.DisplayFor(modelItem => product.Product.Title)*@
-                                <p>This is the product title.</p>
-                            </td>
-                            <td class="col-2">
-                                @*<input type="number" value="@Html.DisplayFor(modelItem => product.Quantity)" />*@
-                                <p>2 items</p>
-                            </td>
-                            <td class="col-2">
-                                <p><b>$</b>35,65</p>
-                                @*<b>$</b>@Html.DisplayFor(modelItem => product.Product.Price)*@
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-7">
-                                <p><b>The total price will be:</b></p>
-                            </td>
-                            <td class="col">
+                        </div>
+                    </card>
+                </div>
 
-                            </td>
-                            <td class="col-5">
-                                <p><b>$</b>2,352.9</p>
-                            </td>
-                        </tr>
-                        @*}*@
-                    </tbody>
-                </table>
             </div>
-            <form method="post" asp-page-handler="ChooseMethodType">
+            <div class="col-6">
+                <div class="border">
+                    <table class="table">
+                        <tbody>
+                            @*@foreach (var product in Model.OrderProducts)
+                                {*@
+                            <tr>
+                                <td class="col-5">
+                                    @*@Html.DisplayFor(modelItem => product.Product.Title)*@
+                                    <p>This is the product title.</p>
+                                </td>
+                                <td class="col-2">
+                                    @*<input type="number" value="@Html.DisplayFor(modelItem => product.Quantity)" />*@
+                                    <p>4 items</p>
+                                </td>
+                                <td class="col-2">
+                                    <p><b>$</b>35,65</p>
+                                    @*<b>$</b>@Html.DisplayFor(modelItem => product.Product.Price)*@
+                                </td>
+                            </tr>
+                            <hr />
+                            <tr>
+                                <td class="col-5">
+                                    @*@Html.DisplayFor(modelItem => product.Product.Title)*@
+                                    <p>This is the product title.</p>
+                                </td>
+                                <td class="col-2">
+                                    @*<input type="number" value="@Html.DisplayFor(modelItem => product.Quantity)" />*@
+                                    <p>2 items</p>
+                                </td>
+                                <td class="col-2">
+                                    <p><b>$</b>35,65</p>
+                                    @*<b>$</b>@Html.DisplayFor(modelItem => product.Product.Price)*@
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-7">
+                                    <p><b>The total price will be:</b></p>
+                                </td>
+                                <td class="col">
+                                </td>
+                                <td class="col-5">
+                                    <p><b>$</b>2,352.9</p>
+                                </td>
+                            </tr>
+                            @*}*@
+                        </tbody>
+                    </table>
+                </div>
                 <card>
                     <div class="card-body">
                         <h5 class="text-center">Choose your payment method:</h5>
@@ -150,11 +149,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                 </card>
-            </form>
-            <form method="post" asp-page-handler="ChooseDeliveryType">
                 <card>
                     <div class="card-body">
                         <h5 class="text-center">Choose your delivery method:</h5>
@@ -188,7 +185,7 @@
                         </div>
                     </div>
                 </card>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 </div>

@@ -38,5 +38,9 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.Cart
         public void OnGet()
         {
         }
+
+        public void OnPostConfirmCheckout()
+        {
+        }
     }
 }
