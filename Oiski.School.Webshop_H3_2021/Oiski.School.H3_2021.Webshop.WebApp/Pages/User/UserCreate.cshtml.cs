@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using Oiski.School.Webshop_H3_2021.Servicelayer;
+using Oiski.School.Webshop_H3_2021.Servicelayer.Extensions;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 
 namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
@@ -57,51 +58,56 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
                 UserDTO userDTO = service.GetUserByEmail(EmailInput);
                 Customer customer;
 
+                #region Legacy
                 if (userDTO == null)
                 {
                     customer = new Customer()
                     {
                         FirstName = FirstNameInput,
                         LastName = LastNameInput,
-                        Email = EmailInput,                        
+                        Email = EmailInput,
                         Address = AddressInput,
                         PhoneNumber = PhoneInput,
                         Country = CountryInput,
                         City = CityInput,
                         ZipCode = ZipInput
                     };
-                    service.Add(customer);
 
-                    CustomerDTO customerDTO = service.GetUserByEmail(EmailInput);
-
-                    Webshop_H3_2021.Datalayer.Entities.User user = new Webshop_H3_2021.Datalayer.Entities.User()
+                    var user = new Webshop_H3_2021.Datalayer.Entities.User()
                     {
-                        CustomerID = customerDTO.CustomerID,
                         Password = PasswordInput
                     };
 
-                    service.Add(user);
+                    customer.User = user;
+
+                    service.Add(customer);
 
                     return RedirectToPage("/Index");
                 }
+                #endregion
 
+                #region Legacy
                 customer = new Customer()
                 {
                     CustomerID = userDTO.CustomerID,
                     FirstName = userDTO.FirstName,
                     LastName = userDTO.LastName,
                     Email = userDTO.Email,
-                    User = new Oiski.School.Webshop_H3_2021.Datalayer.Entities.User()
-                    {
-                        Password = userDTO.Password
-                    },
                     Address = userDTO.Address,
                     PhoneNumber = userDTO.PhoneNumber,
                     Country = userDTO.Country,
                     City = userDTO.City,
                     ZipCode = userDTO.ZipCode
                 };
+
+                customer.User = new Webshop_H3_2021.Datalayer.Entities.User()
+                {
+                    Password = PasswordInput,
+                    CustomerID = customer.CustomerID
+                };
+
                 service.Update(customer);
+                #endregion
 
                 return RedirectToPage("/Index");
             }

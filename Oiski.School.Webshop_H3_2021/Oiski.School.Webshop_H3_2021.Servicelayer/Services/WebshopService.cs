@@ -136,7 +136,6 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
             return GetQueryable<Customer>()
                 .Include(u => u.User)
                 .Include(c => c.Orders)
-                .Where(u => u.UserID == null ? false : true)
                 .AsNoTracking()
                 .MapToBaseDTO()
                 .SingleOrDefault(u => u.Email == _email);
