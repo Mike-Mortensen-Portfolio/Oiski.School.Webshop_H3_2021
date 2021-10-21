@@ -12,30 +12,46 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
 {
     public class LoginIndexModel : PageModel
     {
+        public LoginIndexModel(WebshopLoginService _loginService)
+        {
+            LoginService = _loginService;
+        }
+
         #region PROPERTIES
+        public WebshopLoginService LoginService { get; }
         [BindProperty]
         public string EmailInput { get; set; }
         [BindProperty]
         public string PasswordInput { get; set; }
         #endregion
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            //  If the user is logged in we want to sign them out
+            if (LoginService.LoggedIn())
+            {
+                LoginService.EraseSessionData();
 
+                return RedirectToPage("/Index");
+            }
+
+            return Page();
         }
 
-        public void OnPostLogin()
+        public IActionResult OnPostLogin()
         {
-            var service = new WebshopLoginService();
-
-            if (service.ValidateUser(EmailInput, PasswordInput, out UserDTO _user))
+            if (LoginService.ValidateUser(EmailInput, PasswordInput, out UserDTO _user))
             {
-                HttpContext.Session.SetInt32("UserID", _user.UserID.Value);
-                HttpContext.Session.SetString("UserEmail", _user.Email);
+                if (_user.IsAdmin)
+                {
+                    return RedirectToPage("/User/AdminIndex");
+                }
 
-                return;
+                return RedirectToPage("/Index");
             }
-            
+
+            return Page();
+
             //  Add Error message here for [Email does not exist or password is wrong]
         }
     }
