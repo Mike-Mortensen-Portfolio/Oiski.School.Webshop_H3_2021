@@ -16,11 +16,11 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
                 .Select(
                 o => new OrderDTO
                 {
-                    Customer = o.Customer,
+                    Customer = o.Customer.MapSingleToBaseDTO(),
                     CustomerID = o.CustomerID,
                     OrderDate = o.OrderDate,
                     OrderID = o.OrderID,
-                    Products = o.Products
+                    Products = o.Products.ConvertToDTOList()
                 });
         }
 
@@ -28,10 +28,10 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
         {
             return new OrderDTO
             {
-                Customer = _order.Customer,
+                Customer = _order.Customer.MapSingleToBaseDTO(),
                 CustomerID = _order.CustomerID,
                 OrderDate = _order.OrderDate,
-                Products = _order.Products
+                Products = _order.Products.ConvertToDTOList()
             };
         }
 
@@ -40,11 +40,11 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
             return _orders
                 .Select(o => new OrderDTO
                 {
-                    Customer = o.Customer,
+                    Customer = o.Customer.MapSingleToBaseDTO(),
                     CustomerID = o.CustomerID,
                     OrderDate = o.OrderDate,
                     OrderID = o.OrderID,
-                    Products = o.Products
+                    Products = o.Products.ConvertToDTOList()
                 })
                 .ToList();
         }
