@@ -379,8 +379,19 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
           - OnPostAddToCart() can now add a product by its ID to a new Order.
         - Index.cshtml:
           - Pagination added.
- -  Below Classes in DataLayer have been modified:
+   -  Below Classes in DataLayer have been modified:
       - WebShopContext
           - Data seeding for the ProductImages have been modified to display them properly up in the WebApp.
+- **[v0.7.9](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.7.9)**
+   -**Fixed**
+     - An issue where `Customers` didn't have their `UserID` if a login existed
+     - An issue that prevented our tests from running because `GetQueryable<T>()` is internal and they depended on the method. The issue was resolved by extending the `WebshopService.GetAllProducts()` to return an `IQueryable<ProductDTO>()` instead of an `IList<ProductDTO>`. Likewise I added a `GetAllCustomers()` method that returns an `IQuertable<UserDTO>`
+   - **Modified**
+     - `CustomerDTO`
+     - `UserDTO`
+     - `UserExtensions`
+     - `WebshopService`
+     - `WebshopTestsInMemery`
+     - `WebshopTests_SQL`
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
