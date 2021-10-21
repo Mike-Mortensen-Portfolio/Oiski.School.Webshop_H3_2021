@@ -17,12 +17,14 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
 {
     public class IndexModel : PageModel
     {
-        public IndexModel(IWebshopService _service)
+        public IndexModel(IWebshopService _service, IWebshopLoginService _loginService)
         {
             service = _service;
+            LoginService = _loginService;
         }
 
         private readonly IWebshopService service;
+        public IWebshopLoginService LoginService { get; }
 
         #region PROPERTIES
         [BindProperty]
@@ -52,6 +54,7 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
 
         public void OnGet()
         {
+
             FilterPageOptions = new FilterPagingOptions()
             {
                 CurrentPage = this.CurrentPage,
