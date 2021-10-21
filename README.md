@@ -449,5 +449,9 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
   - Added a template of the Checkout Page, with BindProperties.
     - Front end is prepared for the Code behind `OnGet()` to view `Products` in an `Order`.
     - Added the method `OnPostConfirmCheckout()` for the Confirm button.
+- **[v0.8.6](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.6)**
+- **Added**: 
+    - You can now edit on a `Product` when you're logged in as an `Admin`.
+    - `OnPostUpdateProduct()` changes the values to the new ones that the `Admin` has changed.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
