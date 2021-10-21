@@ -24,6 +24,16 @@ namespace Oiski.School.H3_2021.Webshop.WebApp
 
             services.AddScoped<WebshopService, WebshopService>();
 
+            services.AddSession(options =>
+           {
+               options.IdleTimeout = System.TimeSpan.FromSeconds(10);
+               options.Cookie.Name = "OiskisClothing";
+               options.Cookie.HttpOnly = true;
+               options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
+               options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
+               options.Cookie.IsEssential = true;
+           });
+
             services.AddRazorPages();
         }
 
@@ -47,6 +57,7 @@ namespace Oiski.School.H3_2021.Webshop.WebApp
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
