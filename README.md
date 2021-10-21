@@ -453,5 +453,9 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **Added**: 
     - You can now edit on a `Product` when you're logged in as an `Admin`.
     - `OnPostUpdateProduct()` changes the values to the new ones that the `Admin` has changed.
+- **[v0.8.7](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.7)**
+- **Added**: 
+   - You can now delete a `Product` when you're logged in as an `Admin`.
+   - `OnPostDeleteProduct()` will delete the `Product` if where the `ProductIDs` are equal.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
