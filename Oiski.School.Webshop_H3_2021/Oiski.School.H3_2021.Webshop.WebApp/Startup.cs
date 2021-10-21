@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,17 +21,20 @@ namespace Oiski.School.H3_2021.Webshop.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Injecting shop services
             services.AddDbContext<WebshopContext>();
-
             services.AddScoped<WebshopService, WebshopService>();
+            services.AddScoped<WebshopLoginService, WebshopLoginService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            #endregion
 
             services.AddSession(options =>
            {
                options.IdleTimeout = System.TimeSpan.FromSeconds(10);
                options.Cookie.Name = "OiskisClothing";
                options.Cookie.HttpOnly = true;
-               options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
-               options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
+               options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+               options.Cookie.SameSite = SameSiteMode.Lax;
                options.Cookie.IsEssential = true;
            });
 
