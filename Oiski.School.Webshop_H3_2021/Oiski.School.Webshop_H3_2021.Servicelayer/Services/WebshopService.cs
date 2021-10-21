@@ -131,20 +131,6 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
                 .AsNoTracking()
                 .MapToBaseDTO()
                 .SingleOrDefault(u => u.Email == _email);
-
-            var options = new FilterPagingOptions()
-            {
-                BrandKey = "Nike",
-                CurrentPage = 0,
-                Order = OrderBy.Price,
-                PageSize = 10,
-                SearchKey = "Air",
-                SearchOptions = new OrderOptions()
-                {
-                    Ascending = false
-                },
-                TypeIDKey = 1
-            };
         }
 
         public IList<TypeDTO> GetAllypes()

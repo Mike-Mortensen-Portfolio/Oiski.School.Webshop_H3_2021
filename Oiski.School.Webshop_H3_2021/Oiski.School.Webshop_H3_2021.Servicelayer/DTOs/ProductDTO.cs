@@ -19,14 +19,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
 
         public int InStock { get; set; }
 
-        /// <summary>
-        /// Collection Navigational Property to the collection of <see cref="ProductImage"/>s attached to the <see cref="Product"/>
-        /// </summary>
-        public ICollection<ProductImage> ProductImages { get; set; }
+        public ICollection<ProductImageDTO> ProductImages { get; set; }
 
-        /// <summary>
-        /// Collection Navigational Property to the attached collection of <see cref="Entities.Type"/>s
-        /// </summary>
-        public ICollection<ProductType> Types { get; set; }
+        public ICollection<ProductTypeDTO> Types { get; set; }
     }
 }

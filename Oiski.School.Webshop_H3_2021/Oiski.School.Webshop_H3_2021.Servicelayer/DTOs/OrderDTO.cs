@@ -11,10 +11,10 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
 
         public int CustomerID { get; set; }
 
-        public Customer Customer { get; set; }
+        public CustomerDTO Customer { get; set; }
 
         public DateTime OrderDate { get; set; }
 
-        public ICollection<OrderProduct> Products { get; set; }
+        public ICollection<OrderProductDTO> Products { get; set; }
     }
 }
