@@ -430,4 +430,9 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
         - `TypeExtensions`
         - `UserExtensions`
     - `WebshopLoginService` to now probably validate user even if there's no login present for the given user.
+- **[v0.8.3](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.3)**
+- **Added**: 
+    - ViewComponent
+       - Showing how many pieces are `InStock` through a ViewComponent.
+
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
