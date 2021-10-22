@@ -35,11 +35,13 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.ProductCRUD
         [BindProperty]
         public int ProductInStockInput { get; set; }
         [BindProperty]
-        public Product Product { get; set; }
+        public ProductDTO Product { get; set; }
+        [BindProperty]
+        public string ImageURL { get; set; }
         #endregion
         public void OnGet(int productID)
         {
-
+            Product = service.GetProductByID(productID);
         }
     }
 }
