@@ -14,16 +14,13 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
 {
     public class UserCreateModel : PageModel
     {
-        public UserCreateModel(WebshopContext _context, WebshopService _service, WebshopLoginService _loginService)
+        public UserCreateModel(IWebshopService _service, IWebshopLoginService _loginService)
         {
-            context = _context;
             service = _service;
             loginService = _loginService;
         }
-
-        private readonly WebshopContext context;
-        private readonly WebshopService service;
-        private readonly WebshopLoginService loginService;
+        private readonly IWebshopService service;
+        private readonly IWebshopLoginService loginService;
 
         #region PROPERTIES
         [BindProperty]
