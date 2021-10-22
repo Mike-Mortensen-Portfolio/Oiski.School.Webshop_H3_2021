@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -23,18 +25,16 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.Cart
 
         #region PROPERTIES
         [BindProperty]
-        public List<ProductDTO> Products { get; set; }
-        [BindProperty]
-        public List<OrderProductDTO> OrderProducts { get; set; }
+        public List<OrderProduct> OrderProducts { get; set; }
         [BindProperty]
         public OrderDTO Order { get; set; }
         [BindProperty]
         public string Message { get; set; }
         #endregion
 
-        public void OnGet(int? orderID)
+        public void OnGet()
         {
-            //OrderProducts = service.GetOrderProductsByOrder(orderID.Value) as List<OrderProductDTO>;
+            
         }
     }
 }
