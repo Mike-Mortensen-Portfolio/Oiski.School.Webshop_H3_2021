@@ -90,7 +90,16 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" name="productID" value="@product.ProductID" class="btn btn-success">Add to cart</button>
+                        @if (Model.LoginService.UserIsAdmin())
+                        {
+                            <a asp-page="/ProductCRUD/Edit" asp-route-productID="@product.ProductID" class="btn btn-success">Edit</a>
+                            <a asp-page="/ProductCRUD/Details" asp-route-productID="@product.ProductID" class="btn btn-warning">Details</a>
+                            <a asp-page="/ProductCRUD/Delete" asp-route-productID="@product.ProductID" class="btn btn-danger">Delete</a>
+                        }
+                        else
+                        {
+                            <button type="submit" name="productID" value="@product.ProductID" class="btn btn-success">Add to cart</button>
+                        }
                     </div>
                 </form>
             </div>

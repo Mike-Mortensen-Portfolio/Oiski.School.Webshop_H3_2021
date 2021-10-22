@@ -42,11 +42,6 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.User
         {
             if (LoginService.ValidateUser(EmailInput, PasswordInput, out UserDTO _user))
             {
-                if (_user.IsAdmin)
-                {
-                    return RedirectToPage("/User/AdminIndex");
-                }
-
                 return RedirectToPage("/Index");
             }
 
