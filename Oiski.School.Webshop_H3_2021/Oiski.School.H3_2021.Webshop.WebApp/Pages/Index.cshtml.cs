@@ -37,10 +37,12 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
         public string SearchString { get; set; }
         [BindProperty]
         public bool DescendingCheckbox { get; set; }
-        [BindProperty]
         public SelectList BrandSelect { get; set; }
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
+        public string SelectedBrand { get; set; }
         public SelectList TypeSelect { get; set; }
+        [BindProperty]
+        public int SelectedType { get; set; }
         [BindProperty]
         public OrderBy OrderByEnum { get; set; }
         [BindProperty(SupportsGet = true)]
@@ -52,9 +54,15 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
 
         #endregion
 
+        public IndexModel(WebshopContext context)
+        {
+            _context = context;
+        }
+        
         public void OnGet()
         {
-
+            var _service = new WebshopService(_context);
+                        
             FilterPageOptions = new FilterPagingOptions()
             {
                 CurrentPage = this.CurrentPage,
@@ -71,7 +79,19 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
 
         public void OnPostPerformSearch()
         {
+            FilterPageOptions = new FilterPagingOptions()
+            {
+                CurrentPage = this.CurrentPage,
+                Order = OrderByEnum,
+                PageSize = 5,
+                SearchKey = this.SearchString,
+                SearchOptions = new OrderOptions()
+                {
+                    Ascending = DescendingCheckbox
+                }
+            };
 
+            Products = _service.FilterPaging(FilterPageOptions).ToList();
         }
 
         public IActionResult OnPostAddToCart(int productID)
