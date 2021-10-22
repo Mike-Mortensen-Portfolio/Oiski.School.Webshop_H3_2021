@@ -418,8 +418,8 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
       - `ProductTypeExtensions`
       - `TypeExtensions`
 - **[v0.8.2](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.2)**
-- **Modified**
-    - `LoginIndex` to probably submit form
+    - **Modified**
+      - `LoginIndex` to probably submit form
         - `WebshopContext` to have `Customer` SeedData make use of `User` (_Must perform a DB Update_)
     - **The following classes to now have prober summaries and null checks for mappers**
         - `OrderExtensions`
@@ -431,31 +431,40 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
         - `UserExtensions`
     - `WebshopLoginService` to now probably validate user even if there's no login present for the given user.
 - **[v0.8.3](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.3)**
-- **Added**: 
+  - **Added**: 
     - ViewComponent
        - Showing how many pieces are `InStock` through a ViewComponent.
 - **[v0.8.4](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.4)**
-- **Added**
+  - **Added**
     - Login Validation to `_Layout` for "_Sign In_" Anchor, which will now log the user out if a user is logged in
     - `WebshopLoginService` and `IHttpContextAccesso`r dependenciues to `StartUp`
-- **Modified**
+  - **Modified**
     - `AdminIndex`, which now pulls all products
     - `LoginIndexModel` to now make use of dependency injection on `WebshopLoginService` to handle "_Sign In_" and "_Sign Out_" functionality
     - `WebshopLoginService`, which has now been extended to make use of dependency injection and implemented a set of helper methods for handling user logins.
-- **Fixed**
+  - **Fixed**
     - "_Sign in_" button on `LoginIndex`, which will now behave as intended
 - **[v0.8.5](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.5)**
-- **Added**: 
-  - Added a template of the Checkout Page, with BindProperties.
-    - Front end is prepared for the Code behind `OnGet()` to view `Products` in an `Order`.
-    - Added the method `OnPostConfirmCheckout()` for the Confirm button.
+  - **Added**: 
+    - Added a template of the Checkout Page, with BindProperties.
+     - Front end is prepared for the Code behind `OnGet()` to view `Products` in an `Order`.
+     - Added the method `OnPostConfirmCheckout()` for the Confirm button.
 - **[v0.8.6](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.6)**
-- **Added**: 
+  - **Added**: 
     - You can now edit on a `Product` when you're logged in as an `Admin`.
     - `OnPostUpdateProduct()` changes the values to the new ones that the `Admin` has changed.
 - **[v0.8.7](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.7)**
-- **Added**: 
-   - You can now delete a `Product` when you're logged in as an `Admin`.
-   - `OnPostDeleteProduct()` will delete the `Product` if where the `ProductIDs` are equal.
+  - **Added**: 
+    - You can now delete a `Product` when you're logged in as an `Admin`.
+    - `OnPostDeleteProduct()` will delete the `Product` if where the `ProductIDs` are equal.
+- **[v0.8.8](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.8)**
+  - **Added** 
+    - Implemented Interface dependcy injection instead of concrete classes.
+- **[v0.8.9](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.9)**
+  - **Added**
+    - The ability for a customer to create an user, they can Login
+- **[v0.9.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.9.1)**
+  - **Implement**:
+    - When a `User` is logged in and they're an `Admin` the Add to cart button, will be replaced with Edit, Details and Delete buttons.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me

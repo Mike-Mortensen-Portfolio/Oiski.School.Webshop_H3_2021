@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
 {
-    public class WebshopService
+    public class WebshopService : IWebshopService
     {
         public WebshopService(WebshopContext _context)
         {

@@ -17,7 +17,14 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly WebshopContext _context;
+        public IndexModel(IWebshopService _service, IWebshopLoginService _loginService)
+        {
+            service = _service;
+            LoginService = _loginService;
+        }
+
+        private readonly IWebshopService service;
+        public IWebshopLoginService LoginService { get; }
 
         #region PROPERTIES
         [BindProperty]
@@ -67,13 +74,11 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
                 }
             };
 
-            Products = _service.FilterPaging(FilterPageOptions).ToList();          
+            Products = service.FilterPaging(FilterPageOptions).ToList();
         }
 
         public void OnPostPerformSearch()
         {
-            var _service = new WebshopService(_context);
-
             FilterPageOptions = new FilterPagingOptions()
             {
                 CurrentPage = this.CurrentPage,
@@ -91,11 +96,9 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
 
         public IActionResult OnPostAddToCart(int productID)
         {
-            var _service = new WebshopService(_context);
-
             if (ModelState.IsValid)
             {
-                ProductDTO product = _service.GetProductByID(productID);
+                ProductDTO product = service.GetProductByID(productID);
 
                 Order order = new Order()
                 {

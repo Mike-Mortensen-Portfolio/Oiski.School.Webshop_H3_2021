@@ -14,12 +14,12 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.Cart
 {
     public class ShoppingCartIndexModel : PageModel
     {
-        public ShoppingCartIndexModel(WebshopContext context)
+        public ShoppingCartIndexModel(IWebshopService _service)
         {
-            _context = context;
+            service = _service;
         }
 
-        private readonly WebshopContext _context;
+        private readonly IWebshopService service;
 
         #region PROPERTIES
         [BindProperty]
@@ -33,10 +33,8 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages.Cart
         #endregion
 
         public void OnGet(int? orderID)
-        {            
-            var _service = new WebshopService(_context);
-
-            //OrderProducts = _service.GetOrderProductsByOrder(orderID.Value) as List<OrderProductDTO>;
+        {
+            //OrderProducts = service.GetOrderProductsByOrder(orderID.Value) as List<OrderProductDTO>;
         }
     }
 }

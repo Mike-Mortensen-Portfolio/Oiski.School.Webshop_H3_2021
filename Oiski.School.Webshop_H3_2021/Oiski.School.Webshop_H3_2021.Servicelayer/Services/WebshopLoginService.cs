@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
 {
-    public class WebshopLoginService
+    public class WebshopLoginService : IWebshopLoginService
     {
         public WebshopLoginService(IHttpContextAccessor _httpContext)
         {
