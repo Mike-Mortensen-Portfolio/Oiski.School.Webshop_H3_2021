@@ -463,5 +463,8 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **[v0.8.9](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.8.9)**
   - **Added**
     - The ability for a customer to create an user, they can Login
+- **[v0.9.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.9.1)**
+  - **Implement**:
+    - When a `User` is logged in and they're an `Admin` the Add to cart button, will be replaced with Edit, Details and Delete buttons.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
