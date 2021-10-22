@@ -470,6 +470,11 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
   - **Added**:
     - Sample data to display an image.
   - **Modified**:
-    - Made sure that the `Detail.cshrml` was displaying the partial view when clicking on the button.
+    - Made sure that the `Detail.cshrml` was displaying the partial view when clicking on the button
+- **[v0.9.3](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.9.3)**
+  - **Added**:
+    - When you write something in the search input, it will find the `Products` which `Contains` that in their `Title`.
+    - You can choose to sort `Products` after `Price`, `InStock`, `Title` and `Brand`.
+    - You can also choose to see the order of `Products` in DESC and ASC.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
