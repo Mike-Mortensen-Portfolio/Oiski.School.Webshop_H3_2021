@@ -53,16 +53,8 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
         public FilterPagingOptions FilterPageOptions { get; set; }
 
         #endregion
-
-        public IndexModel(WebshopContext context)
-        {
-            _context = context;
-        }
-        
         public void OnGet()
-        {
-            var _service = new WebshopService(_context);
-                        
+        {                      
             FilterPageOptions = new FilterPagingOptions()
             {
                 CurrentPage = this.CurrentPage,
@@ -91,7 +83,7 @@ namespace Oiski.School.H3_2021.Webshop.WebApp.Pages
                 }
             };
 
-            Products = _service.FilterPaging(FilterPageOptions).ToList();
+            Products = service.FilterPaging(FilterPageOptions).ToList();
         }
 
         public IActionResult OnPostAddToCart(int productID)
