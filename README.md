@@ -476,5 +476,8 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - When you write something in the search input, it will find the `Products` which `Contains` that in their `Title`.
     - You can choose to sort `Products` after `Price`, `InStock`, `Title` and `Brand`.
     - You can also choose to see the order of `Products` in DESC and ASC.
+- **[v0.9.4](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.9.4)**
+  - **Added**:
+    - Implemented a RestAPI in the project with Swagger included.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
