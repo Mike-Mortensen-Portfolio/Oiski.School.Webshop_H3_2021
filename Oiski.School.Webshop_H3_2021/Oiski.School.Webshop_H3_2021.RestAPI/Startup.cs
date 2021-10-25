@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
+using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,13 +27,15 @@ namespace Oiski.School.Webshop_H3_2021.RestAPI
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-
+        {            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Oiski.School.Webshop_H3_2021.RestAPI", Version = "v1" });
             });
+
+            services.AddDbContext<WebshopContext>();
+            services.AddScoped<IWebshopService, WebshopService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
