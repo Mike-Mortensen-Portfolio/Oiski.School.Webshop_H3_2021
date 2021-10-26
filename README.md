@@ -479,5 +479,20 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **[v0.9.4](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.9.4)**
   - **Added**:
     - Implemented a RestAPI in the project with Swagger included.
+- **[v1.1.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.1.0)**
+- **Added**
+  - `BrandDTO`
+  - `CategoryDTO`
+  - **Extensions**
+    - `Brand`
+    - `Category`
+    - `Customer`
+    - `Order`
+    - `OrderProduct`
+    - `Product`
+    - `ProductImage`
+    - `User`
+  - `IBrand`
+  - `ICategory`
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
