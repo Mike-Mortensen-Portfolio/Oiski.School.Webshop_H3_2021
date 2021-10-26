@@ -2,8 +2,8 @@
 {
     public class ProductImageDTO : IProductImage
     {
-        public int ProductImageID { get; }
-        public int ProductID { get; }
-        public string ImageURL { get; }
+        public int ProductImageID { get; set; }
+        public int ProductID { get; set; }
+        public string ImageURL { get; set; }
     }
 }

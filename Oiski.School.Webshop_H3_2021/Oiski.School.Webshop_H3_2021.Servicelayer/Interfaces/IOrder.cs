@@ -8,8 +8,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
         int CustomerID { get; }
         DateTime OrderDate { get; }
 
-        PaymentMethod Payment { get; }
-        DeliveryType Delivery { get; }
+        PaymentMethod TypeOfPayment { get; }
+        DeliveryType TypeOfDelivery { get; }
 
         public enum PaymentMethod
         {
