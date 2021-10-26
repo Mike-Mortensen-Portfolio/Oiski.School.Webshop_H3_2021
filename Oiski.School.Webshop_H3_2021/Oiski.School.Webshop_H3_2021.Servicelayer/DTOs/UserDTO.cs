@@ -2,9 +2,9 @@
 {
     public class UserDTO : IUser
     {
-        public int UserID { get; }
-        public int CustomerID { get; }
-        public string Password { get; }
-        public bool IsAdmin { get; }
+        public int UserID { get; set; }
+        public int CustomerID { get; set; }
+        public string Password { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

@@ -6,8 +6,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
 {
     public class OrderProductDTO : IOrderProduct
     {
-        public int ProductID { get; }
-        public int OrderID { get; }
-        public int Quantity { get; }
+        public int ProductID { get; set; }
+        public int OrderID { get; set; }
+        public int Quantity { get; set; }
     }
 }

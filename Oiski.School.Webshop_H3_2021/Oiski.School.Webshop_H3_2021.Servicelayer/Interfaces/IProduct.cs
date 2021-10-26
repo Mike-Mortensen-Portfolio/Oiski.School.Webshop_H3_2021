@@ -6,7 +6,7 @@
         string Title { get; }
         string Description { get; }
 
-        string BrandName { get; set; }
+        int BrandID { get; set; }
         decimal Price { get; }
         int InStock { get; }
     }

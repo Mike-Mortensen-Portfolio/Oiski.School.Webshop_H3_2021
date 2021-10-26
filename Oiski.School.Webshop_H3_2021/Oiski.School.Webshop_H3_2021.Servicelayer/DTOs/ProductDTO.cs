@@ -2,11 +2,11 @@
 {
     public class ProductDTO : IProduct
     {
-        public int ProductID { get; }
-        public string Title { get; }
-        public string Description { get; }
-        public string BrandName { get; set; }
-        public decimal Price { get; }
-        public int InStock { get; }
+        public int ProductID { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public int BrandID { get; set; }
+        public decimal Price { get; set; }
+        public int InStock { get; set; }
     }
 }

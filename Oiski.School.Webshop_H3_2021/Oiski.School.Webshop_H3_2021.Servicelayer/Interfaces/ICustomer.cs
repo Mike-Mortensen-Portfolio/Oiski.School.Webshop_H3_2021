@@ -3,7 +3,7 @@
     public interface ICustomer
     {
         int CustomerID { get; }
-        int UserID { get; }
+        int? UserID { get; }
 
         string FirstName { get; }
         string LastName { get; }
@@ -11,6 +11,6 @@
         string Country { get; }
         int ZipCode { get; }
         string Address { get; }
-        string PhoneAddress { get; }
+        string PhoneNumber { get; }
     }
 }
