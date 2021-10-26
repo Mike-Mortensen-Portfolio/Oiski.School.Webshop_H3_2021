@@ -479,6 +479,10 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **[v0.9.4](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v0.9.4)**
   - **Added**:
     - Implemented a RestAPI in the project with Swagger included.
+- **[v1.0.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.0.0)**
+  - **Modified**:
+    - Reconstructed the entire project, starting anew.
+    - Datalayer has been added with `Entities` and `Dbcontext`
 - **[v1.1.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.1.0)**
 - **Added**
   - `BrandDTO`
@@ -494,5 +498,19 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - `User`
   - `IBrand`
   - `ICategory`
+- **[v1.2.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.2.0)**
+  - **Added**:
+     - `IRepositoryBase{T}` declarations;
+     - `GetAllAsync()`
+     - `GetByAsync()`
+     - `AddAsync()`
+     - `UpdateAsync()`
+     - `RemoveAsync()`
+   - `RepositoryBase{T}` with functionality;
+     - `GetAllAsync()`
+     - `GetByAsync()`
+     - `AddAsync()`
+     - `UpdateAsync()`
+     - `RemoveAsync()`
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
