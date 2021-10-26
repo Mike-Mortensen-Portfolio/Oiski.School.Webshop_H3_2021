@@ -7,21 +7,19 @@ using System.Threading.Tasks;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
 {
-    [Table("ProductImages")]
-    public class ProductImage
+    [Table("Brands")]
+    public class Brand
     {
         /// <summary>
-        ///  Primary Key
+        /// Primary Key
         /// </summary>
-        public int ProductImageID { get; set; }
+        public int BrandID { get; set; }
+
+        public string Name { get; set; }
 
         /// <summary>
-        /// Foreign Key to <see cref="Product"/>
+        /// Collection Navigational Property to the collection of <see cref="Product"/>/>
         /// </summary>
-        public int ProductID { get; set; }
-
-        public string ImageURL { get; set; }
-
-        public string Title { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
 
         public string City { get; set; }
 
-        public int ZipCode { get; set; }
+        public string ZipCode { get; set; }
 
         public string Address { get; set; }
 
