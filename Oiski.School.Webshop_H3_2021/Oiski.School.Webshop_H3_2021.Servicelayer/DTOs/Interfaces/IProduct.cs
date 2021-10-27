@@ -3,6 +3,7 @@
     public interface IProduct
     {
         int ProductID { get; }
+        public int CategoryID { get;}
         string Title { get; }
         string Description { get; }
 

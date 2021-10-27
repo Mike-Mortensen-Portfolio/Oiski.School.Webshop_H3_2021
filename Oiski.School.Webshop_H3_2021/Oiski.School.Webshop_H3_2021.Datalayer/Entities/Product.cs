@@ -33,7 +33,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
 
         public int InStock { get; set; }
 
-        public bool ISDeleted { get; set; }
+        public bool IsDeleted { get; set; }
 
         public Category Category { get; set; }
 
