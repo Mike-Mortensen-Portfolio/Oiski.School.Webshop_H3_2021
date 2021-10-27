@@ -539,4 +539,22 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - `CustomerRepository`
   - **Modified**
     - Added `IQueryable` mappers to `CustomerExtensions`
+- **[v1.6.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.6.0)**
+  - Added
+    - `IOrderRepository`
+    - `OrderRepository`
+    - `IQueryable` mappers for `OrderExtensions`
+  - **Modified**
+    - Reordered Folder structure
+    - All repo classes and interfaces that where missing a `Async` tail in their name have been updated and now follows the proper naming convention
+- **[v1.7.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.7.0)**
+  - **Added**
+    - `IWebshopService`
+    - `WebshopService`
+- **[v1.8.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.8.0)**
+  - **Modified**
+    - Finished Extensions for each mapper interface and added a nullcheck before any extensions are to be evaluated
+
+…efore any extensions are to be evaluated
+
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
