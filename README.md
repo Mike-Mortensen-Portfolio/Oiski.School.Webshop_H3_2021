@@ -487,6 +487,12 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **Added**
   - `BrandDTO`
   - `CategoryDTO`
+  - `CustomerDTO`
+  - `OrderDTO`
+  - `OrderProductDTO`
+  - `ProductDTO`
+  - `ProductImageDTO`
+  - `UserDTO`
   - **Extensions**
     - `Brand`
     - `Category`
