@@ -8,5 +8,6 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
         ICategoryRepository Category { get; }
         ICustomerRepository Customer { get; }
         IProductRepository Product { get; }
+        IOrderRepository Order { get; }
     }
 }

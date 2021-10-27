@@ -8,5 +8,6 @@
         public int BrandID { get; set; }
         public decimal Price { get; set; }
         public int InStock { get; set; }
+        public int CategoryID { get; set; }
     }
 }

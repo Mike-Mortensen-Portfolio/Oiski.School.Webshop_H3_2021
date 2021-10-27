@@ -12,11 +12,13 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Services
             Category = new CategoryRepository(context);
             Customer = new CustomerRepository(context);
             Product = new ProductRepository(context);
+            Order = new OrderRepository(context);
         }
 
         public IBrandRepository Brand { get; }
         public ICategoryRepository Category { get; }
         public ICustomerRepository Customer { get; }
         public IProductRepository Product { get; }
+        public IOrderRepository Order { get; }
     }
 }
