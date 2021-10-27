@@ -554,7 +554,8 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **[v1.8.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.8.0)**
   - **Modified**
     - Finished Extensions for each mapper interface and added a nullcheck before any extensions are to be evaluated
-
-…efore any extensions are to be evaluated
+- **[v1.9.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.0)**
+  - **Added**:
+    - xUnit Test Project so that the repositories methods can be tested.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
