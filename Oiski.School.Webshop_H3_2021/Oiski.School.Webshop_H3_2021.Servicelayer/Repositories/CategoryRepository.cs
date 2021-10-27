@@ -12,12 +12,12 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
         {
         }
 
-        public async Task<bool> Add(ICategory _category)
+        public async Task<bool> AddAsync(ICategory _category)
         {
             return await base.AddAsync(_category.MapToInternal());
         }
 
-        public async Task<IReadOnlyList<ICategory>> GetAll()
+        new public async Task<IReadOnlyList<ICategory>> GetAllAsync()
         {
             return await Task.Run(() =>
             {
@@ -25,7 +25,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
             });
         }
 
-        public async Task<ICategory> GetByID(int _id)
+        public async Task<ICategory> GetByIDAsync(int _id)
         {
             return await Task.Run(() =>
             {
@@ -33,12 +33,12 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
             });
         }
 
-        public async Task<bool> Remove(ICategory _category)
+        public async Task<bool> RemoveAsync(ICategory _category)
         {
             return await base.RemoveAsync(_category.MapToInternal());
         }
 
-        public async Task<bool> Update(ICategory _category)
+        public async Task<bool> UpdateAsync(ICategory _category)
         {
             return await base.UpdateAsync(_category.MapToInternal());
         }

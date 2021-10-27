@@ -17,7 +17,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
             return await base.AddAsync(_customer.MapToInternal());
         }
 
-        public async Task<IReadOnlyList<ICustomer>> GetAll()
+        new public async Task<IReadOnlyList<ICustomer>> GetAllAsync()
         {
             return await Task.Run(() =>
             {
@@ -25,7 +25,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
             });
         }
 
-        public async Task<ICustomer> GetByEmail(string _email)
+        public async Task<ICustomer> GetByEmailAsync(string _email)
         {
             return await Task.Run(() =>
             {
@@ -33,7 +33,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
             });
         }
 
-        public async Task<ICustomer> GetByID(int _id)
+        public async Task<ICustomer> GetByIDAsync(int _id)
         {
             return await Task.Run(() =>
             {

@@ -18,7 +18,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
             return await base.AddAsync(_product.MapToInternal());
         }
 
-        public async Task<IReadOnlyList<IProduct>> GetAll()
+        new public async Task<IReadOnlyList<IProduct>> GetAllAsync()
         {
             return await Task.Run(() =>
            {
