@@ -5,13 +5,9 @@ using System.Threading.Tasks;
 
 namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
 {
-    public interface IOrderRepository
+    public interface IOrderRepository : ICrudRepository<IOrder>
     {
-        Task<bool> AddAsync(IOrder _order);
-        Task<bool> UpdateAsync(IOrder _order);
-        Task<bool> RemoveAsync(IOrder _order);
-
-        Task<IReadOnlyList<IOrder>> GetAllAsync();
+        new Task<IReadOnlyList<IOrder>> GetAllAsync();
         Task<IOrder> GetByIDAsync(int _id);
         Task<IReadOnlyList<IOrder>> GetByCustomerAsync(int _userID);
         Task<IReadOnlyList<IOrder>> GetByDeliveryTypeAsync(IOrder.DeliveryType _deliveryType);
