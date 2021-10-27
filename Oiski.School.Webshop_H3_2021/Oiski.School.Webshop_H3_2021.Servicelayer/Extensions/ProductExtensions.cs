@@ -1,10 +1,11 @@
 ﻿using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
+namespace Oiski.School.Webshop_H3_2021.Servicelayer
 {
     public static class ProductExtensions
     {
@@ -31,6 +32,31 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
                 ProductID = _product.ProductID,
                 Title = _product.Title
             };
+        }
+
+        internal static IQueryable<IProduct> MapToPublic(this IQueryable<Product> _products)
+        {
+            return _products.Select(p => new ProductDTO
+            {
+                BrandID = p.BrandID,
+                Description = p.Description,
+                InStock = p.InStock,
+                Price = p.Price,
+                ProductID = p.ProductID,
+                Title = p.Title
+            });
+        }
+        internal static IQueryable<Product> MapToInternal(this IQueryable<IProduct> _products)
+        {
+            return _products.Select(p => new Product
+            {
+                BrandID = p.BrandID,
+                Description = p.Description,
+                InStock = p.InStock,
+                Price = p.Price,
+                ProductID = p.ProductID,
+                Title = p.Title
+            });
         }
 
         public static async Task<IReadOnlyList<IOrder>> GetOrdersAsync(this IProduct _product)
