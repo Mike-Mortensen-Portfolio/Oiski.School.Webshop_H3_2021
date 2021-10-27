@@ -527,12 +527,10 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - `CategoryRepository`
   - **Modified**
     - Removed unused namespaces
-    - Moved `Category-` and `BrandExtensions` into `Servicelayer` namespace
 - **[v1.5.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.5.0)**
   - **Added**
     - `ICustomerRepository`
     - `CustomerRepository`
   - **Modified**
     - Added `IQueryable` mappers to `CustomerExtensions`
-    - Moved `CustomerExtensions` to `Servicelayer` namespace
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
