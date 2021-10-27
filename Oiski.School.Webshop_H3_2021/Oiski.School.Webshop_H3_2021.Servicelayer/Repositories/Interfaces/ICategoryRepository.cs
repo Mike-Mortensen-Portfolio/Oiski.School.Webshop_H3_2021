@@ -5,11 +5,11 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
 {
     public interface ICategoryRepository
     {
-        Task<bool> Add(ICategory _brand);
-        Task<bool> Update(ICategory _brand);
-        Task<bool> Remove(ICategory _brand);
+        Task<bool> AddAsync(ICategory _brand);
+        Task<bool> UpdateAsync(ICategory _brand);
+        Task<bool> RemoveAsync(ICategory _brand);
 
-        Task<IReadOnlyList<ICategory>> GetAll();
-        Task<ICategory> GetByID(int _id);
+        Task<IReadOnlyList<ICategory>> GetAllAsync();
+        Task<ICategory> GetByIDAsync(int _id);
     }
 }

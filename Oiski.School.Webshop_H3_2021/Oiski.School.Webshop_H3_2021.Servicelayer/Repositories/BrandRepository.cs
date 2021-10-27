@@ -14,12 +14,12 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
         {
         }
 
-        public async Task<bool> Add(IBrand _brand)
+        public async Task<bool> AddAsync(IBrand _brand)
         {
             return await base.AddAsync(_brand.MapToInternal());
         }
 
-        public async Task<IReadOnlyList<IBrand>> GetAll()
+        new public async Task<IReadOnlyList<IBrand>> GetAllAsync()
         {
             return await Task.Run(() =>
             {
@@ -27,7 +27,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
             });
         }
 
-        public async Task<IBrand> GetByID(int _id)
+        public async Task<IBrand> GetByIDAsync(int _id)
         {
             return await Task.Run(() =>
             {
@@ -35,12 +35,12 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
             });
         }
 
-        public async Task<bool> Remove(IBrand _brand)
+        public async Task<bool> RemoveAsync(IBrand _brand)
         {
             return await base.RemoveAsync(_brand.MapToInternal());
         }
 
-        public async Task<bool> Update(IBrand _brand)
+        public async Task<bool> UpdateAsync(IBrand _brand)
         {
             return await base.UpdateAsync(_brand.MapToInternal());
         }

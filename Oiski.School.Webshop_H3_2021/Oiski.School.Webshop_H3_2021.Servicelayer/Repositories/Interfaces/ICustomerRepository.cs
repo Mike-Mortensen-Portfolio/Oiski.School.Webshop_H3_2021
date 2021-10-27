@@ -9,8 +9,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
         Task<bool> UpdateAsync(ICustomer _customer);
         Task<bool> RemoveAsync(ICustomer _customer);
 
-        Task<IReadOnlyList<ICustomer>> GetAll();
-        Task<ICustomer> GetByID(int _id);
-        Task<ICustomer> GetByEmail(string _email);
+        Task<IReadOnlyList<ICustomer>> GetAllAsync();
+        Task<ICustomer> GetByIDAsync(int _id);
+        Task<ICustomer> GetByEmailAsync(string _email);
     }
 }
