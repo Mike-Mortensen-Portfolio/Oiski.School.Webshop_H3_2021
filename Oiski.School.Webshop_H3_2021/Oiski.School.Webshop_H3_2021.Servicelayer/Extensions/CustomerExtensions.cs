@@ -1,6 +1,7 @@
 ﻿using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,6 +38,38 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
                 UserID = _customer.UserID,
                 ZipCode = _customer.ZipCode
             };
+        }
+
+        internal static IQueryable<ICustomer> MapToPublic(this IQueryable<Customer> _customers)
+        {
+            return _customers.Select(c => new CustomerDTO
+            {
+                Address = c.Address,
+                PhoneNumber = c.PhoneNumber,
+                Country = c.Country,
+                CustomerID = c.CustomerID,
+                Email = c.Email,
+                FirstName = c.FirstName,
+                LastName = c.LastName,
+                UserID = c.UserID,
+                ZipCode = c.ZipCode
+            });
+        }
+
+        internal static IQueryable<Customer> MapToInternal(this IQueryable<ICustomer> _customers)
+        {
+            return _customers.Select(c => new Customer
+            {
+                Address = c.Address,
+                PhoneNumber = c.PhoneNumber,
+                Country = c.Country,
+                CustomerID = c.CustomerID,
+                Email = c.Email,
+                FirstName = c.FirstName,
+                LastName = c.LastName,
+                UserID = c.UserID,
+                ZipCode = c.ZipCode
+            });
         }
 
         public static async Task<IUser> GetLoginAsync(this ICustomer _customer)
