@@ -7,7 +7,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
 {
     public interface IOrderRepository : ICrudRepository<IOrder>
     {
-        new Task<IReadOnlyList<IOrder>> GetAllAsync();
+        Task<IReadOnlyList<IOrder>> GetAllAsync();
         Task<IOrder> GetByIDAsync(int _id);
         Task<IReadOnlyList<IOrder>> GetByCustomerAsync(int _userID);
         Task<IReadOnlyList<IOrder>> GetByDeliveryTypeAsync(IOrder.DeliveryType _deliveryType);
