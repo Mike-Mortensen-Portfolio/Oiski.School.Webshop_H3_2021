@@ -22,31 +22,31 @@ Our API will use xUnit testing to begin with, to check if our `Data Layer` and `
 
 - **Specifications**
   - **Frontpage**
-    - Front page shows an amount of product with a picture, the price, the name and a button to place the product in the cart.
-    - Paging is used, so that the front page only shows a certain amount of products on each page. Showcase there's more than one product.
-    - Search feature where the user has the option to search on "Brand" or "Type" of the product.
-    - Search feature with free-text searching.
-    - Option to make the filtering of the products shown ASC or DESC.
-    - An icon of a cart is shown, as well of the quantity of the products laying in it. If the icon is clicked, it will show the shop cart.
-    - If a product is added to the cart, it will be shown on the icon, as well as the updated shop cart.
+    - [ ] Front page shows an amount of product with a picture, the price, the name and a button to place the product in the cart.
+    - [ ] Paging is used, so that the front page only shows a certain amount of products on each page. Showcase there's more than one product.
+    - [ ] Search feature where the user has the option to search on "Brand" or "Type" of the product.
+    - [ ] Search feature with free-text searching.
+    - [ ] Option to make the filtering of the products shown ASC or DESC.
+    - [ ] An icon of a cart is shown, as well of the quantity of the products laying in it. If the icon is clicked, it will show the shop cart.
+    - [ ] If a product is added to the cart, it will be shown on the icon, as well as the updated shop cart.
   - **Shop Cart**
-    - The shop cart shows an updated list of chosen products, with picture, name, price per product, quantity (can changes).
-    - There needs to be an Update button, which will update the prices if the user changes the quantity already in the cart.
-    - It needs to be possible to remove a product from the cart, if the user regrets that choice.
-    - There needs to be a Checkout button, which leads to the Checkout-page.
-    - There needs to be a button, which gives the user the opportunity to continue shopping, before going to the checkout.
+    - [ ] The shop cart shows an updated list of chosen products, with picture, name, price per product, quantity (can changes).
+    - [ ] There needs to be an Update button, which will update the prices if the user changes the quantity already in the cart.
+    - [ ] It needs to be possible to remove a product from the cart, if the user regrets that choice.
+    - [ ] There needs to be a Checkout button, which leads to the Checkout-page.
+    - [ ] There needs to be a button, which gives the user the opportunity to continue shopping, before going to the checkout.
   - **Checkout**
-    - The user has to give information about their Email, Name, Address, choice of Payment Method and Delivery type.
-    - When the user clicks on the 'Buy' button, they have to receive a mail as a confirmation on their order.
+    - [ ] The user has to give information about their Email, Name, Address, choice of Payment Method and Delivery type.
+    - [ ] When the user clicks on the 'Buy' button, they have to receive a mail as a confirmation on their order.
   - **Administrator**
-    - An Admin page, giving the adminstrator a list of all the `Products`.
-    - The Admin page will need the ability to Edit and Delete the `Products`.
-    - There will be docus on demonstrating Update and Delete in a graph of data.
+    - [ ] An Admin page, giving the adminstrator a list of all the `Products`.
+    - [ ] The Admin page will need the ability to Edit and Delete the `Products`.
+    - [ ] There will be docus on demonstrating Update and Delete in a graph of data.
   - **Additional Optional Specifications**
-    - When the mouse hovers over a picture of a product, add some shadow behind it, to highlight it.
-    - Opportunity to log in, perhaps when the user is on the Checkout page.
-    - If the user is already logged in, then they won't have to write their information again.
-    - Make an admin page, giving an administrator a list of all products and the opportunity to update and modify them.
+    - [ ] When the mouse hovers over a picture of a product, add some shadow behind it, to highlight it.
+    - [ ] Opportunity to log in, perhaps when the user is on the Checkout page.
+    - [ ] If the user is already logged in, then they won't have to write their information again.
+    - [ ] Make an admin page, giving an administrator a list of all products and the opportunity to update and modify them.
 
 ## The program
 The assignments states that the following criteria:
