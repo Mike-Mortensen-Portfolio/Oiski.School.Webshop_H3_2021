@@ -146,5 +146,28 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             Assert.Null(contextBrand);
             Assert.True(success);
         }
+
+        [Fact]
+        public void Get_Products_By_Brand()
+        {
+            // ARRANGE:
+            int brandID = 1;
+            int contextCount;
+
+            // ACT: Getting a Brand by the BrandID then we're getting IReadOnlyList of Products - then finding the Count in the context as well.
+            IBrand brand = service.Brand.GetByIDAsync(brandID).Result;
+
+            IReadOnlyList<IProduct> products = brand.GetProductsAsync().Result;
+
+            using (var context = new WebshopContext())
+            {
+                contextCount = context.Products
+                    .Where(p => p.BrandID == brandID)
+                    .Count();
+            }
+
+            // ASSERT: Comparing the count of Products with the same BrandID in both the WebshopService and WebshopContext
+            Assert.True(contextCount == products.Count);
+        }
     }
 }
