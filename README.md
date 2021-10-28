@@ -564,5 +564,8 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - Removed legacy code in front of our `GetAllAsync()` with keyword 'new'.
     - Added the declarations of `GetByIDAsync` in the `ICustomerRepository`.
     - Mapped `CategoryID` in all of our Mappers in the `ProductExtensions`.
+- **[v1.9.2](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.2)**
+  - Implemented `Customer` Test - All Succesful
+  - Implemented `UserExtensions` tests - All Succesful
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
