@@ -209,5 +209,117 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             Assert.Null(contextProduct);
             Assert.True(success);
         }
+
+        [Fact]
+        public void Get_Brand_Extension()
+        {
+            // ARRANGE:            
+            IProduct product = null;
+            using (var context = new WebshopContext())
+            {
+                product = context.Products
+                    .Select(p => new ProductDTO
+                    {
+                        BrandID = p.BrandID,
+                        CategoryID = p.CategoryID,
+                        Description = p.Description,
+                        InStock = p.InStock,
+                        Price = p.Price,
+                        ProductID = p.ProductID,
+                        Title = p.Title
+                    }).FirstOrDefault();
+            }
+
+            // ACT: Getting the Brand based on the Product we got from ARRANGE.
+            IBrand brand = product.GetBrandAsync().Result;
+
+            // ASSET: Checking the brand isn't Null.
+            Assert.NotNull(brand);
+        }
+
+        [Fact]
+        public void Get_Category_Extension()
+        {
+            // ARRANGE:            
+            IProduct product = null;
+            using (var context = new WebshopContext())
+            {
+                product = context.Products
+                    .Select(p => new ProductDTO
+                    {
+                        BrandID = p.BrandID,
+                        CategoryID = p.CategoryID,
+                        Description = p.Description,
+                        InStock = p.InStock,
+                        Price = p.Price,
+                        ProductID = p.ProductID,
+                        Title = p.Title
+                    }).FirstOrDefault();
+            }
+
+            // ACT: Getting the Category based on the Product we got from ARRANGE.
+            ICategory category = product.GetCategoryAsync().Result;
+
+            // ASSET: Checking the category isn't Null.
+            Assert.NotNull(category);
+        }
+
+        [Fact]
+        public void Get_Images_Extension()
+        {
+            // ARRANGE:
+            IProduct product = null;
+            IReadOnlyList<IProductImage> productImages;
+            using (var context = new WebshopContext())
+            {
+                product = context.Products
+                    .Select(p => new ProductDTO
+                    {
+                        BrandID = p.BrandID,
+                        CategoryID = p.CategoryID,
+                        Description = p.Description,
+                        InStock = p.InStock,
+                        Price = p.Price,
+                        ProductID = p.ProductID,
+                        Title = p.Title
+
+                    }).FirstOrDefault();
+            }
+
+            // ACT: Getting all of the Images in the above product we get from the WebshopContext.
+            productImages = product.GetImagesAsync().Result;
+
+            // ASSERT: Checking that it ain't Null.
+            Assert.NotNull(productImages);
+        }
+
+        [Fact]
+        public void Get_Orders_Extension()
+        {
+            // ARRANGE:
+            IProduct product = null;
+            IReadOnlyList<IOrder> orders = null;
+            using (var context = new WebshopContext())
+            {
+                product = context.Products
+                    .Select(p => new ProductDTO
+                    {
+                        BrandID = p.BrandID,
+                        CategoryID = p.CategoryID,
+                        Description = p.Description,
+                        InStock = p.InStock,
+                        Price = p.Price,
+                        ProductID = p.ProductID,
+                        Title = p.Title
+
+                    }).FirstOrDefault();
+            }
+
+            // ACT: Getting all of the orders existing in the above Product from the WebshopContext.
+            orders = product.GetOrdersAsync().Result;
+
+            // ASSERT: Checking that the IReadOnlyList<IOrder> isn't Null.
+            Assert.NotNull(orders);
+        }
     }
 }
