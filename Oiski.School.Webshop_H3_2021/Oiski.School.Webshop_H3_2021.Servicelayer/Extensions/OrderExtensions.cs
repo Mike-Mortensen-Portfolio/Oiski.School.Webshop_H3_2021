@@ -78,7 +78,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
         {
             if (_order == null) throw new ArgumentNullException(nameof(_order), "Cannot map NULL value");
 
-            return await new WebshopService().Customer.GetByID(_order.CustomerID);
+            return await new WebshopService().Customer.GetByIDAsync(_order.CustomerID);
         }
     }
 }

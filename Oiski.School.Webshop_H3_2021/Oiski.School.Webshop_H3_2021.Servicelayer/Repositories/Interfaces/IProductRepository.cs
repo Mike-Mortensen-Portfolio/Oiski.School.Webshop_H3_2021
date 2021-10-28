@@ -7,8 +7,9 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
 {
     public interface IProductRepository : ICrudRepository<IProduct>
     {
-        new Task<IReadOnlyList<IProduct>> GetAllAsync();
+        Task<IReadOnlyList<IProduct>> GetAllAsync();
         Task<IReadOnlyList<IProduct>> GetByBrandAsync(int _brandID);
         Task<IReadOnlyList<IProduct>> GetByCategoryAsync(int _orderID);
+        Task<IProduct> GetByIDAsync(int _id);
     }
 }

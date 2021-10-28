@@ -19,6 +19,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
             return new ProductDTO
             {
                 BrandID = _product.BrandID,
+                CategoryID = _product.CategoryID,
                 Description = _product.Description,
                 InStock = _product.InStock,
                 Price = _product.Price,
@@ -33,6 +34,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
             return new Product
             {
                 BrandID = _product.BrandID,
+                CategoryID = _product.CategoryID,
                 Description = _product.Description,
                 InStock = _product.InStock,
                 Price = _product.Price,
@@ -48,6 +50,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
             return _products.Select(p => new ProductDTO
             {
                 BrandID = p.BrandID,
+                CategoryID = p.CategoryID,
                 Description = p.Description,
                 InStock = p.InStock,
                 Price = p.Price,
@@ -62,6 +65,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
             return _products.Select(p => new Product
             {
                 BrandID = p.BrandID,
+                CategoryID = p.CategoryID,
                 Description = p.Description,
                 InStock = p.InStock,
                 Price = p.Price,
