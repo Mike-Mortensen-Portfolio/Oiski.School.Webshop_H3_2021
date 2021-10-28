@@ -557,5 +557,12 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **[v1.9.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.0)**
   - **Added**:
     - xUnit Test Project so that the repositories methods can be tested.
+- **[v1.9.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.1)**
+  - **Added**:
+    - Unit tests to all of the Methods in our `ProductRepository`, all success.
+  - **Modified**:
+    - Removed legacy code in front of our `GetAllAsync()` with keyword 'new'.
+    - Added the declarations of `GetByIDAsync` in the `ICustomerRepository`.
+    - Mapped `CategoryID` in all of our Mappers in the `ProductExtensions`.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
