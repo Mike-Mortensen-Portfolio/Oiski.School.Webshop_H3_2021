@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Oiski.School.Webshop_H3_2021.Datalayer\Oiski.School.Webshop_H3_2021.Datalayer.csproj" />
     <ProjectReference Include="..\Oiski.School.Webshop_H3_2021.Servicelayer\Oiski.School.Webshop_H3_2021.Servicelayer.csproj" />
   </ItemGroup>
 

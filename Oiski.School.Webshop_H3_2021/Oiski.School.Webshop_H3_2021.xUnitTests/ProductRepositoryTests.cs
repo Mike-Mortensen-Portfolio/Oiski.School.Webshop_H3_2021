@@ -209,5 +209,32 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             Assert.Null(contextProduct);
             Assert.True(success);
         }
+
+        [Fact]
+        public void Get_Brand_Extension()
+        {
+            // ARRANGE:            
+            IProduct product = null;
+            using (var context = new WebshopContext())
+            {
+                product = context.Set<Product>()
+                    .Select(p => new ProductDTO
+                    {
+                        BrandID = p.BrandID,
+                        CategoryID = p.CategoryID,
+                        Description = p.Description,
+                        InStock = p.InStock,
+                        Price = p.Price,
+                        ProductID = p.ProductID,
+                        Title = p.Title
+                    }).FirstOrDefault();
+            }
+
+            // ACT:
+            IBrand brand = product.GetBrandAsync().Result;
+
+            // ASSET: Comparing the the brandIDs up against each other on WebshopContext and WebshopService.
+            Assert.NotNull(brand);
+        }
     }
 }
