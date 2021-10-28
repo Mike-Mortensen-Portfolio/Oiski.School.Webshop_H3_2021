@@ -573,5 +573,10 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
   - **Modified**:
     - Added the declaration of `GetByIDAsync()` in the `IBrandRepository`.
     - Added the Unit test `Get_Products_By_Brand()`.
+- **[v1.9.4](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.4)**
+  - **Added**: 
+    - Unit tests to all of the Methods in our `CategoryRepository`, all success.
+  - **Modified**:
+    - Added the declaration of `GetByIDAsync()` in the `ICategoryRepository`.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
