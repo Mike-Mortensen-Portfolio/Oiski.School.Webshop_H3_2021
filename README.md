@@ -578,5 +578,12 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - Unit tests to all of the Methods in our `CategoryRepository`, all success.
   - **Modified**:
     - Added the declaration of `GetByIDAsync()` in the `ICategoryRepository`.
+- **[v1.9.5](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.5)**
+  - **Added**:
+    - Unit tests of all the remaining methods in `ProductExtension`.
+      - `Get_Brand_Extension()`
+      - `Get_Category_Extension()`
+      - `Get_Images_Extension()`
+      - `Get_Orders_Extension()`
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
