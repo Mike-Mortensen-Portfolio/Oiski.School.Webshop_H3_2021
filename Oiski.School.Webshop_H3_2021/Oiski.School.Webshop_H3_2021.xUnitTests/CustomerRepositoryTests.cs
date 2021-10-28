@@ -194,14 +194,32 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
         [Fact]
         public void Get_Login_From_Customer()
         {
-            //  ARRANGE:
+            //  ARRANGE: Setting up the customer from DB
             IUser user;
-            ICustomer customer = service.Customer.GetAllAsync().Result.Where(c => c.UserID != null).First();
+            ICustomer customer;
+            using (var context = new WebshopContext())
+            {
+                customer = context.Customers
+                    .Where(c => c.UserID != null)
+                    .Select(c => new CustomerDTO
+                    {
+                        Address = c.Address,
+                        Country = c.Country,
+                        CustomerID = c.CustomerID,
+                        Email = c.Email,
+                        FirstName = c.FirstName,
+                        LastName = c.LastName,
+                        PhoneNumber = c.PhoneNumber,
+                        UserID = c.UserID,
+                        ZipCode = c.ZipCode
+                    })
+                    .FirstOrDefault();
+            }
 
-            //  ACT:
+            //  ACT: Fetching the login information
             user = customer.GetLoginAsync().Result;
 
-            //  ASSERT:
+            //  ASSERT: Verify that the login information isn't null
             Assert.NotNull(user);
         }
     }
