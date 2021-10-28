@@ -23,7 +23,7 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
         [Fact]
         public void Get_Customer_Extension()
         {
-            //  ASSERT:
+            //  ASSERT: Fetching the user to perform the extension on
             IUser user;
             ICustomer customer;
             using (var context = new WebshopContext())
@@ -38,17 +38,17 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
                     }).FirstOrDefault();
             }
 
-            //  ACT:
+            //  ACT: Get the customer from the user
             customer = user.GetCustomerAsync().Result;
 
-            //  ASSERT:
+            //  ASSERT: Verify that the customer instance isn't null
             Assert.NotNull(customer);
         }
 
         [Fact]
         public void Get_Orders_Extensions()
         {
-            //  ASSERT:
+            //  ASSERT: Fetching the user to perform the extension on
             IUser user;
             IReadOnlyList<IOrder> orders;
             IReadOnlyList<Order> contextOrders;
@@ -64,7 +64,7 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
                     }).FirstOrDefault();
             }
 
-            //  ACT:
+            //  ACT: Getting the orders through the extension and getting the orders through DB context
             orders = user.GetOrderAsync().Result;
 
             using (var context = new WebshopContext())
@@ -73,7 +73,7 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
                     .ToList();
             }
 
-            //  ASSERT:
+            //  ASSERT: Compare orders and contextOrders to confirm they they yield the same result
             Assert.NotNull(orders);
             Assert.True(orders.Count == contextOrders.Count);
         }
