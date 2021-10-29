@@ -604,5 +604,10 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
      - `Get_Products_Extension()`
 - **[v1.9.8](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.8)**
   - Extended the mapping of `Order` objects to allow for attachment of a collection of `OrderProduct` objects
+- **[v1.9.9](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.9)**
+  - **Added**:
+    -  To `OrderRepositoryTests()` made the Unit test for `Add_Order_With_OrderProduct()`
+  - **Modified**:
+    - Implemented that _products could be null in `MapToInternal()` in `OrderExtensions`
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
