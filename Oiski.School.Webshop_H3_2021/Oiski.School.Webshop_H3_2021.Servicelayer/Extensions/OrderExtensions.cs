@@ -35,7 +35,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
                 CustomerID = _order.CustomerID,
                 OrderDate = _order.OrderDate,
                 OrderID = _order.OrderID,
-                Products = _products.AsQueryable().MapToInternal().ToList()
+                Products = _products?.AsQueryable().MapToInternal().ToList()
             };
         }
 

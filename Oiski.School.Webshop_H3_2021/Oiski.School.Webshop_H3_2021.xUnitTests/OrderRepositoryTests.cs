@@ -154,11 +154,10 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             {
                 CustomerID = 1,
                 OrderDate = DateTime.Now,
-                TypeOfDelivery = DeliveryType.GLS,
-                TypeOfPayment = PaymentMethod.Mastercard
+                TypeOfDelivery = IOrder.DeliveryType.DAO,
+                TypeOfPayment = IOrder.PaymentMethod.Mastercard
             };
             bool success = false;
-            Order.PaymentMethod paymentMethod = Order.PaymentMethod.Mastercard;
             Order contextOrder = null;
 
             // ACT: Adding the new Order through our Service, then finding it through the Context.
@@ -167,41 +166,86 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             using (var context = new WebshopContext())
             {
                 contextOrder = context.Orders
-                    .SingleOrDefault(o => o.TypeOfPayment == paymentMethod);
+                    .SingleOrDefault(o => o.OrderDate == newOrder.OrderDate);
             }
 
             // ASSERT: Checking if the Order found in Context is Null or not, then comparing to check if the success and the contextOrder.CustomerID are equals.
             Assert.NotNull(contextOrder);
-            Assert.True(success && contextOrder.CustomerID == 1);
+            Assert.True(success);
+        }
+
+        [Fact]
+        public void Add_Order_With_OrderProduct()
+        {
+            // ARRANGE:
+            IOrder order = new OrderDTO
+            {
+                CustomerID = 1,
+                OrderDate = new DateTime(1111, 11, 11),
+                TypeOfDelivery = IOrder.DeliveryType.DAO,
+                TypeOfPayment = IOrder.PaymentMethod.Paypal
+            };
+            IReadOnlyList<IOrderProduct> orderProduct = new List<OrderProductDTO>()
+            {
+                new OrderProductDTO { ProductID = 1, Quantity = 2 },
+                new OrderProductDTO { ProductID = 3, Quantity = 2 },
+                new OrderProductDTO { ProductID = 4, Quantity = 1 }
+            };
+            Order contextOrder = null;
+            List<OrderProduct> contextOrderProduct = null;
+
+            bool success = false;
+
+            // ACT:
+            success = service.Order.AddAsync(order, orderProduct).Result;
+
+            using (var context = new WebshopContext())
+            {
+                contextOrder = context.Orders
+                    .SingleOrDefault(o => o.OrderDate == order.OrderDate);
+
+                contextOrderProduct = context.Set<OrderProduct>()
+                    .Where(op => op.OrderID == contextOrder.OrderID)
+                    .ToList();
+            }
+
+            // ASSERT:
+            Assert.True(success && contextOrderProduct.Count == orderProduct.Count);
         }
 
         [Fact]
         public void Update_Order()
         {
             // ARRANGE: Creating a new Order where we set the OrderID on the Order we wanna Update.
-            IOrder updatedOrder = new OrderDTO
+            OrderDTO order;
+            Order contextOrder;
+            using (var context = new WebshopContext())
             {
-                OrderID = 1,
-                CustomerID = 1,
-                OrderDate = DateTime.Now,
-                TypeOfDelivery = DeliveryType.DAO
-            };
-            bool success = false;
-            Order.DeliveryType deliveryType = Order.DeliveryType.DAO;
-            Order contextOrder = null;
+                order = context.Orders
+                    .Select(o => new OrderDTO
+                    {
+                        CustomerID = o.CustomerID,
+                        OrderDate = o.OrderDate,
+                        OrderID = o.OrderID,
+                        TypeOfDelivery = (IOrder.DeliveryType)o.TypeOfDelivery,
+                        TypeOfPayment = (IOrder.PaymentMethod)o.TypeOfPayment,
+                    })
+                    .FirstOrDefault();
+            }
 
             // ACT: Updating the new Order through our Service, then finding it through the Context.
-            success = service.Order.UpdateAsync(updatedOrder).Result;
+            order.OrderDate = new DateTime(1997, 10, 21);
+            bool success = service.Order.UpdateAsync(order).Result;
 
             using (var context = new WebshopContext())
             {
                 contextOrder = context.Orders
-                    .SingleOrDefault(o => o.TypeOfDelivery == deliveryType);
+                    .SingleOrDefault(o => o.OrderDate == order.OrderDate);
             }
 
             // ASSERT: Checking if the Order found in Context is Null or not, then comparing to check if the success and the contextOrder.CustomerID are equals.
             Assert.NotNull(contextOrder);
-            Assert.True(success && contextOrder.CustomerID == 1);
+            Assert.True(success);
         }
 
         [Fact]
@@ -221,7 +265,7 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             using (var context = new WebshopContext())
             {
                 contextOrder = context.Orders
-                    .SingleOrDefault(o => o.OrderID == 1);
+                    .SingleOrDefault(o => o.OrderID == deletedOrder.OrderID);
             }
 
             // ASSERT: Checking if the Product is Null/Not in Context, then checking if our success has become true when Removing the Order.
