@@ -87,12 +87,12 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             using (var context = new WebshopContext())
             {
                 contextCategory = context.Set<Category>()
-                    .SingleOrDefault(c => c.Name == "Accessories");
+                    .SingleOrDefault(c => c.Name == newCategory.Name);
             }
 
             // ASSERT: Checking the contextCategory is NotNull, then comparing if the success and contextCategory.Name are equals "string"
             Assert.NotNull(contextCategory);
-            Assert.True(success && contextCategory.Name == "Accessories");
+            Assert.True(success);
         }
 
         [Fact]
@@ -113,12 +113,12 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             using (var context = new WebshopContext())
             {
                 contextCategory = context.Set<Category>()
-                    .SingleOrDefault(c => c.Name == "Updated Name");
+                    .SingleOrDefault(c => c.Name == updatedCategory.Name);
             }
 
             // ASSERT: Checking if the contextCategory is NotNull, then comparing if the success and contextCategory.Name are equals "string" 
             Assert.NotNull(contextCategory);
-            Assert.True(success && contextCategory.Name == "Updated Name");
+            Assert.True(success);
         }
 
         [Fact]
@@ -139,7 +139,7 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             using (var context = new WebshopContext())
             {
                 contextCategory = context.Set<Category>()
-                    .SingleOrDefault(c => c.Name == "Removed");
+                    .SingleOrDefault(c => c.Name == removeCategory.Name);
             }
 
             // ASSERT: Checking to make sure that the searched Category is Null, then checking that success changed to True.

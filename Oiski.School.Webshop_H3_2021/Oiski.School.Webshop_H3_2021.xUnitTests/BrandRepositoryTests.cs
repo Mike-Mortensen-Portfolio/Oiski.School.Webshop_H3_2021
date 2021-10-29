@@ -87,12 +87,12 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             using (var context = new WebshopContext())
             {
                 contextBrand = context.Set<Brand>()
-                    .SingleOrDefault(b => b.Name == "Addidas");
+                    .SingleOrDefault(b => b.Name == newBrand.Name);
             }
 
             // ASSERT: Checking that the contextBrand is NotNull and then ensuring that success and contextBrand.Name is equals.
             Assert.NotNull(contextBrand);
-            Assert.True(success && contextBrand.Name == "Addidas");
+            Assert.True(success);
         }
 
         [Fact]
@@ -113,12 +113,12 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             using (var context = new WebshopContext())
             {
                 contextBrand = context.Set<Brand>()
-                    .SingleOrDefault(b => b.Name == "Updated Name");
+                    .SingleOrDefault(b => b.Name == updatedBrand.Name);
             }
 
             // ASSERT: Checking that the contextBrand is NotNull and then making sure the Brand.Name is equals.
             Assert.NotNull(contextBrand);
-            Assert.True(success && contextBrand.Name == "Updated Name");
+            Assert.True(success);
         }
 
         [Fact]
@@ -139,7 +139,7 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             using (var context = new WebshopContext())
             {
                 contextBrand = context.Set<Brand>()
-                    .SingleOrDefault(b => b.Name == "Removed");
+                    .SingleOrDefault(b => b.Name == removedBrand.Name);
             }
 
             // ASSERT: Checking that the contextBrand is still Null after searching, then checking that success has changed to True.

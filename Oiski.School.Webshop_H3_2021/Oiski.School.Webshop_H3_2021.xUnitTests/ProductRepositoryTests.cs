@@ -140,12 +140,12 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             using (var context = new WebshopContext())
             {
                 contextProduct = context.Products
-                    .SingleOrDefault(p => p.Title == "Fancy dress");
+                    .SingleOrDefault(p => p.Title == newProduct.Title);
             }
 
             // ASSERT: Checking if the Product found in Context is Null or not, then comparing to check if the success and the contextProduct.Title are equal with "string"
             Assert.NotNull(contextProduct);
-            Assert.True(success && contextProduct.Title == "Fancy dress");
+            Assert.True(success);
         }
 
         [Fact]
@@ -171,12 +171,12 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             using (var context = new WebshopContext())
             {
                 contextProduct = context.Products
-                    .SingleOrDefault(p => p.Description == "New Description");
+                    .SingleOrDefault(p => p.Description == updatedProduct.Description);
             }
 
             // ASSERT: Checking if the Product found in Context is Null or not, then comparing to check if the success and the contextProduct.Title are equal with "string"
             Assert.NotNull(contextProduct);
-            Assert.True(success && contextProduct.Title == "New Title");
+            Assert.True(success);
         }
 
         [Fact]
@@ -202,7 +202,7 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             using (var context = new WebshopContext())
             {
                 contextProduct = context.Products
-                    .SingleOrDefault(p => p.ProductID == 1);
+                    .SingleOrDefault(p => p.ProductID == deletedProduct.ProductID);
             }
 
             // ASSERT: Checking if the Product is Null/Not in Context, then checking if our success has become true when Removing the Product.
