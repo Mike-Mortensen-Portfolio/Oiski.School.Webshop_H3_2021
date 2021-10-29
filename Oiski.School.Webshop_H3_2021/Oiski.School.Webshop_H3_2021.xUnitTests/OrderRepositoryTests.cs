@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xunit;
-using static Oiski.School.Webshop_H3_2021.Servicelayer.IOrder;
 
 namespace Oiski.School.Webshop_H3_2021.xUnitTests
 {
@@ -99,7 +98,7 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
         public void Get_Order_By_Paymentmethod()
         {
             // ARRANGE:
-            PaymentMethod paymentMethod = PaymentMethod.VISA;
+            IOrder.PaymentMethod paymentMethod = IOrder.PaymentMethod.VISA;
             Order.PaymentMethod paymentMethod1 = Order.PaymentMethod.VISA;
             int serviceCount;
             int contextCount;
@@ -125,7 +124,7 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
         public void Get_Order_By_DeliveryType()
         {
             // ARRANGE:
-            DeliveryType deliveryType = DeliveryType.PostNord;
+            IOrder.DeliveryType deliveryType = IOrder.DeliveryType.PostNord;
             Order.DeliveryType deliveryType1 = Order.DeliveryType.PostNord;
             int serviceCount;
             int contextCount;
@@ -243,8 +242,8 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
                         CustomerID = o.CustomerID,
                         OrderDate = o.OrderDate,
                         OrderID = o.OrderID,
-                        TypeOfDelivery = (DeliveryType)o.TypeOfDelivery,
-                        TypeOfPayment = (PaymentMethod)o.TypeOfPayment
+                        TypeOfDelivery = (IOrder.DeliveryType)o.TypeOfDelivery,
+                        TypeOfPayment = (IOrder.PaymentMethod)o.TypeOfPayment
 
                     }).FirstOrDefault();
             }
@@ -270,8 +269,8 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
                         CustomerID = o.CustomerID,
                         OrderDate = o.OrderDate,
                         OrderID = o.OrderID,
-                        TypeOfDelivery = (DeliveryType)o.TypeOfDelivery,
-                        TypeOfPayment = (PaymentMethod)o.TypeOfPayment
+                        TypeOfDelivery = (IOrder.DeliveryType)o.TypeOfDelivery,
+                        TypeOfPayment = (IOrder.PaymentMethod)o.TypeOfPayment
 
                     }).FirstOrDefault();
             }
