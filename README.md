@@ -588,5 +588,19 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **[v1.9.6](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.6)**
   - **Added** 
     - Implemented OrderProductExtensions Tests
+- **[v1.9.7](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.7)**
+  - **Added**:
+   - Units tests of the `OrderRepository` ;
+     - `Get_All_Orders()`
+     - `Get_Order_By_ID()`
+     - `Get_Order_By_Customer()`
+     - `Get_Order_By_PaymentMethod()`
+     - `Get_Order_By_DeliveryType()`
+     - `Add_Order()`
+     - `Update_Order()`
+     - `Remove_Order()`
+   - Unit tests of `OrderExtension`;
+     - `Get_Customer_Extension()`
+     - `Get_Products_Extension()`
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
