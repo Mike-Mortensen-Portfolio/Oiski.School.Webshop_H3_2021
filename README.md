@@ -585,5 +585,8 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
       - `Get_Category_Extension()`
       - `Get_Images_Extension()`
       - `Get_Orders_Extension()`
+- **[v1.9.5](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.5)**
+  - **Added** 
+    - Implemented OrderProductExtensions Tests
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
