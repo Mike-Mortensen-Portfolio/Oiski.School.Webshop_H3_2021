@@ -17,24 +17,25 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
 
             return new OrderDTO
             {
-                TypeOfDelivery = (IOrder.DeliveryType)_order.TypeOfDelivery,
-                TypeOfPayment = (IOrder.PaymentMethod)_order.TypeOfPayment,
+                TypeOfDelivery = ( IOrder.DeliveryType )_order.TypeOfDelivery,
+                TypeOfPayment = ( IOrder.PaymentMethod )_order.TypeOfPayment,
                 CustomerID = _order.CustomerID,
                 OrderDate = _order.OrderDate,
                 OrderID = _order.OrderID
             };
         }
-        internal static Order MapToInternal(this IOrder _order)
+        internal static Order MapToInternal(this IOrder _order, IReadOnlyList<IOrderProduct> _products = null)
         {
             if (_order == null) throw new ArgumentNullException(nameof(_order), "Cannot map NULL value");
 
             return new Order
             {
-                TypeOfDelivery = (Order.DeliveryType)_order.TypeOfDelivery,
-                TypeOfPayment = (Order.PaymentMethod)_order.TypeOfPayment,
+                TypeOfDelivery = ( Order.DeliveryType )_order.TypeOfDelivery,
+                TypeOfPayment = ( Order.PaymentMethod )_order.TypeOfPayment,
                 CustomerID = _order.CustomerID,
                 OrderDate = _order.OrderDate,
-                OrderID = _order.OrderID
+                OrderID = _order.OrderID,
+                Products = _products.AsQueryable().MapToInternal().ToList()
             };
         }
 
@@ -45,8 +46,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
                 CustomerID = o.CustomerID,
                 OrderDate = o.OrderDate,
                 OrderID = o.OrderID,
-                TypeOfDelivery = (IOrder.DeliveryType)o.TypeOfDelivery,
-                TypeOfPayment = (IOrder.PaymentMethod)o.TypeOfPayment
+                TypeOfDelivery = ( IOrder.DeliveryType )o.TypeOfDelivery,
+                TypeOfPayment = ( IOrder.PaymentMethod )o.TypeOfPayment
             });
         }
         internal static IQueryable<Order> MapToInternal(this IQueryable<IOrder> _orders)
@@ -56,8 +57,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
                 CustomerID = o.CustomerID,
                 OrderDate = o.OrderDate,
                 OrderID = o.OrderID,
-                TypeOfDelivery = (Order.DeliveryType)o.TypeOfDelivery,
-                TypeOfPayment = (Order.PaymentMethod)o.TypeOfPayment
+                TypeOfDelivery = ( Order.DeliveryType )o.TypeOfDelivery,
+                TypeOfPayment = ( Order.PaymentMethod )o.TypeOfPayment
             });
         }
 

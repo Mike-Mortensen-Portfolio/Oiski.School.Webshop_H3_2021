@@ -19,6 +19,11 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
             return await base.AddAsync(_order.MapToInternal());
         }
 
+        public async Task<bool> AddAsync(IOrder _order, IReadOnlyList<IOrderProduct> _products)
+        {
+            return await base.AddAsync(_order.MapToInternal(_products));
+        }
+
         public async Task<IReadOnlyList<IOrder>> GetByCustomerAsync(int _customerID)
         {
             return await Task.Run(() =>
@@ -31,7 +36,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
         {
             return await Task.Run(() =>
             {
-                return base.GetByAsync(o => o.TypeOfDelivery == (Order.DeliveryType)_deliveryType).Result.MapToPublic().ToList();
+                return base.GetByAsync(o => o.TypeOfDelivery == ( Order.DeliveryType )_deliveryType).Result.MapToPublic().ToList();
             });
         }
 
@@ -47,7 +52,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
         {
             return await Task.Run(() =>
             {
-                return base.GetByAsync(o => o.TypeOfPayment == (Order.PaymentMethod)_paymentMethod).Result.MapToPublic().ToList();
+                return base.GetByAsync(o => o.TypeOfPayment == ( Order.PaymentMethod )_paymentMethod).Result.MapToPublic().ToList();
             });
         }
 
