@@ -609,5 +609,7 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     -  To `OrderRepositoryTests()` made the Unit test for `Add_Order_With_OrderProduct()`
   - **Modified**:
     - Implemented that _products could be null in `MapToInternal()` in `OrderExtensions`
+- **[v1.9.10](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.10)**  
+  - Added **REST API** project + Configured `WebShopService` dependency
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
