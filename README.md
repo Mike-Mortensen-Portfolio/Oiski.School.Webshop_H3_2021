@@ -587,7 +587,7 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
       - `Get_Orders_Extension()`
 - **[v1.9.6](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.6)**
   - **Added** 
-    - Implemented OrderProductExtensions Tests
+    - Implemented `OrderProductExtensions` Tests
 - **[v1.9.7](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.7)**
   - **Added**:
    - Units tests of the `OrderRepository` ;
@@ -602,5 +602,7 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
    - Unit tests of `OrderExtension`;
      - `Get_Customer_Extension()`
      - `Get_Products_Extension()`
+- **[v1.9.8](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.8)**
+  - Extended the mapping of `Order` objects to allow for attachment of a collection of `OrderProduct` objects
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
