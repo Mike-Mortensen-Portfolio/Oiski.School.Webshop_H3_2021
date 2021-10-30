@@ -34,7 +34,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Customer/{_customerEmail:string}")]
+        [Route("Customer/{_customerEmail}")]
         public async Task<ICustomer> GetCustomerByEmailAsync(string _customerEmail)
         {
             return await service.Customer.GetByEmailAsync(_customerEmail);
