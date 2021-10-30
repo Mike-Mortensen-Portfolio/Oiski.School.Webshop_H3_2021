@@ -1,4 +1,5 @@
-﻿using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using Oiski.School.Webshop_H3_2021.Servicelayer;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
@@ -146,6 +147,59 @@ namespace Oiski.School.Webshop_H3_2021.xUnitTests
             // ASSERT: Checking if the Product found in Context is Null or not, then comparing to check if the success and the contextProduct.Title are equal with "string"
             Assert.NotNull(contextProduct);
             Assert.True(success);
+        }
+
+        [Fact]
+        public void Add_Product_With_Images()
+        {
+            // ARRANGE: Creating a new Product to push up.
+            IProduct newProduct = new ProductDTO
+            {
+                BrandID = 1,
+                CategoryID = 3,
+                Title = "Fancy dress",
+                Description = "Wear this to the most luxury parties.",
+                Price = 43.54M,
+                InStock = 435
+            };
+
+            IReadOnlyList<IProductImage> images = new List<ProductImageDTO>()
+            {
+                new ProductImageDTO
+                {
+                    ImageURL = "SomeURL",
+                    Title = "MyTitle"
+                },
+                new ProductImageDTO
+                {
+                    ImageURL = "SomeURL2",
+                    Title = "MyTitle2"
+                },
+                new ProductImageDTO
+                {
+                    ImageURL = "SomeURL3",
+                    Title = "MyTitle3"
+                }
+            };
+            bool success = false;
+            Product contextProduct = null;
+            int contextImageCount;
+
+            // ACT: Adding the new Product through our Service, then finding it through the Context.
+            success = service.Product.AddAsync(newProduct, images).Result;
+
+            using (var context = new WebshopContext())
+            {
+                contextProduct = context.Products
+                    .Include(p => p.ProductImages)
+                    .SingleOrDefault(p => p.Title == newProduct.Title);
+
+                contextImageCount = contextProduct.ProductImages.Count();
+            }
+
+            // ASSERT: Checking if the Product found in Context is Null or not, then comparing to check if the success and the contextProduct.Title are equal with "string"
+            Assert.NotNull(contextProduct);
+            Assert.True(success && images.Count == contextImageCount);
         }
 
         [Fact]
