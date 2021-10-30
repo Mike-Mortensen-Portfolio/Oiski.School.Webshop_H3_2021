@@ -100,10 +100,11 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("Products/Remove")]
-        public async Task<bool> RemoveProductAsync(ProductDTO _product)
+        [Route("Products/Remove/{_productID:int}")]
+        public async Task<bool> RemoveProductAsync(int _productID)
         {
-            return await service.Product.RemoveAsync(_product);
+            IProduct product = await service.Product.GetByIDAsync(_productID);
+            return await service.Product.RemoveAsync(product);
         }
     }
 }
