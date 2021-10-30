@@ -619,5 +619,20 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - **xUnit** Tests for the extended **CRUD** feature
   - **Fixed**
     - An issue where `ProductImage.Title` wasn't mapped correctly
+- **[v1.9.12](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.12)**
+  - **Added**: 
+   - Methods in `ProductRepository` made in API;
+     - `GetAllProductsAsync()`
+     - `GetProductByIDAsync()`
+     - `GetProdyctByBrandAsync()`
+     - `GetProductByCategoryAsync()`
+     - `AddProductAsync()`
+     - `UpdateProductAsync()`
+     - `RemoveProductAsync()`
+   - Methods in `ProductExtensions` made in API;
+     - `GetBrandAsync()`
+     - `GetCategoryAsync()`
+     - `GetImagesAsync()`
+   - All tested and working successfully.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
