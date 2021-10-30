@@ -64,10 +64,11 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("Customer/Remove")]
-        public async Task<bool> RemoveCustomerAsyn(CustomerDTO _customer)
+        [Route("Customer/Remove/{_customerID_int}")]
+        public async Task<bool> RemoveCustomerAsyn(int _customerID)
         {
-            return await service.Customer.RemoveAsync(_customer);
+            ICustomer customer = await service.Customer.GetByIDAsync(_customerID);
+            return await service.Customer.RemoveAsync(customer);
         }
     }
 }
