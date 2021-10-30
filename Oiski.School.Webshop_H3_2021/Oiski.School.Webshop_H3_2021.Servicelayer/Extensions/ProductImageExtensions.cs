@@ -13,7 +13,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
             {
                 ImageURL = _productImage.ImageURL,
                 ProductID = _productImage.ProductID,
-                ProductImageID = _productImage.ProductImageID
+                ProductImageID = _productImage.ProductImageID,
+                Title = _productImage.Title
             };
         }
         internal static ProductImage MapToInternal(this IProductImage _productImage)
@@ -24,7 +25,8 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
             {
                 ImageURL = _productImage.ImageURL,
                 ProductID = _productImage.ProductID,
-                ProductImageID = _productImage.ProductImageID
+                ProductImageID = _productImage.ProductImageID,
+                Title = _productImage.Title
             };
         }
     }
