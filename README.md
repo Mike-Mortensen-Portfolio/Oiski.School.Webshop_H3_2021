@@ -636,4 +636,6 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
    - All tested and working successfully.
 - **[v1.9.13](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.13)**
   - Integrated `Category` API handler
+- **[v1.9.14](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.14)**
+  - Integrated `BrandController` API handler
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
