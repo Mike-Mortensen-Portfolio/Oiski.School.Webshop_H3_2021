@@ -635,5 +635,5 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
      - `GetImagesAsync()`
    - All tested and working successfully.
 - **[v1.9.13](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.13)**
-  - Integrated Category API handler
+  - Integrated `Category` API handler
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
