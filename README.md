@@ -611,5 +611,13 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - Implemented that _products could be null in `MapToInternal()` in `OrderExtensions`
 - **[v1.9.10](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.10)**  
   - Added **REST API** project + Configured `WebShopService` dependency
+- **[v1.9.11](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.11)**  
+    `IProductRepository` and `ProductRepository` now includes a short version of **CRUD** for adding `Products` with associated `ProductImages`.
+     This is also reflected in `MapToInternal` extensions in `ProductExtensions`
+  - **Added**
+    - `MapToInternal (IProduct, IReadOnlyList<IProductImage>)`
+    - **xUnit** Tests for the extended **CRUD** feature
+  - **Fixed**
+    - An issue where `ProductImage.Title` wasn't mapped correctly
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
