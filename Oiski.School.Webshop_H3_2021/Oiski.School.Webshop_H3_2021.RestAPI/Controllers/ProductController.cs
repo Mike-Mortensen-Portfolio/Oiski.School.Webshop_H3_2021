@@ -27,7 +27,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Products/{__productID:int}")]
+        [Route("Products/{_productID:int}")]
         public async Task<IProduct> GetProductByIDAsync(int _productID)
         {
             return await service.Product.GetByIDAsync(_productID);
