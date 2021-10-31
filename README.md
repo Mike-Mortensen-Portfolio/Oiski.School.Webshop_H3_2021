@@ -665,5 +665,10 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - `OrderWithProductsDTO`
   - Fixed
     - `BrandController` and `CategoryController` not inheriting from `ControllerBase`
+- **[v1.9.17](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.17)**
+  - **Added**:
+    - `AddProductWithImageAsync()` which can now Add a product with a `ICollection<ProductImageDTO>` when creating it. What made it work, was to simply write a `.ToList()` to the parameter to push up to the DB with. This is tested and working successfully.
+  - **Modified**:
+    - Added a `ICollection<ProductImageDTO> ProductsImages` property to the `ProductDTO` class.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
