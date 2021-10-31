@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Oiski.School.Webshop_H3_2021.Servicelayer;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
+using Oiski.School.WebShop_H3_2021.RestAPI.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,14 +88,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
 
         [HttpPost]
         [Route("Products/Create")]
-        public async Task<bool> AddProductAsync(ProductDTO _product)
-        {
-            return await service.Product.AddAsync(_product);
-        }
-
-        [HttpPost]
-        [Route("Products/CreateWithImage")]
-        public async Task<bool> AddProductWithImageAsync(ProductDTO _product)
+        public async Task<bool> AddProductAsync(ProductWithImagesDTO _product)
         {
             return await service.Product.AddAsync(_product, _product.ProductImages.ToList());
         }
