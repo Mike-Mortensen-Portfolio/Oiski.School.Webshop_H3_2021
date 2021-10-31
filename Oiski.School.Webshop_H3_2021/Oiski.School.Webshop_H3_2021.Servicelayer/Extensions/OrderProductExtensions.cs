@@ -1,50 +1,72 @@
 ﻿using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
+using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
-namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
+namespace Oiski.School.Webshop_H3_2021.Servicelayer
 {
     public static class OrderProductExtensions
     {
-        /// <summary>
-        /// Maps a collection of <see cref="OrderProduct"/> <see langword="objects"/> to an <see cref="IQueryable{T}"/> <see langword="object"/> of type <see cref="OrderProductDTO"/>
-        /// </summary>
-        /// <param name="_orderProducts"></param>
-        /// <returns>The mapped <see cref="IQueryable{T}"/> of type <see cref="OrderProductDTO"/> if <paramref name="_orderProducts"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
-        public static IQueryable<OrderProductDTO> MapToBaseDTO(this IQueryable<OrderProduct> _orderProducts)
+        internal static IOrderProduct MapToPublic(this OrderProduct _orderProduct)
         {
-            if (_orderProducts == null) return null;
+            if (_orderProduct == null) throw new ArgumentNullException(nameof(_orderProduct), "Cannot map NULL value");
 
-            return _orderProducts
-                .Select(op => new OrderProductDTO
-                {
-                    Order = op.Order.MapSingleToBaseDTO(),
-                    Product = op.Product.MapSingleToBaseDTO(),
-                    Quantity = op.Quantity
-                });
+            return new OrderProductDTO
+            {
+                OrderID = _orderProduct.OrderID,
+                ProductID = _orderProduct.ProductID,
+                Quantity = _orderProduct.Quantity
+            };
+        }
+        internal static OrderProduct MapToInternal(this IOrderProduct _orderProduct)
+        {
+            if (_orderProduct == null) throw new ArgumentNullException(nameof(_orderProduct), "Cannot map NULL value");
+
+            return new OrderProduct
+            {
+                OrderID = _orderProduct.OrderID,
+                ProductID = _orderProduct.ProductID,
+                Quantity = _orderProduct.Quantity
+            };
         }
 
-        /// <summary>
-        /// Maps a collection of <see cref="OrderProduct"/> <see langword="objects"/> to an <see cref="IQueryable{T}"/> <see langword="object"/> of type <see cref="OrderProductDTO"/>
-        /// </summary>
-        /// <param name="_orderProducts"></param>
-        /// <returns>The mapped <see cref="IQueryable{T}"/> of type <see cref="OrderProductDTO"/> if <paramref name="_types"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
-        public static ICollection<OrderProductDTO> ConvertToDTOList(this ICollection<OrderProduct> _orderProducts)
+        internal static IQueryable<IOrderProduct> MapToPublic(this IQueryable<OrderProduct> _orderProducts)
         {
-            if (_orderProducts == null) return null;
+            if (_orderProducts == null) throw new ArgumentNullException(nameof(_orderProducts), "Cannot map NULL value");
 
-            return _orderProducts
-                .Select(op => new OrderProductDTO
-                {
-                    Order = op.Order.MapSingleToBaseDTO(),
-                    OrderID = op.OrderID,
-                    Product = op.Product.MapSingleToBaseDTO(),
-                    ProductID = op.ProductID,
-                    Quantity = op.Quantity
-                })
-                .ToList();
+            return _orderProducts.Select(op => new OrderProductDTO
+            {
+                OrderID = op.OrderID,
+                ProductID = op.ProductID,
+                Quantity = op.Quantity
+            });
+        }
+        internal static IQueryable<OrderProduct> MapToInternal(this IQueryable<IOrderProduct> _orderproducts)
+        {
+            if (_orderproducts == null) throw new ArgumentNullException(nameof(_orderproducts), "Cannot map NULL value");
+
+            return _orderproducts.Select(op => new OrderProduct
+            {
+                OrderID = op.OrderID,
+                ProductID = op.ProductID,
+                Quantity = op.Quantity
+            });
+        }
+
+        public static async Task<IProduct> GetProductAsync(this IOrderProduct _orderProduct)
+        {
+            if (_orderProduct == null) throw new ArgumentNullException(nameof(_orderProduct), "Cannot map NULL value");
+
+            return await new WebshopService().Product.GetByIDAsync(_orderProduct.ProductID);
+        }
+
+        public static async Task<IOrder> GetOrderAsync(this IOrderProduct _orderProduct)
+        {
+            if (_orderProduct == null) throw new ArgumentNullException(nameof(_orderProduct), "Cannot map NULL value");
+
+            return await new WebshopService().Order.GetByIDAsync(_orderProduct.ProductID);
         }
     }
 }

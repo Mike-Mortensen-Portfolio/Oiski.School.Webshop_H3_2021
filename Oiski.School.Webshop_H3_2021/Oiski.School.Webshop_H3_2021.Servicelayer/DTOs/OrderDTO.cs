@@ -1,20 +1,13 @@
-﻿using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace Oiski.School.Webshop_H3_2021.Servicelayer
 {
-    public class OrderDTO
+    public class OrderDTO : IOrder
     {
         public int OrderID { get; set; }
-
         public int CustomerID { get; set; }
-
-        public CustomerDTO Customer { get; set; }
-
         public DateTime OrderDate { get; set; }
-
-        public ICollection<OrderProductDTO> Products { get; set; }
+        public IOrder.PaymentMethod TypeOfPayment { get; set; }
+        public IOrder.DeliveryType TypeOfDelivery { get; set; }
     }
 }

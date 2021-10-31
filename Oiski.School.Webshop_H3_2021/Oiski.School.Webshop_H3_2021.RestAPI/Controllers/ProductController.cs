@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using Oiski.School.Webshop_H3_2021.Servicelayer;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 using System;
@@ -7,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Oiski.School.Webshop_H3_2021.RestAPI.Controllers
+namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
 {
     [ApiController]
-    [Route("[Controller]")]
+    [Route("Controller")]
     public class ProductController : ControllerBase
     {
         public ProductController(IWebshopService _service)
@@ -22,75 +21,90 @@ namespace Oiski.School.Webshop_H3_2021.RestAPI.Controllers
 
         [HttpGet]
         [Route("Products")]
-        public ICollection<ProductDTO> AllProducts()
+        public async Task<IReadOnlyList<IProduct>> GetAllProductsAsync()
         {
-            try
-            {
-                return service.GetAllProducts().ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception();
-            }
+            return await service.Product.GetAllAsync();
         }
 
         [HttpGet]
-        [Route("Products/{_id}")]
-        public ProductDTO OneProduct(int _productID)
+        [Route("Products/{_productID:int}")]
+        public async Task<IProduct> GetProductByIDAsync(int _productID)
         {
-            try
-            {
-                return service.GetProductByID(_productID);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception();
-            }
+            return await service.Product.GetByIDAsync(_productID);
+        }
+
+        [HttpGet]
+        [Route("Products/ByBrand/{_brandID:int}")]
+        public async Task<IReadOnlyList<IProduct>> GetProductByBrandAsync(int _brandID)
+        {
+            return await service.Product.GetByBrandAsync(_brandID);
+        }
+
+        [HttpGet]
+        [Route("Products/ByCategory/{_categoryID:int}")]
+        public async Task<IReadOnlyList<IProduct>> GetProductByCategoryAsync(int _categoryID)
+        {
+            return await service.Product.GetByCategoryAsync(_categoryID);
+        }
+
+        [HttpGet]
+        [Route("Products/GetBrand/{_productID:int}")]
+        public async Task<IBrand> GetBrandAsync(int _productID)
+        {
+            IProduct product = await service.Product.GetByIDAsync(_productID);
+
+            IBrand brand = await product.GetBrandAsync();
+            return brand;
+        }
+
+        [HttpGet]
+        [Route("Products/GetCategory/{_productID:int}")]
+        public async Task<ICategory> GetCategoryAsync(int _productID)
+        {
+            IProduct product = await service.Product.GetByIDAsync(_productID);
+
+            ICategory category = await product.GetCategoryAsync();
+            return category;
+        }
+
+        [HttpGet]
+        [Route("Products/GetImages/{_productID:int}")]
+        public async Task<IReadOnlyList<IProductImage>> GetImagesAsync(int _productID)
+        {
+            IProduct product = await service.Product.GetByIDAsync(_productID);
+
+            return await product.GetImagesAsync();
+        }
+
+        [HttpGet]
+        [Route("Products/GetOrders/{_productID:int}")]
+        public async Task<IReadOnlyList<IOrder>> GetOrdersAsync(int _productID)
+        {
+            IProduct product = await service.Product.GetByIDAsync(_productID);
+
+            return await product.GetOrdersAsync();
         }
 
         [HttpPost]
         [Route("Products/Create")]
-        public void CreateProduct(Product _product)
+        public async Task<bool> AddProductAsync(ProductWithImagesDTO _product)
         {
-            try
-            {                
-                service.Add(_product);
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception();
-            }
+            return await service.Product.AddAsync(_product, _product.ProductImages.ToList());
         }
 
         [HttpPut]
         [Route("Products/Update")]
-        public void UpdateProduct(Product _product)
+        public async Task<bool> UpdateProductAsync(ProductDTO _product)
         {
-            try
-            {
-                service.Update(_product);
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception();
-            }
+            return await service.Product.UpdateAsync(_product);
         }
 
         [HttpDelete]
-        [Route("Products/Delete")]
-        public void DeleteProduct(Product _product)
+        [Route("Products/Remove/{_productID:int}")]
+        public async Task<bool> RemoveProductAsync(int _productID)
         {
-            try
-            {
-                service.Remove(_product);
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception();
-            }
+            IProduct product = await service.Product.GetByIDAsync(_productID);
+            return await service.Product.RemoveAsync(product);
         }
     }
 }

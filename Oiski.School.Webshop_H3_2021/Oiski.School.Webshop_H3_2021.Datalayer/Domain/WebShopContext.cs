@@ -9,11 +9,11 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
     public class WebshopContext : DbContext
     {
         public WebshopContext() { }
-        public WebshopContext(DbContextOptions<WebshopContext> _options) : base(_options) { }
+        public WebshopContext(DbContextOptions<WebshopContext> _options) : base (_options) { }
 
+        public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder _optionsBuilder)
         {
@@ -31,11 +31,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
             _modelBuilder.Entity<OrderProduct>()
                 .HasKey(op => new { op.ProductID, op.OrderID });
 
-            _modelBuilder.Entity<ProductType>()
-                .HasKey(pt => new { pt.ProductID, pt.TypeID });
-
-            #region DATA SEEDING
-            // PaymentMethod and DeliveryType has not been added yet !! TO-DO !!
+            #region DATA SEED
             _modelBuilder.Entity<Customer>().HasData(
                 new Customer { CustomerID = 1, UserID = 3, FirstName = "Jasmin", LastName = "Nielsen", Email = "jasminnielsen97@gmail.com", Country = "Denmark", Address = "Nygade 38A, 2", City = "Aabenraa", ZipCode = 6200, PhoneNumber = "26139596" },
                 new Customer { CustomerID = 2, UserID = 1, FirstName = "Mike", LastName = "Mortensen", Email = "zhakalen@gmail.com", Country = "Denmark", Address = "Ringgade 65", City = "Sønderborg", ZipCode = 6400, PhoneNumber = "25987658" },
@@ -62,54 +58,30 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Domain
                 new OrderProduct { OrderID = 2, ProductID = 3 }
                 );
 
-            // Type and ProductImages has not been added yet !! TO-DO !!
             _modelBuilder.Entity<Product>().HasData(
-                new Product { ProductID = 1, Title = "High-waisted jeans", Description = "These pants are great for the Autumn weather.", Price = 40.58M, BrandName = "New Look", InStock = 125 },
-                new Product { ProductID = 2, Title = "Skater skirt", Description = "The perfect outfit for your lower body.", Price = 26.25M, BrandName = "TopShop", InStock = 50 },
-                new Product { ProductID = 3, Title = "Summer dress", Description = "Beer parties on the beach? This is your dress.", Price = 53.75M, BrandName = "NA-KD", InStock = 75 },
-                new Product { ProductID = 4, Title = "Sneakers paradise, Nike", Description = "Love long walks? Choose these sneakers.", Price = 88, BrandName = "Nike", InStock = 130 },
-                new Product { ProductID = 5, Title = "Warm knitted-sweater", Description = "Drink a warm cup of chocolate while cozing up in this sweater.", Price = 28, BrandName = "H&M", InStock = 109 },
-                new Product { ProductID = 6, Title = "Simple Sneakers, Nike Air", Description = "Perfect for the daily life.", Price = 52, BrandName = "Nike", InStock = 180 },
-                new Product { ProductID = 7, Title = "Simple T-shirt", Description = "Style it however you'd want to!", Price = 15, BrandName = "H&M Basic", InStock = 256 }
+                new Product { ProductID = 1, Title = "High-waisted jeans", Description = "These pants are great for the Autumn weather.", BrandID = 1, CategoryID = 2, Price = 40.58M, InStock = 125 },
+                new Product { ProductID = 2, Title = "Skater skirt", Description = "The perfect outfit for your lower body.", BrandID = 2, CategoryID = 2, Price = 26.25M, InStock = 50 },
+                new Product { ProductID = 3, Title = "Summer dress", Description = "Beer parties on the beach? This is your dress.", BrandID = 4, CategoryID = 3, Price = 53.75M, InStock = 75 },
+                new Product { ProductID = 4, Title = "Sneakers paradise, Nike", Description = "Love long walks? Choose these sneakers.", BrandID = 3, CategoryID = 4, Price = 88, InStock = 130 },
+                new Product { ProductID = 5, Title = "Warm knitted-sweater", Description = "Drink a warm cup of chocolate while cozing up in this sweater.", BrandID = 1, CategoryID = 1, Price = 28, InStock = 109 },
+                new Product { ProductID = 6, Title = "Simple Sneakers, Nike Air", Description = "Perfect for the daily life.", BrandID = 3, CategoryID = 4, Price = 52, InStock = 180 },
+                new Product { ProductID = 7, Title = "Simple T-shirt", Description = "Style it however you'd want to!", BrandID = 1, CategoryID = 1, Price = 15, InStock = 256 }
                 );
 
-            _modelBuilder.Entity<ProductType>().HasData(
-                new ProductType { ProductID = 1, TypeID = 1 },
-                new ProductType { ProductID = 1, TypeID = 12 },
-                new ProductType { ProductID = 2, TypeID = 2 },
-                new ProductType { ProductID = 2, TypeID = 3 },
-                new ProductType { ProductID = 2, TypeID = 12 },
-                new ProductType { ProductID = 3, TypeID = 4 },
-                new ProductType { ProductID = 3, TypeID = 5 },
-                new ProductType { ProductID = 3, TypeID = 13 },
-                new ProductType { ProductID = 4, TypeID = 6 },
-                new ProductType { ProductID = 4, TypeID = 7 },
-                new ProductType { ProductID = 5, TypeID = 8 },
-                new ProductType { ProductID = 5, TypeID = 9 },
-                new ProductType { ProductID = 5, TypeID = 11 },
-                new ProductType { ProductID = 6, TypeID = 6 },
-                new ProductType { ProductID = 6, TypeID = 7 },
-                new ProductType { ProductID = 7, TypeID = 8 },
-                new ProductType { ProductID = 7, TypeID = 11 }
+            _modelBuilder.Entity<Brand>().HasData(
+                new Brand { BrandID = 1, Name = "H&M"},
+                new Brand { BrandID = 2, Name = "NA-KD" },
+                new Brand { BrandID = 3, Name = "Nike" },
+                new Brand { BrandID = 4, Name = "ASOS" }
                 );
 
-            _modelBuilder.Entity<Entities.Type>().HasData(
-                new Entities.Type { TypeID = 1, Name = "Jeans" },
-                new Entities.Type { TypeID = 2, Name = "Skirt" },
-                new Entities.Type { TypeID = 3, Name = "Skater-Skirt" },
-                new Entities.Type { TypeID = 4, Name = "Dress" },
-                new Entities.Type { TypeID = 5, Name = "Short-Dress" },
-                new Entities.Type { TypeID = 6, Name = "Footwear" },
-                new Entities.Type { TypeID = 7, Name = "Sneakers" },
-                new Entities.Type { TypeID = 8, Name = "Sweater" },
-                new Entities.Type { TypeID = 9, Name = "Knitted-Sweater" },
-                new Entities.Type { TypeID = 10, Name = "T-shirt" },
-                new Entities.Type { TypeID = 11, Name = "Upper-wear" },
-                new Entities.Type { TypeID = 12, Name = "Bottom" },
-                new Entities.Type { TypeID = 13, Name = "Full-body" }
+            _modelBuilder.Entity<Category>().HasData(
+                new Category { CategoryID = 1, Name = "Upper body"},
+                new Category { CategoryID = 2, Name = "Lower body" },
+                new Category { CategoryID = 3, Name = "Full body" },
+                new Category { CategoryID = 4, Name = "Footwear" }
                 );
 
-            // Images need to be put in under ImageStream !! TO-DO !!
             _modelBuilder.Entity<ProductImage>().HasData(
                 new ProductImage { ProductImageID = 1, ProductID = 1, ImageURL = @"Clothes/Bottoms/High-Waisted-Jeans-Front.jpg", Title = "High-Waisted-Jeans-Front" },
                 new ProductImage { ProductImageID = 2, ProductID = 1, ImageURL = @"Clothes/Bottoms/High-Waisted-Jeans-Back.jpg", Title = "High-Waisted-Jeans-Back" },

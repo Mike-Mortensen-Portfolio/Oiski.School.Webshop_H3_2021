@@ -1,73 +1,85 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
+using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
-namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
+namespace Oiski.School.Webshop_H3_2021.Servicelayer
 {
     public static class OrderExtensions
     {
-        /// <summary>
-        /// Maps a collection of <see cref="Order"/> <see langword="objects"/> to an <see cref="IQueryable{T}"/> <see langword="object"/> of type <see cref="OrderDTO"/>
-        /// </summary>
-        /// <param name="_orders"></param>
-        /// <returns>The mapped <see cref="IQueryable{T}"/> of type <see cref="OrderDTO"/> if <paramref name="_orders"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
-        public static IQueryable<OrderDTO> MapToBaseDTO(this IQueryable<Order> _orders)
+        internal static IOrder MapToPublic(this Order _order)
         {
-            if (_orders == null) return null;
-
-            return _orders
-                .Include(o => o.Products)
-                .Select(
-                o => new OrderDTO
-                {
-                    Customer = o.Customer.MapSingleToBaseDTO(),
-                    CustomerID = o.CustomerID,
-                    OrderDate = o.OrderDate,
-                    OrderID = o.OrderID,
-                    Products = o.Products.ConvertToDTOList()
-                });
-        }
-
-        /// <summary>
-        /// Maps all properties of <paramref name="_order"/> to an <see cref="OrderDTO"/>
-        /// </summary>
-        /// <param name="_order"></param>
-        /// <returns>The mapped <see cref="ProductImageDTO"/> if <paramref name="_order"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
-        public static OrderDTO MapSingleToBaseDTO(this Order _order)
-        {
-            if (_order == null) return null;
+            if (_order == null) throw new ArgumentNullException(nameof(_order), "Cannot map NULL value");
 
             return new OrderDTO
             {
-                Customer = _order.Customer.MapSingleToBaseDTO(),
+                TypeOfDelivery = ( IOrder.DeliveryType )_order.TypeOfDelivery,
+                TypeOfPayment = ( IOrder.PaymentMethod )_order.TypeOfPayment,
                 CustomerID = _order.CustomerID,
                 OrderDate = _order.OrderDate,
-                Products = _order.Products.ConvertToDTOList()
+                OrderID = _order.OrderID
+            };
+        }
+        internal static Order MapToInternal(this IOrder _order, IReadOnlyList<IOrderProduct> _products = null)
+        {
+            if (_order == null) throw new ArgumentNullException(nameof(_order), "Cannot map NULL value");
+
+            return new Order
+            {
+                TypeOfDelivery = ( Order.DeliveryType )_order.TypeOfDelivery,
+                TypeOfPayment = ( Order.PaymentMethod )_order.TypeOfPayment,
+                CustomerID = _order.CustomerID,
+                OrderDate = _order.OrderDate,
+                OrderID = _order.OrderID,
+                Products = _products?.AsQueryable().MapToInternal().ToList()
             };
         }
 
-        /// <summary>
-        /// Maps a collection of <see cref="Order"/> <see langword="objects"/> to an <see cref="IQueryable{T}"/> <see langword="object"/> of type <see cref="OrderDTO"/>
-        /// </summary>
-        /// <param name="_orders"></param>
-        /// <returns>The mapped <see cref="IQueryable{T}"/> of type <see cref="OrderDTO"/> if <paramref name="_orders"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
-        public static ICollection<OrderDTO> ConvertToDTOList(this ICollection<Order> _orders)
+        internal static IQueryable<IOrder> MapToPublic(this IQueryable<Order> _orders)
         {
-            if (_orders == null) return null;
+            return _orders.Select(o => new OrderDTO
+            {
+                CustomerID = o.CustomerID,
+                OrderDate = o.OrderDate,
+                OrderID = o.OrderID,
+                TypeOfDelivery = ( IOrder.DeliveryType )o.TypeOfDelivery,
+                TypeOfPayment = ( IOrder.PaymentMethod )o.TypeOfPayment
+            });
+        }
+        internal static IQueryable<Order> MapToInternal(this IQueryable<IOrder> _orders)
+        {
+            return _orders.Select(o => new Order
+            {
+                CustomerID = o.CustomerID,
+                OrderDate = o.OrderDate,
+                OrderID = o.OrderID,
+                TypeOfDelivery = ( Order.DeliveryType )o.TypeOfDelivery,
+                TypeOfPayment = ( Order.PaymentMethod )o.TypeOfPayment
+            });
+        }
 
-            return _orders
-                .Select(o => new OrderDTO
-                {
-                    Customer = o.Customer.MapSingleToBaseDTO(),
-                    CustomerID = o.CustomerID,
-                    OrderDate = o.OrderDate,
-                    OrderID = o.OrderID,
-                    Products = o.Products.ConvertToDTOList()
-                })
-                .ToList();
+        public static async Task<IReadOnlyList<IOrderProduct>> GetProductsAsync(this IOrder _order)
+        {
+            if (_order == null) throw new ArgumentNullException(nameof(_order), "Cannot map NULL value");
+
+            using (var context = new WebshopContext())
+            {
+                return await context.Set<OrderProduct>()
+                .Where(op => op.OrderID == _order.OrderID)
+                .Include(op => op.Product)
+                .MapToPublic()
+                .ToListAsync();
+            }
+        }
+        public static async Task<ICustomer> GetCustomerAsync(this IOrder _order)
+        {
+            if (_order == null) throw new ArgumentNullException(nameof(_order), "Cannot map NULL value");
+
+            return await new WebshopService().Customer.GetByIDAsync(_order.CustomerID);
         }
     }
 }

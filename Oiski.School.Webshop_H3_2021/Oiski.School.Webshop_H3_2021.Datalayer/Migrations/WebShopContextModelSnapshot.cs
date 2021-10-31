@@ -9,7 +9,7 @@ using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 {
     [DbContext(typeof(WebshopContext))]
-    partial class WebShopContextModelSnapshot : ModelSnapshot
+    partial class WebshopContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -18,6 +18,80 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Brand", b =>
+                {
+                    b.Property<int>("BrandID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BrandID");
+
+                    b.ToTable("Brands");
+
+                    b.HasData(
+                        new
+                        {
+                            BrandID = 1,
+                            Name = "H&M"
+                        },
+                        new
+                        {
+                            BrandID = 2,
+                            Name = "NA-KD"
+                        },
+                        new
+                        {
+                            BrandID = 3,
+                            Name = "Nike"
+                        },
+                        new
+                        {
+                            BrandID = 4,
+                            Name = "ASOS"
+                        });
+                });
+
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Category", b =>
+                {
+                    b.Property<int>("CategoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryID");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryID = 1,
+                            Name = "Upper body"
+                        },
+                        new
+                        {
+                            CategoryID = 2,
+                            Name = "Lower body"
+                        },
+                        new
+                        {
+                            CategoryID = 3,
+                            Name = "Full body"
+                        },
+                        new
+                        {
+                            CategoryID = 4,
+                            Name = "Footwear"
+                        });
+                });
 
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Customer", b =>
                 {
@@ -35,9 +109,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DeliveryType")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -46,9 +117,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PaymentMethod")
-                        .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
@@ -74,11 +142,9 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                             Address = "Nygade 38A, 2",
                             City = "Aabenraa",
                             Country = "Denmark",
-                            DeliveryType = 0,
                             Email = "jasminnielsen97@gmail.com",
                             FirstName = "Jasmin",
                             LastName = "Nielsen",
-                            PaymentMethod = 0,
                             PhoneNumber = "26139596",
                             UserID = 3,
                             ZipCode = 6200
@@ -89,11 +155,9 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                             Address = "Ringgade 65",
                             City = "Sønderborg",
                             Country = "Denmark",
-                            DeliveryType = 0,
                             Email = "zhakalen@gmail.com",
                             FirstName = "Mike",
                             LastName = "Mortensen",
-                            PaymentMethod = 0,
                             PhoneNumber = "25987658",
                             UserID = 1,
                             ZipCode = 6400
@@ -104,11 +168,9 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                             Address = "Nordre Ringvej 20",
                             City = "Vojens",
                             Country = "Denmark",
-                            DeliveryType = 0,
                             Email = "ulrikLarsen@gmail.com",
                             FirstName = "Ulrik",
                             LastName = "Larsen",
-                            PaymentMethod = 0,
                             PhoneNumber = "25496875",
                             UserID = 2,
                             ZipCode = 6500
@@ -119,11 +181,9 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                             Address = "Nordre Ringvej 20",
                             City = "Vojens",
                             Country = "Denmark",
-                            DeliveryType = 0,
                             Email = "ullelarsen@gmail.com",
                             FirstName = "Ulrik",
                             LastName = "Larsen",
-                            PaymentMethod = 0,
                             PhoneNumber = "25496875",
                             ZipCode = 6500
                         });
@@ -142,6 +202,12 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("TypeOfDelivery")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeOfPayment")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderID");
 
                     b.HasIndex("CustomerID");
@@ -153,13 +219,17 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         {
                             OrderID = 1,
                             CustomerID = 2,
-                            OrderDate = new DateTime(2021, 10, 6, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            OrderDate = new DateTime(2021, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TypeOfDelivery = 0,
+                            TypeOfPayment = 0
                         },
                         new
                         {
                             OrderID = 2,
                             CustomerID = 1,
-                            OrderDate = new DateTime(2021, 10, 9, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            OrderDate = new DateTime(2021, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TypeOfDelivery = 0,
+                            TypeOfPayment = 0
                         });
                 });
 
@@ -220,11 +290,17 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BrandName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("BrandID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ISDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("InStock")
                         .HasColumnType("int");
@@ -237,14 +313,20 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
 
                     b.HasKey("ProductID");
 
+                    b.HasIndex("BrandID");
+
+                    b.HasIndex("CategoryID");
+
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
                             ProductID = 1,
-                            BrandName = "New Look",
+                            BrandID = 1,
+                            CategoryID = 2,
                             Description = "These pants are great for the Autumn weather.",
+                            ISDeleted = false,
                             InStock = 125,
                             Price = 40.58m,
                             Title = "High-waisted jeans"
@@ -252,8 +334,10 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         new
                         {
                             ProductID = 2,
-                            BrandName = "TopShop",
+                            BrandID = 2,
+                            CategoryID = 2,
                             Description = "The perfect outfit for your lower body.",
+                            ISDeleted = false,
                             InStock = 50,
                             Price = 26.25m,
                             Title = "Skater skirt"
@@ -261,8 +345,10 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         new
                         {
                             ProductID = 3,
-                            BrandName = "NA-KD",
+                            BrandID = 4,
+                            CategoryID = 3,
                             Description = "Beer parties on the beach? This is your dress.",
+                            ISDeleted = false,
                             InStock = 75,
                             Price = 53.75m,
                             Title = "Summer dress"
@@ -270,8 +356,10 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         new
                         {
                             ProductID = 4,
-                            BrandName = "Nike",
+                            BrandID = 3,
+                            CategoryID = 4,
                             Description = "Love long walks? Choose these sneakers.",
+                            ISDeleted = false,
                             InStock = 130,
                             Price = 88m,
                             Title = "Sneakers paradise, Nike"
@@ -279,8 +367,10 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         new
                         {
                             ProductID = 5,
-                            BrandName = "H&M",
+                            BrandID = 1,
+                            CategoryID = 1,
                             Description = "Drink a warm cup of chocolate while cozing up in this sweater.",
+                            ISDeleted = false,
                             InStock = 109,
                             Price = 28m,
                             Title = "Warm knitted-sweater"
@@ -288,8 +378,10 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         new
                         {
                             ProductID = 6,
-                            BrandName = "Nike",
+                            BrandID = 3,
+                            CategoryID = 4,
                             Description = "Perfect for the daily life.",
+                            ISDeleted = false,
                             InStock = 180,
                             Price = 52m,
                             Title = "Simple Sneakers, Nike Air"
@@ -297,8 +389,10 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         new
                         {
                             ProductID = 7,
-                            BrandName = "H&M Basic",
+                            BrandID = 1,
+                            CategoryID = 1,
                             Description = "Style it however you'd want to!",
+                            ISDeleted = false,
                             InStock = 256,
                             Price = 15m,
                             Title = "Simple T-shirt"
@@ -428,190 +522,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.ProductType", b =>
-                {
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TypeID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductID", "TypeID");
-
-                    b.HasIndex("TypeID");
-
-                    b.ToTable("ProductTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductID = 1,
-                            TypeID = 1
-                        },
-                        new
-                        {
-                            ProductID = 1,
-                            TypeID = 12
-                        },
-                        new
-                        {
-                            ProductID = 2,
-                            TypeID = 2
-                        },
-                        new
-                        {
-                            ProductID = 2,
-                            TypeID = 3
-                        },
-                        new
-                        {
-                            ProductID = 2,
-                            TypeID = 12
-                        },
-                        new
-                        {
-                            ProductID = 3,
-                            TypeID = 4
-                        },
-                        new
-                        {
-                            ProductID = 3,
-                            TypeID = 5
-                        },
-                        new
-                        {
-                            ProductID = 3,
-                            TypeID = 13
-                        },
-                        new
-                        {
-                            ProductID = 4,
-                            TypeID = 6
-                        },
-                        new
-                        {
-                            ProductID = 4,
-                            TypeID = 7
-                        },
-                        new
-                        {
-                            ProductID = 5,
-                            TypeID = 8
-                        },
-                        new
-                        {
-                            ProductID = 5,
-                            TypeID = 9
-                        },
-                        new
-                        {
-                            ProductID = 5,
-                            TypeID = 11
-                        },
-                        new
-                        {
-                            ProductID = 6,
-                            TypeID = 6
-                        },
-                        new
-                        {
-                            ProductID = 6,
-                            TypeID = 7
-                        },
-                        new
-                        {
-                            ProductID = 7,
-                            TypeID = 8
-                        },
-                        new
-                        {
-                            ProductID = 7,
-                            TypeID = 11
-                        });
-                });
-
-            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Type", b =>
-                {
-                    b.Property<int>("TypeID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("TypeID");
-
-                    b.ToTable("Types");
-
-                    b.HasData(
-                        new
-                        {
-                            TypeID = 1,
-                            Name = "Jeans"
-                        },
-                        new
-                        {
-                            TypeID = 2,
-                            Name = "Skirt"
-                        },
-                        new
-                        {
-                            TypeID = 3,
-                            Name = "Skater-Skirt"
-                        },
-                        new
-                        {
-                            TypeID = 4,
-                            Name = "Dress"
-                        },
-                        new
-                        {
-                            TypeID = 5,
-                            Name = "Short-Dress"
-                        },
-                        new
-                        {
-                            TypeID = 6,
-                            Name = "Footwear"
-                        },
-                        new
-                        {
-                            TypeID = 7,
-                            Name = "Sneakers"
-                        },
-                        new
-                        {
-                            TypeID = 8,
-                            Name = "Sweater"
-                        },
-                        new
-                        {
-                            TypeID = 9,
-                            Name = "Knitted-Sweater"
-                        },
-                        new
-                        {
-                            TypeID = 10,
-                            Name = "T-shirt"
-                        },
-                        new
-                        {
-                            TypeID = 11,
-                            Name = "Upper-wear"
-                        },
-                        new
-                        {
-                            TypeID = 12,
-                            Name = "Bottom"
-                        },
-                        new
-                        {
-                            TypeID = 13,
-                            Name = "Full-body"
-                        });
-                });
-
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.User", b =>
                 {
                     b.Property<int>("UserID")
@@ -668,7 +578,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Order", b =>
                 {
                     b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Customer", "Customer")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -695,6 +605,25 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Product", b =>
+                {
+                    b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Brand", "Brand")
+                        .WithMany("Products")
+                        .HasForeignKey("BrandID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.ProductImage", b =>
                 {
                     b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Product", null)
@@ -704,28 +633,14 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.ProductType", b =>
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Brand", b =>
                 {
-                    b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Product", "Product")
-                        .WithMany("Types")
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Type", "Type")
-                        .WithMany("Products")
-                        .HasForeignKey("TypeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Type");
+                    b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Customer", b =>
+            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Category", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Order", b =>
@@ -738,13 +653,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Migrations
                     b.Navigation("Orders");
 
                     b.Navigation("ProductImages");
-
-                    b.Navigation("Types");
-                });
-
-            modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.Type", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Oiski.School.Webshop_H3_2021.Datalayer.Entities.User", b =>

@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
 {
-    [Table ("Customers")]
+    [Table("Customers")]
     public class Customer
     {
         /// <summary>
@@ -12,15 +16,9 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         public int CustomerID { get; set; }
 
         /// <summary>
-        /// Foreign Key to attached <see cref="User"/>
+        /// Foreign Key to <see cref="User"/>
         /// </summary>
         public int? UserID { get; set; }
-
-        /// <summary>
-        /// Reference Navigational Property to the attached <see cref="Entities.User"/>
-        /// </summary>
-        [ForeignKey(nameof(UserID))]
-        public User User { get; set; }
 
         public string FirstName { get; set; }
 
@@ -38,13 +36,10 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
 
         public string PhoneNumber { get; set; }
 
-        public int PaymentMethod { get; set; }
-
-        public int DeliveryType { get; set; }
-
         /// <summary>
-        /// Collection Navigational Property to the attached collection of <see cref="Order"/>s previously made by the <see cref="Entities.Customer"/>
+        /// Reference Navigational Property to the attached <see cref="Entities.User"/>
         /// </summary>
-        public ICollection<Order> Orders { get; set; }
+        [ForeignKey(nameof(UserID))]
+        public User User { get; set; }
     }
 }

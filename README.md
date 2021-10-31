@@ -22,31 +22,31 @@ Our API will use xUnit testing to begin with, to check if our `Data Layer` and `
 
 - **Specifications**
   - **Frontpage**
-    - Front page shows an amount of product with a picture, the price, the name and a button to place the product in the cart.
-    - Paging is used, so that the front page only shows a certain amount of products on each page. Showcase there's more than one product.
-    - Search feature where the user has the option to search on "Brand" or "Type" of the product.
-    - Search feature with free-text searching.
-    - Option to make the filtering of the products shown ASC or DESC.
-    - An icon of a cart is shown, as well of the quantity of the products laying in it. If the icon is clicked, it will show the shop cart.
-    - If a product is added to the cart, it will be shown on the icon, as well as the updated shop cart.
+    - [ ] Front page shows an amount of product with a picture, the price, the name and a button to place the product in the cart.
+    - [ ] Paging is used, so that the front page only shows a certain amount of products on each page. Showcase there's more than one product.
+    - [ ] Search feature where the user has the option to search on "Brand" or "Type" of the product.
+    - [ ] Search feature with free-text searching.
+    - [ ] Option to make the filtering of the products shown ASC or DESC.
+    - [ ] An icon of a cart is shown, as well of the quantity of the products laying in it. If the icon is clicked, it will show the shop cart.
+    - [ ] If a product is added to the cart, it will be shown on the icon, as well as the updated shop cart.
   - **Shop Cart**
-    - The shop cart shows an updated list of chosen products, with picture, name, price per product, quantity (can changes).
-    - There needs to be an Update button, which will update the prices if the user changes the quantity already in the cart.
-    - It needs to be possible to remove a product from the cart, if the user regrets that choice.
-    - There needs to be a Checkout button, which leads to the Checkout-page.
-    - There needs to be a button, which gives the user the opportunity to continue shopping, before going to the checkout.
+    - [ ] The shop cart shows an updated list of chosen products, with picture, name, price per product, quantity (can changes).
+    - [ ] There needs to be an Update button, which will update the prices if the user changes the quantity already in the cart.
+    - [ ] It needs to be possible to remove a product from the cart, if the user regrets that choice.
+    - [ ] There needs to be a Checkout button, which leads to the Checkout-page.
+    - [ ] There needs to be a button, which gives the user the opportunity to continue shopping, before going to the checkout.
   - **Checkout**
-    - The user has to give information about their Email, Name, Address, choice of Payment Method and Delivery type.
-    - When the user clicks on the 'Buy' button, they have to receive a mail as a confirmation on their order.
+    - [ ] The user has to give information about their Email, Name, Address, choice of Payment Method and Delivery type.
+    - [ ] When the user clicks on the 'Buy' button, they have to receive a mail as a confirmation on their order.
   - **Administrator**
-    - An Admin page, giving the adminstrator a list of all the `Products`.
-    - The Admin page will need the ability to Edit and Delete the `Products`.
-    - There will be docus on demonstrating Update and Delete in a graph of data.
+    - [ ] An Admin page, giving the adminstrator a list of all the `Products`.
+    - [ ] The Admin page will need the ability to Edit and Delete the `Products`.
+    - [ ] There will be docus on demonstrating Update and Delete in a graph of data.
   - **Additional Optional Specifications**
-    - When the mouse hovers over a picture of a product, add some shadow behind it, to highlight it.
-    - Opportunity to log in, perhaps when the user is on the Checkout page.
-    - If the user is already logged in, then they won't have to write their information again.
-    - Make an admin page, giving an administrator a list of all products and the opportunity to update and modify them.
+    - [ ] When the mouse hovers over a picture of a product, add some shadow behind it, to highlight it.
+    - [ ] Opportunity to log in, perhaps when the user is on the Checkout page.
+    - [ ] If the user is already logged in, then they won't have to write their information again.
+    - [ ] Make an admin page, giving an administrator a list of all products and the opportunity to update and modify them.
 
 ## The program
 The assignments states that the following criteria:
@@ -487,6 +487,12 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **Added**
   - `BrandDTO`
   - `CategoryDTO`
+  - `CustomerDTO`
+  - `OrderDTO`
+  - `OrderProductDTO`
+  - `ProductDTO`
+  - `ProductImageDTO`
+  - `UserDTO`
   - **Extensions**
     - `Brand`
     - `Category`
@@ -512,8 +518,166 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
        - `AddAsync()`
        - `UpdateAsync()`
        - `RemoveAsync()`
+- **[v1.3.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.3.0)**
+  - **Added**
+    - `IProductRepository` as a public contract
+    - `ProductRepository` as the internal handler
+  - **Modified**
+    - Moved all extension methods into `Servicelayer` namespace instead of their own `Extensions` namepsace
+- **[v1.4.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.4.0)**
+  - **Added**
+    - `MapToInternal` and `-External` for both categories and brands
+    - `IBrandRepository`
+    - `BrandRepository`
+    - `ICategoryRepository`
+    - `CategoryRepository`
+  - **Modified**
+    - Removed unused namespaces
+- **[v1.5.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.5.0)**
+  - **Added**
+    - `ICustomerRepository`
+    - `CustomerRepository`
+  - **Modified**
+    - Added `IQueryable` mappers to `CustomerExtensions`
+- **[v1.6.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.6.0)**
+  - Added
+    - `IOrderRepository`
+    - `OrderRepository`
+    - `IQueryable` mappers for `OrderExtensions`
+  - **Modified**
+    - Reordered Folder structure
+    - All repo classes and interfaces that where missing a `Async` tail in their name have been updated and now follows the proper naming convention
+- **[v1.7.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.7.0)**
+  - **Added**
+    - `IWebshopService`
+    - `WebshopService`
+- **[v1.8.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.8.0)**
+  - **Modified**
+    - Finished Extensions for each mapper interface and added a nullcheck before any extensions are to be evaluated
 - **[v1.9.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.0)**
   - **Added**:
     - xUnit Test Project so that the repositories methods can be tested.
+- **[v1.9.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.1)**
+  - **Added**:
+    - Unit tests to all of the Methods in our `ProductRepository`, all success.
+  - **Modified**:
+    - Removed legacy code in front of our `GetAllAsync()` with keyword 'new'.
+    - Added the declarations of `GetByIDAsync` in the `ICustomerRepository`.
+    - Mapped `CategoryID` in all of our Mappers in the `ProductExtensions`.
+- **[v1.9.2](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.2)**
+  - Implemented `Customer` Test - All Succesful
+  - Implemented `UserExtensions` tests - All Succesful
+- **[v1.9.3](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.3)**
+  - **Added**:
+    - Unit tests to all of the Methods in our `BrandReposity`, all success.
+  - **Modified**:
+    - Added the declaration of `GetByIDAsync()` in the `IBrandRepository`.
+    - Added the Unit test `Get_Products_By_Brand()`.
+- **[v1.9.4](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.4)**
+  - **Added**: 
+    - Unit tests to all of the Methods in our `CategoryRepository`, all success.
+  - **Modified**:
+    - Added the declaration of `GetByIDAsync()` in the `ICategoryRepository`.
+- **[v1.9.5](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.5)**
+  - **Added**:
+    - Unit tests of all the remaining methods in `ProductExtension`.
+      - `Get_Brand_Extension()`
+      - `Get_Category_Extension()`
+      - `Get_Images_Extension()`
+      - `Get_Orders_Extension()`
+- **[v1.9.6](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.6)**
+  - **Added** 
+    - Implemented `OrderProductExtensions` Tests
+- **[v1.9.7](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.7)**
+  - **Added**:
+   - Units tests of the `OrderRepository` ;
+     - `Get_All_Orders()`
+     - `Get_Order_By_ID()`
+     - `Get_Order_By_Customer()`
+     - `Get_Order_By_PaymentMethod()`
+     - `Get_Order_By_DeliveryType()`
+     - `Add_Order()`
+     - `Update_Order()`
+     - `Remove_Order()`
+   - Unit tests of `OrderExtension`;
+     - `Get_Customer_Extension()`
+     - `Get_Products_Extension()`
+- **[v1.9.8](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.8)**
+  - Extended the mapping of `Order` objects to allow for attachment of a collection of `OrderProduct` objects
+- **[v1.9.9](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.9)**
+  - **Added**:
+    -  To `OrderRepositoryTests()` made the Unit test for `Add_Order_With_OrderProduct()`
+  - **Modified**:
+    - Implemented that _products could be null in `MapToInternal()` in `OrderExtensions`
+- **[v1.9.10](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.10)**  
+  - Added **REST API** project + Configured `WebShopService` dependency
+- **[v1.9.11](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.11)**  
+    `IProductRepository` and `ProductRepository` now includes a short version of **CRUD** for adding `Products` with associated `ProductImages`.
+     This is also reflected in `MapToInternal` extensions in `ProductExtensions`
+  - **Added**
+    - `MapToInternal (IProduct, IReadOnlyList<IProductImage>)`
+    - **xUnit** Tests for the extended **CRUD** feature
+  - **Fixed**
+    - An issue where `ProductImage.Title` wasn't mapped correctly
+- **[v1.9.12](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.12)**
+  - **Added**: 
+   - Methods in `ProductRepository` made in API;
+     - `GetAllProductsAsync()`
+     - `GetProductByIDAsync()`
+     - `GetProdyctByBrandAsync()`
+     - `GetProductByCategoryAsync()`
+     - `AddProductAsync()`
+     - `UpdateProductAsync()`
+     - `RemoveProductAsync()`
+   - Methods in `ProductExtensions` made in API;
+     - `GetBrandAsync()`
+     - `GetCategoryAsync()`
+     - `GetImagesAsync()`
+   - All tested and working successfully.
+- **[v1.9.13](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.13)**
+  - Integrated `Category` API handler
+- **[v1.9.14](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.14)**
+  - Integrated `BrandController` API handler
+- **[v1.9.15](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.15)**
+  - **Added**:
+   - `CustomerController` to the RestAPI.
+   - Methods in `CustomerRepository` made;
+     - `GetAllCustomersAsync()`
+       - Retrieving all customers in the DB.
+     - `GetCustomerByIDAsync()`
+       - Retrieving a single `Customer` by a `CustomerID`
+     - `GetCustomerByEmailAsync()`
+       - Retrieving a single `Customer` by an `Customer.Email`
+     - `AddCustomerAsync()`
+       - Adding a `Customer` to the DB.
+     - `UpdateCustomerAsync()`
+       - Updating a `Customer` already in the DB.
+     - `RemoveCustomerAsync()`
+       - Retrieving a `Customer` cy `CustomerID`, then removing it from the DB.
+   - Method in `CustomerExtensions` made;
+     -  `GetLoginFromCustomerAsync()`
+       - Retrieving the `User` login attached to a `Customer`.
+- **[v1.9.16](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.16)** \
+     I've added a new **DTO** to the **Web API** project because the **API** call parameters are limited to one.
+     It derives from `OrderDTO` and simply declares an `ICollection` of `OrderProductDTOs`.
+  - Added
+    - `OrderController` - All Tests successful
+    - `OrderWithProductsDTO`
+  - Fixed
+    - `BrandController` and `CategoryController` not inheriting from `ControllerBase`
+- **[v1.9.17](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.17)**
+  - **Added**:
+    - `AddProductWithImageAsync()` which can now Add a product with a `ICollection<ProductImageDTO>` when creating it. What made it work, was to simply write a `.ToList()` to the parameter to push up to the DB with. This is tested and working successfully.
+  - **Modified**:
+    - Added a `ICollection<ProductImageDTO> ProductsImages` property to the `ProductDTO` class.
+- **[v1.9.18](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.18)**
+  - **Modified**:
+    - Removed the property I earlier added to the `ProductDTO` as this would mean we'd have to change all of our mappings.
+    - Added a `ProductWithImagesDTO` class where it is deriving from `ProductDTO` but with an  `ICollection<ProductImageDTO>` so that we can add a `Product` with `ProductImages` attached to that specific `Product`
+    - Removed one of the `AddProductAsync()` to only have one, where we now also send a `Product.ProductImages.ToList();`
+  - **Fixed**:
+    - The `ProductWithImagesDTO` was in the wrong namespace. It has now been changed from `Oiski.School.WebShop_H3_2021.RestAPI.DTOs`  to `Oiski.School.WebShop_H3_2021.RestAPI`
+    - Removed the using of `Oiski.School.WebShop_H3_2021.RestAPI.DTOs` in `ProductController`.
+  - This means that our RestAPI is now consistent in form of how the Controllers have been made.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me

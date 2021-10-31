@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using Oiski.School.Webshop_H3_2021.Servicelayer;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 using System;
@@ -7,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Oiski.School.Webshop_H3_2021.RestAPI.Controllers
+namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
 {
     [ApiController]
-    [Route("[Controller]")]
+    [Route("Controller")]
     public class CustomerController : ControllerBase
     {
         public CustomerController(IWebshopService _service)
@@ -22,45 +21,54 @@ namespace Oiski.School.Webshop_H3_2021.RestAPI.Controllers
 
         [HttpGet]
         [Route("Customers")]
-        public ICollection<UserDTO> GetAllCustomers()
+        public async Task<IReadOnlyList<ICustomer>> GetAllCustomersAsync()
         {
-            return service.GetAllCustomers()
-                .ToList();
+            return await service.Customer.GetAllAsync();
         }
 
         [HttpGet]
-        [Route("Customer/{_id:int}")]
-        public UserDTO GetUserByID(int _id)
+        [Route("Customer/{_customerID:int}")]
+        public async Task<ICustomer> GetCustomerByIDAsync(int _customerID)
         {
-            return service.GetUserByID(_id);
+            return await service.Customer.GetByIDAsync(_customerID);
         }
 
         [HttpGet]
-        [Route("Customer/_email:string")]
-        public UserDTO GetUserByEmail(string _email)
+        [Route("Customer/{_customerEmail}")]
+        public async Task<ICustomer> GetCustomerByEmailAsync(string _customerEmail)
         {
-            return service.GetUserByEmail(_email);
+            return await service.Customer.GetByEmailAsync(_customerEmail);
+        }
+
+        [HttpGet]
+        [Route("Customer/GetLogin/{_customerID:int}")]
+        public async Task<IUser> GetLoginFromCustomerAsync(int _customerID)
+        {
+            ICustomer customer = await service.Customer.GetByIDAsync(_customerID);
+
+            return await customer.GetLoginAsync();
         }
 
         [HttpPost]
         [Route("Customer/Create")]
-        public void AddCustomer(Customer _customer)
+        public async Task<bool> AddCustomerAsync(CustomerDTO _customer)
         {
-            service.Add(_customer);
+            return await service.Customer.AddAsync(_customer);
         }
 
         [HttpPut]
         [Route("Customer/Update")]
-        public void UpdateCustomer(Customer _customer)
+        public async Task<bool> UpdateCustomerAsync(CustomerDTO _customer)
         {
-            service.Update(_customer);
+            return await service.Customer.UpdateAsync(_customer);
         }
 
         [HttpDelete]
-        [Route("Customer/Delete")]
-        public void DeleteCustomer(Customer _customer)
+        [Route("Customer/Remove/{_customerID_int}")]
+        public async Task<bool> RemoveCustomerAsyn(int _customerID)
         {
-            service.Remove(_customer);
+            ICustomer customer = await service.Customer.GetByIDAsync(_customerID);
+            return await service.Customer.RemoveAsync(customer);
         }
     }
 }

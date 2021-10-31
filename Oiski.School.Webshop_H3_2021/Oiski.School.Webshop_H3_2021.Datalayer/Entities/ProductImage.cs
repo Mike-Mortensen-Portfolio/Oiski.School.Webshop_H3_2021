@@ -1,4 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
 {
@@ -6,18 +11,15 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
     public class ProductImage
     {
         /// <summary>
-        /// Primary Key
+        ///  Primary Key
         /// </summary>
         public int ProductImageID { get; set; }
 
         /// <summary>
-        /// Foreign Key to the attached <see cref="Entities.Product"/>
+        /// Foreign Key to <see cref="Product"/>
         /// </summary>
         public int ProductID { get; set; }
 
-        /// <summary>
-        /// The <see cref="string"/> data of the image (<i>The actual image</i>)
-        /// </summary>
         public string ImageURL { get; set; }
 
         public string Title { get; set; }

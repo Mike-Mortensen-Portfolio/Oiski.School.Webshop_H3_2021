@@ -1,4 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
 {
@@ -6,7 +11,7 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
     public class OrderProduct
     {
         /// <summary>
-        /// Combined Primay Key
+        /// Combined Primary Key
         /// </summary>
         public int ProductID { get; set; }
 
@@ -25,9 +30,6 @@ namespace Oiski.School.Webshop_H3_2021.Datalayer.Entities
         /// </summary>
         public Order Order { get; set; }
 
-        /// <summary>
-        /// The amount of the product
-        /// </summary>
         public int Quantity { get; set; }
     }
 }

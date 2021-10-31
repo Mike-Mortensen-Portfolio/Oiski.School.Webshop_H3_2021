@@ -1,83 +1,58 @@
-﻿using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using Oiski.School.Webshop_H3_2021.Datalayer.Domain;
 using Oiski.School.Webshop_H3_2021.Datalayer.Entities;
 using Oiski.School.Webshop_H3_2021.Servicelayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
-namespace Oiski.School.Webshop_H3_2021.Servicelayer.Extensions
+namespace Oiski.School.Webshop_H3_2021.Servicelayer
 {
     public static class UserExtensions
     {
-        /// <summary>
-        /// Maps all properties of <paramref name="_customer"/> to a <see cref="UserDTO"/>
-        /// </summary>
-        /// <param name="_customer"></param>
-        /// <returns>The mapped <see cref="UserDTO"/> if <paramref name="_customer"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
-        public static UserDTO MapSingleToBaseDTO(this Customer _customer)
+        internal static IUser MapToPublic(this User _user)
         {
-            if (_customer == null) return null;
-
-            if (_customer.User == null)
-            {
-                using (var context = new WebshopContext())
-                {
-                    WebshopService service = new WebshopService(context);
-
-                    _customer.User = service.GetQueryable<User>()
-                        .SingleOrDefault(u => u.CustomerID == _customer.CustomerID);
-                }
-            }
+            if (_user == null) throw new ArgumentNullException(nameof(_user), "Cannot map NULL value");
 
             return new UserDTO
             {
-                CustomerID = _customer.CustomerID,
-                UserID = _customer.UserID,
-                Address = _customer.Address,
-                IsAdmin = ((_customer.User != null) && (_customer.User.IsAdmin)),
-                City = _customer.City,
-                Country = _customer.Country,
-                DeliveryType = _customer.DeliveryType,
-                Email = _customer.Email,
-                FirstName = _customer.FirstName,
-                LastName = _customer.LastName,
-                Orders = _customer.Orders.ConvertToDTOList(),
-                Password = ((_customer.User != null) ? (_customer.User.Password) : (null)),
-                PaymentMethod = _customer.PaymentMethod,
-                PhoneNumber = _customer.PhoneNumber,
-                ZipCode = _customer.ZipCode
+                IsAdmin = _user.IsAdmin,
+                CustomerID = _user.CustomerID,
+                Password = _user.Password,
+                UserID = _user.UserID
+            };
+        }
+        internal static User MapToInternal(this IUser _user)
+        {
+            if (_user == null) throw new ArgumentNullException(nameof(_user), "Cannot map NULL value");
+
+            return new User
+            {
+                IsAdmin = _user.IsAdmin,
+                CustomerID = _user.CustomerID,
+                Password = _user.Password,
+                UserID = _user.UserID
             };
         }
 
-        /// <summary>
-        /// Maps a collection of <see cref="Customer"/> <see langword="objects"/> to an <see cref="IQueryable{T}"/> <see langword="object"/> of type <see cref="UserDTO"/>
-        /// </summary>
-        /// <param name="_customers"></param>
-        /// <returns>The mapped <see cref="IQueryable{T}"/> of type <see cref="UserDTO"/> if <paramref name="_customers"/> is not <see langword="null"/>. Otherwise returns <see langword="null"/></returns>
-        public static IQueryable<UserDTO> MapToBaseDTO(this IQueryable<Customer> _customers)
+        public static async Task<IReadOnlyList<IOrder>> GetOrderAsync(this IUser _user)
         {
-            if (_customers == null) return null;
+            if (_user == null) throw new ArgumentNullException(nameof(_user), "Cannot map NULL value");
 
-            return _customers
-                .Select(c => new UserDTO
-                {
-                    CustomerID = c.CustomerID,
-                    UserID = c.UserID,
-                    Address = c.Address,
-                    IsAdmin = ((c.User != null) && (c.User.IsAdmin)),
-                    City = c.City,
-                    Country = c.Country,
-                    DeliveryType = c.DeliveryType,
-                    Email = c.Email,
-                    FirstName = c.FirstName,
-                    LastName = c.LastName,
-                    Orders = c.Orders.ConvertToDTOList(),
-                    Password = ((c.User != null) ? (c.User.Password) : (null)),
-                    PaymentMethod = c.PaymentMethod,
-                    PhoneNumber = c.PhoneNumber,
-                    ZipCode = c.ZipCode
-                });
+            using (var context = new WebshopContext())
+            {
+                return await context.Set<Order>()
+                .Where(o => o.CustomerID == _user.CustomerID)
+                .Select(o => o.MapToPublic())
+                .ToListAsync();
+            }
+        }
+        public static async Task<ICustomer> GetCustomerAsync(this IUser _user)
+        {
+            if (_user == null) throw new ArgumentNullException(nameof(_user), "Cannot map NULL value");
+
+            return await new WebshopService().Customer.GetByIDAsync(_user.CustomerID);
         }
     }
 }
