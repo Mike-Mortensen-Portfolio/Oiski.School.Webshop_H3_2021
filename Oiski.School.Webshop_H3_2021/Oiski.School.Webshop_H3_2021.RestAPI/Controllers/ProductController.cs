@@ -92,6 +92,13 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
             return await service.Product.AddAsync(_product);
         }
 
+        [HttpPost]
+        [Route("Products/CreateWithImage")]
+        public async Task<bool> AddProductWithImageAsync(ProductDTO _product)
+        {
+            return await service.Product.AddAsync(_product, _product.ProductImages.ToList());
+        }
+
         [HttpPut]
         [Route("Products/Update")]
         public async Task<bool> UpdateProductAsync(ProductDTO _product)
