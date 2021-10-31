@@ -638,4 +638,24 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
   - Integrated `Category` API handler
 - **[v1.9.14](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.14)**
   - Integrated `BrandController` API handler
+- **[v1.9.15](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.15)**
+  - **Added**:
+   - `CustomerController` to the RestAPI.
+   - Methods in `CustomerRepository` made;
+     - `GetAllCustomersAsync()`
+       - Retrieving all customers in the DB.
+     - `GetCustomerByIDAsync()`
+       - Retrieving a single `Customer` by a `CustomerID`
+     - `GetCustomerByEmailAsync()`
+       - Retrieving a single `Customer` by an `Customer.Email`
+     - `AddCustomerAsync()`
+       - Adding a `Customer` to the DB.
+     - `UpdateCustomerAsync()`
+       - Updating a `Customer` already in the DB.
+     - `RemoveCustomerAsync()`
+       - Retrieving a `Customer` cy `CustomerID`, then removing it from the DB.
+   - Method in `CustomerExtensions` made;
+     -  `GetLoginFromCustomerAsync()`
+       - Retrieving the `User` login attached to a `Customer`.
+
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
