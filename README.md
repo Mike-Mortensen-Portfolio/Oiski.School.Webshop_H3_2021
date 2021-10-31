@@ -670,5 +670,14 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - `AddProductWithImageAsync()` which can now Add a product with a `ICollection<ProductImageDTO>` when creating it. What made it work, was to simply write a `.ToList()` to the parameter to push up to the DB with. This is tested and working successfully.
   - **Modified**:
     - Added a `ICollection<ProductImageDTO> ProductsImages` property to the `ProductDTO` class.
+- **[v1.9.18](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.18)**
+  - **Modified**:
+    - Removed the property I earlier added to the `ProductDTO` as this would mean we'd have to change all of our mappings.
+    - Added a `ProductWithImagesDTO` class where it is deriving from `ProductDTO` but with an  `ICollection<ProductImageDTO>` so that we can add a `Product` with `ProductImages` attached to that specific `Product`
+    - Removed one of the `AddProductAsync()` to only have one, where we now also send a `Product.ProductImages.ToList();`
+  - **Fixed**:
+    - The `ProductWithImagesDTO` was in the wrong namespace. It has now been changed from `Oiski.School.WebShop_H3_2021.RestAPI.DTOs`  to `Oiski.School.WebShop_H3_2021.RestAPI`
+    - Removed the using of `Oiski.School.WebShop_H3_2021.RestAPI.DTOs` in `ProductController`.
+  - This means that our RestAPI is now consistent in form of how the Controllers have been made.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
