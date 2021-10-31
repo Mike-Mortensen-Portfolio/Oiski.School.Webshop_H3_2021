@@ -11,7 +11,5 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
         public decimal Price { get; set; }
         public int InStock { get; set; }
         public int CategoryID { get; set; }
-
-        public ICollection<ProductImageDTO> ProductImages { get; set; }
     }
 }
