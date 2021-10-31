@@ -657,5 +657,13 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
    - Method in `CustomerExtensions` made;
      -  `GetLoginFromCustomerAsync()`
        - Retrieving the `User` login attached to a `Customer`.
+- **[v1.9.16](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.16)** \
+     I've added a new **DTO** to the **Web API** project because the **API** call parameters are limited to one.
+     It derives from `OrderDTO` and simply declares an `ICollection` of `OrderProductDTOs`.
+  - Added
+    - `OrderController` - All Tests successful
+    - `OrderWithProductsDTO`
+  - Fixed
+    - `BrandController` and `CategoryController` not inheriting from `ControllerBase`
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
