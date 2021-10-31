@@ -8,6 +8,6 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI
 {
     public class OrderWithProductsDTO : OrderDTO
     {
-        public ICollection<IOrderProduct> Products { get; set; }
+        public ICollection<OrderProductDTO> Products { get; set; }
     }
 }
