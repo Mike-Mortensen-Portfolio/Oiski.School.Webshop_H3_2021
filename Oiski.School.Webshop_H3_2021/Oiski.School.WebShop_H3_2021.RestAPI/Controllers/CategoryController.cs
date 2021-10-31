@@ -10,7 +10,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
 {
     [ApiController]
     [Route("Controller")]
-    public class CategoryController
+    public class CategoryController : ControllerBase
     {
         public CategoryController(IWebshopService _service)
         {

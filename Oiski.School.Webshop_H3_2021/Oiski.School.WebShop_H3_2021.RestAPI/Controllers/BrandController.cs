@@ -10,7 +10,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
 {
     [ApiController]
     [Route("Controller")]
-    public class BrandController
+    public class BrandController : ControllerBase
     {
         public BrandController(IWebshopService _service)
         {
