@@ -59,5 +59,10 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer.Repositories
         {
             return await base.UpdateAsync(_product.MapToInternal());
         }
+
+        public async Task<bool> AddAsync(IProduct _product, IReadOnlyList<IProductImage> _images = null)
+        {
+            return await base.AddAsync(_product.MapToInternal(_images));
+        }
     }
 }

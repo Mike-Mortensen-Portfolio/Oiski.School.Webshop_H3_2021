@@ -4,6 +4,7 @@
     {
         int ProductImageID { get; }
         int ProductID { get; }
+        string Title { get; }
         string ImageURL { get; }
     }
 }

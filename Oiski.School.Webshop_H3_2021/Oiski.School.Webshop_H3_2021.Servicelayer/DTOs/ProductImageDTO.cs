@@ -4,6 +4,7 @@
     {
         public int ProductImageID { get; set; }
         public int ProductID { get; set; }
+        public string Title { get; set; }
         public string ImageURL { get; set; }
     }
 }

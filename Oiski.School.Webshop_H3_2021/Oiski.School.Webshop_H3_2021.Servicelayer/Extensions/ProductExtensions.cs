@@ -27,7 +27,7 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
                 Title = _product.Title
             };
         }
-        internal static Product MapToInternal(this IProduct _product)
+        internal static Product MapToInternal(this IProduct _product, IReadOnlyList<IProductImage> _images = null)
         {
             if (_product == null) throw new ArgumentNullException(nameof(_product), "Cannot map NULL value");
 
@@ -39,7 +39,11 @@ namespace Oiski.School.Webshop_H3_2021.Servicelayer
                 InStock = _product.InStock,
                 Price = _product.Price,
                 ProductID = _product.ProductID,
-                Title = _product.Title
+                Title = _product.Title,
+                ProductImages = _images?
+                .AsQueryable()
+                .Select(pi => pi.MapToInternal())
+                .ToList()
             };
         }
 

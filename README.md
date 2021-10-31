@@ -609,5 +609,75 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     -  To `OrderRepositoryTests()` made the Unit test for `Add_Order_With_OrderProduct()`
   - **Modified**:
     - Implemented that _products could be null in `MapToInternal()` in `OrderExtensions`
+- **[v1.9.10](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.10)**  
+  - Added **REST API** project + Configured `WebShopService` dependency
+- **[v1.9.11](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.11)**  
+    `IProductRepository` and `ProductRepository` now includes a short version of **CRUD** for adding `Products` with associated `ProductImages`.
+     This is also reflected in `MapToInternal` extensions in `ProductExtensions`
+  - **Added**
+    - `MapToInternal (IProduct, IReadOnlyList<IProductImage>)`
+    - **xUnit** Tests for the extended **CRUD** feature
+  - **Fixed**
+    - An issue where `ProductImage.Title` wasn't mapped correctly
+- **[v1.9.12](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.12)**
+  - **Added**: 
+   - Methods in `ProductRepository` made in API;
+     - `GetAllProductsAsync()`
+     - `GetProductByIDAsync()`
+     - `GetProdyctByBrandAsync()`
+     - `GetProductByCategoryAsync()`
+     - `AddProductAsync()`
+     - `UpdateProductAsync()`
+     - `RemoveProductAsync()`
+   - Methods in `ProductExtensions` made in API;
+     - `GetBrandAsync()`
+     - `GetCategoryAsync()`
+     - `GetImagesAsync()`
+   - All tested and working successfully.
+- **[v1.9.13](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.13)**
+  - Integrated `Category` API handler
+- **[v1.9.14](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.14)**
+  - Integrated `BrandController` API handler
+- **[v1.9.15](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.15)**
+  - **Added**:
+   - `CustomerController` to the RestAPI.
+   - Methods in `CustomerRepository` made;
+     - `GetAllCustomersAsync()`
+       - Retrieving all customers in the DB.
+     - `GetCustomerByIDAsync()`
+       - Retrieving a single `Customer` by a `CustomerID`
+     - `GetCustomerByEmailAsync()`
+       - Retrieving a single `Customer` by an `Customer.Email`
+     - `AddCustomerAsync()`
+       - Adding a `Customer` to the DB.
+     - `UpdateCustomerAsync()`
+       - Updating a `Customer` already in the DB.
+     - `RemoveCustomerAsync()`
+       - Retrieving a `Customer` cy `CustomerID`, then removing it from the DB.
+   - Method in `CustomerExtensions` made;
+     -  `GetLoginFromCustomerAsync()`
+       - Retrieving the `User` login attached to a `Customer`.
+- **[v1.9.16](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.16)** \
+     I've added a new **DTO** to the **Web API** project because the **API** call parameters are limited to one.
+     It derives from `OrderDTO` and simply declares an `ICollection` of `OrderProductDTOs`.
+  - Added
+    - `OrderController` - All Tests successful
+    - `OrderWithProductsDTO`
+  - Fixed
+    - `BrandController` and `CategoryController` not inheriting from `ControllerBase`
+- **[v1.9.17](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.17)**
+  - **Added**:
+    - `AddProductWithImageAsync()` which can now Add a product with a `ICollection<ProductImageDTO>` when creating it. What made it work, was to simply write a `.ToList()` to the parameter to push up to the DB with. This is tested and working successfully.
+  - **Modified**:
+    - Added a `ICollection<ProductImageDTO> ProductsImages` property to the `ProductDTO` class.
+- **[v1.9.18](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v1.9.18)**
+  - **Modified**:
+    - Removed the property I earlier added to the `ProductDTO` as this would mean we'd have to change all of our mappings.
+    - Added a `ProductWithImagesDTO` class where it is deriving from `ProductDTO` but with an  `ICollection<ProductImageDTO>` so that we can add a `Product` with `ProductImages` attached to that specific `Product`
+    - Removed one of the `AddProductAsync()` to only have one, where we now also send a `Product.ProductImages.ToList();`
+  - **Fixed**:
+    - The `ProductWithImagesDTO` was in the wrong namespace. It has now been changed from `Oiski.School.WebShop_H3_2021.RestAPI.DTOs`  to `Oiski.School.WebShop_H3_2021.RestAPI`
+    - Removed the using of `Oiski.School.WebShop_H3_2021.RestAPI.DTOs` in `ProductController`.
+  - This means that our RestAPI is now consistent in form of how the Controllers have been made.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
