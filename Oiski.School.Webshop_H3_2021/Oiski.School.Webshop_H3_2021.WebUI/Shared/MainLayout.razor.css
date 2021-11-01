@@ -4,10 +4,6 @@
     flex-direction: column;
 }
 
-.displayOnlySmall {
-    display: none;
-}
-
 .main {
     flex: 1;
 }
@@ -71,8 +67,4 @@
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
-
-/*    .displayOnlySmall {
-        display: block;
-    }*/
 }

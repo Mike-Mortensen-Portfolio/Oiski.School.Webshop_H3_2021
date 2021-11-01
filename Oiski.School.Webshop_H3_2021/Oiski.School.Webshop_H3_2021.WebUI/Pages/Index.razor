@@ -1,6 +1,40 @@
 ﻿@page "/"
+@inject HttpClient client
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@{
+    if (products != null)
+    {
+        foreach (var item in products)
+        {
+            <p>@item.Title</p>
+        }
+    }
+}
+
+
+@code{
+    IReadOnlyList<ProductDTO> products;
+
+    protected async override Task OnInitializedAsync()
+    {
+        products = await client.GetFromJsonAsync<IReadOnlyList<ProductDTO>>("/Controller/Products");
+    }
+
+
+
+    public class ProductDTO
+    {
+        public int ProductID { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public int BrandID { get; set; }
+        public decimal Price { get; set; }
+        public int InStock { get; set; }
+        public int CategoryID { get; set; }
+    }
+}
