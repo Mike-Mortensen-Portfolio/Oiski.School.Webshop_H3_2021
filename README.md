@@ -14,9 +14,21 @@ Our API will use xUnit testing to begin with, to check if our `Data Layer` and `
 ![DBDrawing](./Images/Webshop_DBDrawing.png)
 
 ## Dependencies
-- [Microsoft.EntityFramworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/)
-- [Microsoft.EntityFrameworkCore.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design/5.0.10)
-- [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools/5.0.10)
+- `Oiski.School.Webshop_H3_2021.Datalayer`
+  - [Microsoft.EntityFramworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/5.0.11)
+  - [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools/5.0.11)
+  - [Microsoft.EntityFrameworkCore.InMemory](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory/5.0.11)
+- `Oiski.School.Webshop_H3_2021.WebApp`
+  - [Microsoft.EntityFrameworkCore.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design/5.0.11)
+- `Oiski.School.Webshop_H3_2021.RestAPI`
+  - [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/5.3.2)
+- `Oiski.School.Webshop_H3_2021.Servicelayer`
+  - [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/2.2.2)
+  - [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc/2.2.0)
+- `Oiski.School.Webshop_H3_2021.UnitTests`
+  - [Microsoft.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/5.0.11)
+  - [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Tests.Sdk/16.11.0)
+
 
 ### Terms of Development
 
