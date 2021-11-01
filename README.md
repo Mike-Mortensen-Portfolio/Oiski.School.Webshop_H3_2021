@@ -27,8 +27,6 @@ Our API will use xUnit testing to begin with, to check if our `Data Layer` and `
   - [Microsoft.AspNetCore.Mvc](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc/2.2.0)
 - `Oiski.School.Webshop_H3_2021.UnitTests`
   - [Microsoft.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/5.0.11)
-  - [Microsoft.NET.Test.Sdk](https://www.nuget.org/packages/Microsoft.NET.Tests.Sdk/16.11.0)
-
 
 ### Terms of Development
 
