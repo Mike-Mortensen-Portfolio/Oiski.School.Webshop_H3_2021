@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oiski.School.Webshop_H3_202
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oiski.School.Webshop_H3_2021.xUnitTests", "Oiski.School.Webshop_H3_2021.xUnitTests\Oiski.School.Webshop_H3_2021.xUnitTests.csproj", "{5FD084A8-4DE8-4F65-A8DF-36D909EAEEA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oiski.School.WebShop_H3_2021.RestAPI", "Oiski.School.WebShop_H3_2021.RestAPI\Oiski.School.WebShop_H3_2021.RestAPI.csproj", "{764F2EAA-5732-4C84-ABD2-FEEADF31E0C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oiski.School.WebShop_H3_2021.RestAPI", "Oiski.School.WebShop_H3_2021.RestAPI\Oiski.School.WebShop_H3_2021.RestAPI.csproj", "{764F2EAA-5732-4C84-ABD2-FEEADF31E0C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oiski.School.Webshop_H3_2021.WebUI", "Oiski.School.Webshop_H3_2021.WebUI\Oiski.School.Webshop_H3_2021.WebUI.csproj", "{69904D0E-02AD-4DA5-BB2B-9DA23AF34986}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{764F2EAA-5732-4C84-ABD2-FEEADF31E0C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{764F2EAA-5732-4C84-ABD2-FEEADF31E0C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{764F2EAA-5732-4C84-ABD2-FEEADF31E0C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69904D0E-02AD-4DA5-BB2B-9DA23AF34986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69904D0E-02AD-4DA5-BB2B-9DA23AF34986}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69904D0E-02AD-4DA5-BB2B-9DA23AF34986}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69904D0E-02AD-4DA5-BB2B-9DA23AF34986}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

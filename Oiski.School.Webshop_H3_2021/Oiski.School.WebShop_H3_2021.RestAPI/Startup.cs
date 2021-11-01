@@ -27,7 +27,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddRazorPages();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -46,6 +46,8 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Oiski.School.WebShop_H3_2021.RestAPI v1"));
             }
+            app.UseStaticFiles();
+            app.UseBlazorFrameworkFiles();
 
             app.UseHttpsRedirection();
 
@@ -55,7 +57,9 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllers();
+                endpoints.MapFallbackToFile("index.html");
             });
         }
     }
