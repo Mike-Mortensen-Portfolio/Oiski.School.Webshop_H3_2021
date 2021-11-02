@@ -1,0 +1,85 @@
+﻿@page "/Product/Create"
+@inject HttpClient client
+@inject NavigationManager nav
+
+<h3>Create Product</h3>
+
+<p>@ErrorMessage</p>
+
+<div class="row">
+    <div class="col-6">
+        <EditForm Model="@ProductForm" OnValidSubmit="@OnValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="ProductTitle">Product Title</label>
+                <input type="text" @bind-value="ProductForm.Title" id="ProductTitle" class="form-control" placeholder="Enter title..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductDescription">Product Description</label>
+                <input type="text" @bind-value="ProductForm.Description" id="ProductDescription" class="form-control" placeholder="Enter description..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductPrice">Product Price</label>
+                <input type="number" @bind-value="ProductForm.Price" id="ProductPrice" class="form-control" placeholder="Enter price..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductInStock">Products In stock</label>
+                <input type="number" @bind-value="ProductForm.InStock" id="ProductInStock" class="form-control" placeholder="In stock..." />
+            </div>
+            @* This will be the dropdowns for Brands and Categories but, they don't currently work as OnInitializedAsync() isn't functioning correctly. *@
+            @*<div class="form-group">
+                <label for="ProductBrand">Product's brand</label>
+                <InputSelect id="ProductBrand" @bind-Value="ProductForm.BrandID">
+                    @foreach (var brand in Brands)
+                    {
+                        <option value="@brand.BrandID">@brand.Name</option>
+                    }
+                </InputSelect>
+            </div>
+            <div class="form-group">
+                <label for="ProductCategory">Product's Category</label>
+                <InputSelect id="ProductCategory" @bind-Value="ProductForm.CategoryID">
+                    @foreach (var category in Categories)
+                    {
+                        <option value="@category.CategoryID">@category.Name</option>
+                    }
+                </InputSelect>
+            </div>*@
+
+            <button type="submit" class="btn btn-success">Create</button>
+        </EditForm>
+    </div>
+    <div class="col-6"></div>
+</div>
+
+
+@code {
+    private string ErrorMessage { get; set; }
+    private ProductDisplay ProductForm = new();
+
+    // Below is commented out as the method ain't functioning correctly.
+    //IReadOnlyList<BrandDisplay> Brands { get; set; }
+    //IReadOnlyList<CategoryDisplay> Categories { get; set; }
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    Brands = await client.GetFromJsonAsync<IReadOnlyList<BrandDisplay>>("/Controller/Brands");
+    //    Categories = await client.GetFromJsonAsync<IReadOnlyList<CategoryDisplay>>("/Controller/Categories");
+    //}
+
+    public async Task OnValidSubmit()
+    {
+        var response = await client.PostAsJsonAsync<ProductDisplay>("/Controller/Product/Create", ProductForm);
+
+        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        {
+            nav.NavigateTo("/");
+        }
+        else
+        {
+            ErrorMessage = $"{response.StatusCode} : { response.ReasonPhrase}";
+        }
+    }
+}
