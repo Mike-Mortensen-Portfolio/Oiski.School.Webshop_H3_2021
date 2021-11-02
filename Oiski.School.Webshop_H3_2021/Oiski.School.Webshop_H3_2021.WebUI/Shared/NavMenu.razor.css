@@ -40,14 +40,20 @@
         line-height: 3rem;
     }
 
-.nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.25);
-    color: white;
-}
+        .nav-item ::deep a.active {
+            background-color: rgba(255,255,255,0.25);
+            color: white;
+        }
 
-.nav-item ::deep a:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
+        .nav-item ::deep a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+@media (max-width: 640.98px) {
+    .display-onlySmall {
+        display: block;
+    }
 }
 
 @media (min-width: 641px) {
@@ -58,5 +64,9 @@
     .collapse {
         /* Never collapse the sidebar for wide screens */
         display: block;
+    }
+
+    .display-onlySmall {
+        display: none;
     }
 }
