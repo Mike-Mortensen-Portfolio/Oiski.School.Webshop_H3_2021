@@ -679,5 +679,16 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - The `ProductWithImagesDTO` was in the wrong namespace. It has now been changed from `Oiski.School.WebShop_H3_2021.RestAPI.DTOs`  to `Oiski.School.WebShop_H3_2021.RestAPI`
     - Removed the using of `Oiski.School.WebShop_H3_2021.RestAPI.DTOs` in `ProductController`.
   - This means that our RestAPI is now consistent in form of how the Controllers have been made.
+- **[v2.0.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v2.0.0)**
+  - **Added**:
+    - The Blazor Web UI project to our Solution.
+    - Setting up the base layout for our entire Web UI.
+  - This means that our RestAPI is now consistent in form of how the Controllers have been made.
+- **[v2.1.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v2.1.1)** \
+    I've added sample data to the `Index.razor` to test that the `ProductCard.razor` file is displaying our `Products` nicely onto the index page.
+  - **Added**:
+    - Razor Component called `ProductCard.razor` where we are using our `ProductDisplay` as a Parameter in our `card`, so that we can use it out in our `Index.razor` and display a single `Product` in the same manner every time it is displayed.
+    - A `ProductDisplay` in a folder called `Models`, where we are making a sort of DTO, where we state which properties we need to use from the `Product` entity; to display them.
+    - `Images` folder added to the `wwwroot` folder so that we can access our images for each `Product`.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
