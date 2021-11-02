@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oiski.School.Webshop_H3_202
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oiski.School.WebShop_H3_2021.RestAPI", "Oiski.School.WebShop_H3_2021.RestAPI\Oiski.School.WebShop_H3_2021.RestAPI.csproj", "{764F2EAA-5732-4C84-ABD2-FEEADF31E0C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oiski.School.Webshop_H3_2021.WebUI", "Oiski.School.Webshop_H3_2021.WebUI\Oiski.School.Webshop_H3_2021.WebUI.csproj", "{69904D0E-02AD-4DA5-BB2B-9DA23AF34986}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oiski.School.Webshop_H3_2021.WebUI", "Oiski.School.Webshop_H3_2021.WebUI\Oiski.School.Webshop_H3_2021.WebUI.csproj", "{69904D0E-02AD-4DA5-BB2B-9DA23AF34986}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
