@@ -17,6 +17,7 @@ Our API will use xUnit testing to begin with, to check if our `Data Layer` and `
 - [Microsoft.EntityFramworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/)
 - [Microsoft.EntityFrameworkCore.Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design/5.0.10)
 - [Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools/5.0.10)
+- [Blazored.LocalStorage](https://www.nuget.org/packages/Blazored.LocalStorage/)
 
 ### Terms of Development
 
