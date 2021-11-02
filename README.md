@@ -691,5 +691,13 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - Razor Component called `ProductCard.razor` where we are using our `ProductDisplay` as a Parameter in our `card`, so that we can use it out in our `Index.razor` and display a single `Product` in the same manner every time it is displayed.
     - A `ProductDisplay` in a folder called `Models`, where we are making a sort of DTO, where we state which properties we need to use from the `Product` entity; to display them.
     - `Images` folder added to the `wwwroot` folder so that we can access our images for each `Product`.
+- **[v2.1.2](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v2.1.2)** \
+  Initializing Local Storage so that we can use that on the Blazor application.
+
+  I've added the NuGet package `Blazored.LocalStorage` so that we can use the Local Storage, as well as implementing it in our Program.cs `Main()` so that it will be initialized in the startup of our application. 
+
+- **Added**:
+   - `Blazored.LocalStorage` NuGet package added.
+   - Implementing it in our `Program.cs` to use LocalStorage.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
