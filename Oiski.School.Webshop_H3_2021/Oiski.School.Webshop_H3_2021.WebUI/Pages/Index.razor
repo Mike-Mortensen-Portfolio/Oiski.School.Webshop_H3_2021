@@ -1,6 +1,15 @@
 ﻿@page "/"
+@inject HttpClient client
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div class="row">
+    @* Sample Data to test how the ProductCard.razor will look on this page. *@
+    @*<ProductCard Product="@(new ProductDisplay { Title = "Halløj", Description = "tekst", InStock = 123, Price = 12.32M, ImageURL = "/Clothes/Bottoms/High-Waisted-Jeans-Back.jpg"})"></ProductCard>*@
+
+</div>
+
+
+@code{
+
+}

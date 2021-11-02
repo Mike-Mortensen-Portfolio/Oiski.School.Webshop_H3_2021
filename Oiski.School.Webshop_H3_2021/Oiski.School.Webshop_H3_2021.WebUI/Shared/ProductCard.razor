@@ -1,0 +1,23 @@
+﻿<div class="border rounded text-center col-3 m-auto">
+    <card>
+        <img class="card-img-top" style="max-height:400px;" src="@("Images/" + Product.ImageURL)" />
+        <div class="card-body">
+            <div>
+                <h3>@Product.Title</h3>
+                <br />
+                <p class="border">@Product.Description</p>
+                <br />
+                <p>In stock: <b>#</b>@Product.InStock | Price: <b>$</b>@Product.Price</p>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-success">Add to basket</button>
+        </div>
+    </card>
+</div>
+
+
+@code {
+    [Parameter]
+    public ProductDisplay Product { get; set; }
+}
