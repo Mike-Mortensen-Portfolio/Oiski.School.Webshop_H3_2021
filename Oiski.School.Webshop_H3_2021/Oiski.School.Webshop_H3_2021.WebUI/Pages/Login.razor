@@ -1,7 +1,12 @@
 ﻿@page "/login"
+@inject HttpClient client
 
-<h1>Login</h1>
+<div class="row text-center">
+    @* Sample data to test if it will Redirect you to a Test page, when IsAdmin is set to true. *@
+    <LoginView CustomerLogin="@(new CustomerLogin { Email = "zhakalen@gmail.com", Password = "P@ssw0rd", IsAdmin = true})"></LoginView>
+</div>
 
 @code {
-
+    [Parameter]
+    public CustomerLogin CustomerLogin { get; set; }
 }

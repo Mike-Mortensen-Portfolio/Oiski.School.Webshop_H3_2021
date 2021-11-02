@@ -1,0 +1,45 @@
+﻿@inject NavigationManager Nav
+
+<div class="col-3"></div>
+<div class="border rounded col-6">
+    <EditForm Model="@CustomerLogin" OnValidSubmit="@OnValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <card>
+            <div class="card-body">
+                <h3 class="card-title">Sign in here:</h3>
+                <hr />
+                <div class="form-group">
+                    <label for="@CustomerLogin.Email">Email address</label>
+                    <input type="email" class="form-control" placeholder="Enter email..." />
+                </div>
+                <div class="form-group">
+                    <label for="@CustomerLogin.Password">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter password..." />
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </div>
+        </card>
+    </EditForm>
+</div>
+<div class="col-3"></div>
+
+
+@code {
+    [Parameter]
+    public CustomerLogin CustomerLogin { get; set; }
+
+    public async Task OnValidSubmit()
+    {
+        if (CustomerLogin.IsAdmin == true)
+        {
+            Nav.NavigateTo("/TestPage");
+        }
+        else
+        {
+            Nav.NavigateTo("/");
+        }
+    }
+}
