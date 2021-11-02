@@ -1,0 +1,44 @@
+﻿@page "/Products/{ProductID:int}"
+@inject HttpClient client
+
+
+<div class="border col-4">
+    <card>
+        <div class="text-center">
+            <img src="@Product.ImageURL" style="max-height:400px;" />
+        </div>
+    </card>
+</div>
+<div class="border col-8">
+    <card>
+        <div class="card-body text-center">
+            <h3 class="card-title">You are viewing @Product.Title</h3>
+            <hr />
+            <br />
+            <p><b>Description:</b> @Product.Description)</p>
+            <br />
+            <p><b>In stock:</b> @Product.InStock</p>
+            <br />
+            <p><b>Brand:</b> |<b>Category:</b>  </p>
+            <br />
+        </div>
+        <div class="card-footer">
+            <p>Price: <b>$</b>@Product.Price</p> <button class="btn btn-success">Add to basket</button>
+        </div>
+    </card>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public int ProductID { get; set; }
+
+    private ProductDisplay Product { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Product = await client.GetFromJsonAsync<ProductDisplay>($"/Controller/Products/{ProductID}");
+    }
+
+}

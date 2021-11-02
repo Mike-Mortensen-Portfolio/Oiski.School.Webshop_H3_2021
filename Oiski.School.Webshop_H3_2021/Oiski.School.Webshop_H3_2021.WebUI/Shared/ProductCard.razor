@@ -1,9 +1,11 @@
-﻿<div class="border rounded text-center col-3 m-auto">
+﻿@inject NavigationManager Nav
+
+<div class="border rounded text-center col-3 m-auto">
     <card>
         <img class="card-img-top" style="max-height:400px;" src="@("Images/" + Product.ImageURL)" />
         <div class="card-body">
             <div>
-                <h3>@Product.Title</h3>
+                <h3><button class="btn btn-link" @onclick="GoToProduct">@Product.Title</button></h3>
                 <br />
                 <p class="border">@Product.Description</p>
                 <br />
@@ -20,4 +22,9 @@
 @code {
     [Parameter]
     public ProductDisplay Product { get; set; }
+
+    public void GoToProduct()
+    {
+        Nav.NavigateTo($"Product/{Product.ProductID}");
+    }
 }
