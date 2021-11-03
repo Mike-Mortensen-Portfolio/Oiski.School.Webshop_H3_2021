@@ -1,8 +1,49 @@
 ﻿@page "/cart"
-@inject HttpClient Http
+@inject HttpClient client
 
-<h1>Cart</h1>
+@if (Order == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <OrderView Order="@Order"></OrderView>
+}
 
 @code {
+    public IEditableOrder Order { get; set; } = new OrderDisplay
+    {
+        CustomerID = 1,
+        OrderDate = DateTime.Now,
+        Products = new List<ICartProductBase>
+    {
+            new CartProductBase
+            {
+                ProductID = 1,
+                Quantity = 2
+            },
+            new CartProductBase
+            {
+                ProductID = 2,
+                Quantity = 4
+            }
+        }
+    };
 
+    protected async override Task OnInitializedAsync()
+    {
+        //IOrderBase order = await client.GetFromJsonAsync<OrderBase>("/Controller/Orders/GetBy/ID/1");   //  Test Call
+
+        //OrderDisplay orderDisplay = new OrderDisplay
+        //{
+        //    CustomerID = order.CustomerID,
+        //    OrderDate = order.OrderDate,
+        //    OrderID = order.OrderID,
+        //    TypeOfDelivery = order.TypeOfDelivery,
+        //    TypeOfPayment = order.TypeOfPayment
+        //};
+
+        //orderDisplay.Products = await client.GetFromJsonAsync<IReadOnlyList<CartProductBase>>($"/Controller/Orders/Get/Products/{orderDisplay.OrderID}");
+        //Order = orderDisplay;
+    }
 }

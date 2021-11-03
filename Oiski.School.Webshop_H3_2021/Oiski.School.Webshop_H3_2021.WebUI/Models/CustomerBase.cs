@@ -9,7 +9,7 @@ namespace Oiski.School.Webshop_H3_2021.WebUI
     /// Serves as the <see langword="base"/> for all customer variation <see langword="objects"/>
     /// and is the pure form of data recieved and transmitted through the Web API: <strong>Controller/Customers/GetBy/ID/{_customerID}</strong> call.
     /// </summary>
-    public class CustomerBase
+    public class CustomerBase : ICustomerBase, ICompactCustomerInfo
     {
         public int CustomerID { get; set; }
         public int UserID { get; set; }

@@ -10,7 +10,7 @@ namespace Oiski.School.Webshop_H3_2021.WebUI
     /// Serves as the <see langword="base"/> for all Order variation <see langword="objects"/>
     /// and is the pure form of data recieved and transmitted through the Web API: <strong>Controller/Orders/GetBy/ID/{_OrderID}</strong> call.
     /// </summary>
-    public class OrderBase
+    public class OrderBase : IOrderBase
     {
         public int OrderID { get; set; }
         public int CustomerID { get; set; }
