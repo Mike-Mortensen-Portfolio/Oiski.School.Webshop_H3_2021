@@ -693,13 +693,23 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - `Images` folder added to the `wwwroot` folder so that we can access our images for each `Product`.
 - **[v2.1.2](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v2.1.2)** \
   Initializing Local Storage so that we can use that on the Blazor application.
-
-  I've added the NuGet package `Blazored.LocalStorage` so that we can use the Local Storage, as well as implementing it in our Program.cs `Main()` so that it will be initialized in the startup of our application. 
-
-- **Added**:
-   - `Blazored.LocalStorage` NuGet package added.
-   - Implementing it in our `Program.cs` to use LocalStorage.
+  I've added the NuGet package `Blazored.LocalStorage` so that we can use the Local Storage, as well as implementing it in our Program.cs `Main()` so that it will be initialized   in the startup of our application. 
+  - **Added**:
+    - `Blazored.LocalStorage` NuGet package added.
+    - Implementing it in our `Program.cs` to use LocalStorage.
 - **[v2.1.3](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v2.1.3)** \
   Each **API** call now follows the same structure, which should make it easier to remember and more user friendly.
-
+- **[v2.2.0](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v2.2.0)** \
+  I've added all the **base** containers to mach the pure form of **JSON** recieved from `/Controller/[Object]/GetBy/{_[Object]ID}`.
+  This will make it much easier for us when using the **API**.
+  We can then use **interfaces** to mask properties or extend the **base**.
+  One example included with the changes is `IProductDisplay`, which extends the `ProductBase` to include associated images as URLs.
+  - **Added**
+    - `BrandBase`
+    - `CategoryBase`
+    - `CustomerBase`
+    - `OrderBase`
+    - `ProductBase`
+    - `IProductDisplay`
+    - `ProductDisplay`: Derived from `ProductBase` and serves as a displayable product where all associated images are attached
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
