@@ -25,10 +25,10 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
             return await service.Brand.GetAllAsync();
         }
 
-        [HttpGet("Brands/{_id:int}")]
-        public async Task<IBrand> GetByIDAsync(int _id)
+        [HttpGet("Brands/GetBy/ID/{_brandID:int}")]
+        public async Task<IBrand> GetByIDAsync(int _brandID)
         {
-            return await service.Brand.GetByIDAsync(_id);
+            return await service.Brand.GetByIDAsync(_brandID);
         }
 
         [HttpPost("Brands/Add")]
@@ -43,10 +43,10 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
             return await service.Brand.UpdateAsync(_brand);
         }
 
-        [HttpDelete("Brands/Remove/{_id:int}")]
-        public async Task<bool> RemoveAsync(int _id)
+        [HttpDelete("Brands/Remove/{_brandID:int}")]
+        public async Task<bool> RemoveAsync(int _brandID)
         {
-            IBrand brand = await service.Brand.GetByIDAsync(_id);
+            IBrand brand = await service.Brand.GetByIDAsync(_brandID);
 
             if (brand == null) return false;
 
