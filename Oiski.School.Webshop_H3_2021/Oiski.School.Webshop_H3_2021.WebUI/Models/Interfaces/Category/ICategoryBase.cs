@@ -7,7 +7,7 @@ namespace Oiski.School.Webshop_H3_2021.WebUI
 {
     public interface ICategoryBase
     {
-        int CategoryID { get; set; }
-        string Name { get; set; }
+        int CategoryID { get; }
+        string Name { get; }
     }
 }
