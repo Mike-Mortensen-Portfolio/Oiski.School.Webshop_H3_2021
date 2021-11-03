@@ -1,15 +1,16 @@
 ﻿@inject HttpClient client
+@inject NavigationManager nav
 
 <div class="border rounded text-center col-4 m-3" style="max-width:350px;">
     <card>
         @if (Product.ProductImages != null)
         {
-            <img class="card-img-top" style="max-height:450px;" src="@("Images/" + Product.ProductImages.First().ImageURL)"/>
+            <img class="card-img-top" style="max-height:450px;" src="@("Images/" + Product.ProductImages.First().ImageURL)" />
         }
 
         <div class="card-body">
             <div>
-                <h3>@Product.Title</h3>
+                <h3><button class="btn btn-link" @onclick="GoToProduct">@Product.Title</button></h3>
                 <br />
                 <p class="border">@Product.Description</p>
                 <br />
@@ -30,5 +31,10 @@
     {
         Product = await client.GetFromJsonAsync<ProductDisplay>($"Controller/Products/GetBy/ID/{Product.ProductID}");
         Product.ProductImages = await client.GetFromJsonAsync<IReadOnlyList<ProductImageBase>>($"Controller/Products/Get/Images/{Product.ProductID}");
+    }
+
+    public void GoToProduct()
+    {
+        nav.NavigateTo($"/Products/Details/{Product.ProductID}");
     }
 }

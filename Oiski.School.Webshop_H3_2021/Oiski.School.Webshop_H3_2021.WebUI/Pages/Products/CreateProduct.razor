@@ -1,0 +1,79 @@
+﻿@page "/Product/Create"
+@inject HttpClient client
+@inject NavigationManager nav
+
+<h3>Create Product</h3>
+
+<p class="text-danger"><b>@ErrorMessage</b></p>
+
+<div class="row">
+    <div class="col-6">
+        <EditForm Model="ProductForm" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="ProductTitle">Product Title</label>
+                <input type="text" @bind-value="ProductForm.Title" id="ProductTitle" class="form-control" placeholder="Enter title..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductDescription">Product Description</label>
+                <input type="text" @bind-value="ProductForm.Description" id="ProductDescription" class="form-control" placeholder="Enter description..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductPrice">Product Price</label>
+                <input type="text" @bind-value="ProductForm.Price" id="ProductPrice" class="form-control" placeholder="Enter price..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductInStock">Products In stock</label>
+                <input type="number" @bind-value="ProductForm.InStock" id="ProductInStock" class="form-control" placeholder="In stock..." />
+            </div>
+
+            <div class="form-group">
+                <label for="ProductBrand">Product Brand ID</label>
+                <input type="number" @bind-value="ProductForm.BrandID" id="ProductBrand" class="form-control" placeholder="Enter Brand ID..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductCategory">Products Category ID</label>
+                <input type="number" @bind-value="ProductForm.CategoryID" id="ProductCategory" class="form-control" placeholder="Enter Category ID..." />
+            </div>
+
+            <button type="submit" class="btn btn-success">Create</button>
+        </EditForm>
+    </div>
+    <div class="col-6"></div>
+</div>
+
+
+@code {
+    private string ErrorMessage { get; set; }
+    private ProductCreate ProductForm = new();
+
+    List<ProductImageBase> productImages = new List<ProductImageBase>()
+{
+        new ProductImageBase
+        {
+            ImageURL = @"Clothes/Bottoms/High-Waisted-Jeans-Front.jpg"
+        },
+        new ProductImageBase
+        {
+            ImageURL = @"Clothes/Bottoms/High-Waisted-Jeans-Back.jpg"
+        }
+    };
+
+    public async Task OnValidSubmit()
+    {
+        ProductForm.ProductImages = productImages;
+
+        var response = await client.PostAsJsonAsync<ProductCreate>("/Controller/Products/Add", ProductForm);
+
+        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        {
+            nav.NavigateTo("/");
+        }
+        else
+        {
+            ErrorMessage = $"Couldn't create the product.";
+        }
+    }
+}

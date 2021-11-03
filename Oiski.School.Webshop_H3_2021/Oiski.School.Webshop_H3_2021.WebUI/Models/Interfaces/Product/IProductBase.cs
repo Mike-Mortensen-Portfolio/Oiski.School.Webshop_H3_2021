@@ -11,7 +11,7 @@ namespace Oiski.School.Webshop_H3_2021.WebUI
         int CategoryID { get; }
         string Title { get; }
         string Description { get; }
-        int BrandId { get; }
+        int BrandID { get; }
         decimal Price { get; }
         int InStock { get; }
     }
