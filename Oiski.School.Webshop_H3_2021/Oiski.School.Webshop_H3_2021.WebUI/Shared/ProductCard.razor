@@ -31,6 +31,8 @@
     {
         Product = await client.GetFromJsonAsync<ProductDisplay>($"Controller/Products/GetBy/ID/{Product.ProductID}");
         Product.ProductImages = await client.GetFromJsonAsync<IReadOnlyList<ProductImageBase>>($"Controller/Products/Get/Images/{Product.ProductID}");
+
+        await base.OnInitializedAsync();
     }
 
     public void GoToProduct()

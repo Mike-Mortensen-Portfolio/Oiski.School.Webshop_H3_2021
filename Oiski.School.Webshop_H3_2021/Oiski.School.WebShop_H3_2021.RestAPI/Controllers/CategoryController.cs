@@ -25,7 +25,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
             return await service.Category.GetAllAsync();
         }
 
-        [HttpGet("Cateories/GetBy/ID/{_categoryID:int}")]
+        [HttpGet("Categories/GetBy/ID/{_categoryID:int}")]
         public async Task<ICategory> GetByIDAsync(int _categoryID)
         {
             return await service.Category.GetByIDAsync(_categoryID);

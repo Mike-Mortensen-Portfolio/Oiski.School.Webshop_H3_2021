@@ -11,8 +11,8 @@
         {
             <div class="input-group">
                 <label class="col-5 text-right" for="ProductCategory">Filter by</label>
-                <select class="col-7 form-control">
-                    <option value="">Category</option>
+                <select class="col-7 form-control" @bind="SelectedValue">
+                    <option value="">All</option>
                     @foreach (var category in Categories)
                     {
                         <option value="@category.CategoryID">@category.Name</option>
@@ -24,16 +24,16 @@
     <div class="col-2">
         <button @onclick='() => nav.NavigateTo($"/Product/Create")' class="btn btn-primary"><i class="oi oi-paperclip"></i> Create</button>
     </div>
-
-
 </div>
-
 <div class="row">
     @if (Products != null)
     {
         @foreach (var product in Products)
         {
-            <ProductCard Product="@product"></ProductCard>
+            @if (SelectedValue == product.CategoryID || 0 == SelectedValue)
+            {
+                <ProductCard Product="@product"></ProductCard>
+            }
         }
     }
     else
@@ -48,6 +48,9 @@
     private IReadOnlyList<ICategoryBase> Categories { get; set; }
 
     private ICategoryBase Category { get; }
+
+    [Parameter]
+    public int SelectedValue { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
