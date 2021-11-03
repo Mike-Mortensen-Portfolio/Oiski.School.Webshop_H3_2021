@@ -25,10 +25,10 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
             return await service.Category.GetAllAsync();
         }
 
-        [HttpGet("Cateories/{_id:int}")]
-        public async Task<ICategory> GetByIDAsync(int _id)
+        [HttpGet("Cateories/GetBy/ID/{_categoryID:int}")]
+        public async Task<ICategory> GetByIDAsync(int _categoryID)
         {
-            return await service.Category.GetByIDAsync(_id);
+            return await service.Category.GetByIDAsync(_categoryID);
         }
 
         [HttpPost("Categories/Add")]
@@ -43,10 +43,10 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
             return await service.Category.UpdateAsync(_category);
         }
 
-        [HttpDelete("Categories/Remove/{_id}")]
-        public async Task<bool> RemoveAsync(int _id)
+        [HttpDelete("Categories/Remove/{_categoryID:int}")]
+        public async Task<bool> RemoveAsync(int _categoryID)
         {
-            ICategory category = await service.Category.GetByIDAsync(_id);
+            ICategory category = await service.Category.GetByIDAsync(_categoryID);
 
             if (category == null) return false;
 
