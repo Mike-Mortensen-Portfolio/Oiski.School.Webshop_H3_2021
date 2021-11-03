@@ -1,0 +1,52 @@
+﻿@inject HttpClient client
+@* NOTE:
+    This component is a Table Row and must be contained within a table tag
+*@
+
+@if (product != null)
+{
+    <tr>
+        <td>@product.Title</td>
+        <td>
+            @if (!ReadOnly)
+            {
+                <button class="btn btn-success oi oi-plus" @onclick="@AddAmount"></button>
+                <input class="small text-center" @bind="@CartProduct.Quantity" />
+                <button class="btn btn-danger oi oi-minus" @onclick="@RemoveAmount"></button>
+            }
+            else
+            {
+                <input class="small text-center" readonly @bind="@CartProduct.Quantity" />
+            }
+        </td>
+        <td>$@($"{(product.Price * CartProduct.Quantity):00.00} ")</td>
+    </tr>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    [Parameter]
+    public ICartProductBase CartProduct { get; set; }
+    private ICompactProductInfo product;
+
+    [Parameter]
+    public bool ReadOnly { get; set; } = false;
+
+    protected async override Task OnInitializedAsync()
+    {
+        product = await client.GetFromJsonAsync<ProductDisplay>($"/Controller/Products/GetBy/ID/{CartProduct.ProductID}");
+    }
+
+    public void AddAmount()
+    {
+        CartProduct.Quantity++;
+    }
+
+    public void RemoveAmount()
+    {
+        CartProduct.Quantity--;
+    }
+}
