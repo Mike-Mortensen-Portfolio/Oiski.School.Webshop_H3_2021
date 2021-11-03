@@ -9,13 +9,13 @@ namespace Oiski.School.Webshop_H3_2021.WebUI
     /// Serves as the <see langword="base"/> for all product variation <see langword="objects"/>
     /// and is the pure form of data recieved and transmitted through the Web API: <strong>Controller/Products/GetBy/ID/{_productID}</strong> call.
     /// </summary>
-    public class ProductBase : ICompactProductInfo
+    public class ProductBase : IProductBase, ICompactProductInfo
     {
         public int ProductID { get; set; }
         public int CategoryID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int BrandId { get; set; }
+        public int BrandID { get; set; }
         public decimal Price { get; set; }
         public int InStock { get; set; }
     }

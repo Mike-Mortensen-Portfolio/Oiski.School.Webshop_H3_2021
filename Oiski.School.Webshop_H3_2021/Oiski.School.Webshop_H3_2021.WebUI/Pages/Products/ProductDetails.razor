@@ -1,0 +1,66 @@
+﻿@page "/Products/Details/{ProductID:int}"
+@inject HttpClient client
+@inject NavigationManager nav
+
+
+@if (Product != null)
+{
+<div class="row">
+    <div class="border col-4">
+        <card>
+            <div class="text-center">
+                @if (Product.ProductImages != null)
+                {
+                    <img style="max-height:450px;" src="@("Images/" + Product.ProductImages.First().ImageURL)" />
+                }
+            </div>
+        </card>
+    </div>
+    <div class="border col-8">
+        <card>
+            <div class="card-body text-center">
+                <h3 class="card-title">You are viewing @Product.Title</h3>
+                <hr />
+                <br />
+                <p><b>Description:</b> @Product.Description</p>
+                <br />
+                <p><b>In stock:</b> @Product.InStock</p>
+                <br />
+                <p><b>Brand:</b> @Brand.Name |&nbsp;<b>Category:</b> @Category.Name </p>
+                <br />
+                <p>Price: <b>$</b>@Product.Price</p>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-success">Add to basket</button> | <button @onclick='() => nav.NavigateTo($"/Products/Edit/{Product.ProductID}")' class="btn btn-primary"><i class="oi oi-tag"></i>Edit Product</button>
+            </div>
+        </card>
+    </div>
+</div>
+    
+}
+else
+{
+    <p>Du lort, Jasmin</p>
+}
+
+
+@code {
+
+    [Parameter]
+    public int ProductID { get; set; }
+
+    private IProductDisplay Product { get; set; }
+    private IBrandBase Brand { get; set; }
+    private ICategoryBase Category { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Product = await client.GetFromJsonAsync<ProductDisplay>($"Controller/Products/GetBy/ID/{ProductID}");
+        Product.ProductImages = await client.GetFromJsonAsync<IReadOnlyList<ProductImageBase>>($"Controller/Products/Get/Images/{Product.ProductID}");
+        Brand = await client.GetFromJsonAsync<BrandBase>($"Controller/Products/Get/Brand/{Product.ProductID}");
+        Category = await client.GetFromJsonAsync<CategoryBase>($"Controller/Products/Get/Category/{Product.ProductID}");
+
+        await base.OnInitializedAsync();
+    }
+
+}

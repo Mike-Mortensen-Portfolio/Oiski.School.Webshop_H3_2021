@@ -1,0 +1,85 @@
+﻿@page "/Products/Edit/{ProductID:int}"
+@inject HttpClient client
+@inject NavigationManager nav
+
+
+<h3>Updating Product.</h3>
+
+<p class="text-danger"><b>@ErrorMessage</b></p>
+
+<div class="row">
+    <div class="col-6">
+        <EditForm EditContext="@MyEditContext" OnValidSubmit="@OnValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="ProductTitle">Product Title</label>
+                <input type="text" @bind-value="ProductForm.Title" id="ProductTitle" class="form-control" placeholder="Enter title..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductDescription">Product Description</label>
+                <input type="text" @bind-value="ProductForm.Description" id="ProductDescription" class="form-control" placeholder="Enter description..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductPrice">Product Price</label>
+                <input type="text" @bind-value="ProductForm.Price" id="ProductPrice" class="form-control" placeholder="Enter price..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductInStock">Products In stock</label>
+                <input type="number" @bind-value="ProductForm.InStock" id="ProductInStock" class="form-control" placeholder="In stock..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductBrand">Product Brand ID</label>
+                <input type="number" @bind-value="ProductForm.BrandID" id="ProductBrand" class="form-control" placeholder="Enter Brand ID..." />
+            </div>
+            <div class="form-group">
+                <label for="ProductCategory">Products Category ID</label>
+                <input type="number" @bind-value="ProductForm.CategoryID" id="ProductCategory" class="form-control" placeholder="Enter Category ID..." />
+            </div>
+
+            <button type="submit" class="btn btn-success">Update Product</button> | <button @onclick='() => nav.NavigateTo($"/Products/Delete/{Product.ProductID}")' class="btn btn-danger">Delete Product</button>
+        </EditForm>
+    </div>
+    <div class="col-6"></div>
+</div>
+
+
+@code {
+    private string ErrorMessage { get; set; }
+    private EditableProduct ProductForm = new();
+
+    private IEditableProduct Product { get; set; }
+
+    [Parameter]
+    public int ProductID { get; set; }
+    private EditContext MyEditContext;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Product = await client.GetFromJsonAsync<EditableProduct>($"Controller/Products/GetBy/ID/{ProductID}");
+        await base.OnInitializedAsync();
+        ProductForm.ProductID = Product.ProductID;
+        ProductForm.Title = Product.Title;
+        ProductForm.Description = Product.Description;
+        ProductForm.Price = Product.Price;
+        ProductForm.InStock = Product.InStock;
+        ProductForm.BrandID = Product.BrandID;
+        ProductForm.CategoryID = Product.CategoryID;
+        MyEditContext = new(ProductForm);
+    }
+
+    public async Task OnValidSubmit()
+    {
+        var response = await client.PutAsJsonAsync<EditableProduct>("/Controller/Products/Update", ProductForm);
+
+        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        {
+            nav.NavigateTo("/");
+        }
+        else
+        {
+            ErrorMessage = $"Couldn't update the Product.";
+        }
+    }
+} 
