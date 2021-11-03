@@ -1,6 +1,12 @@
-﻿<div class="border rounded text-center col-3 m-auto">
+﻿@inject HttpClient client
+
+<div class="border rounded text-center col-4 m-3" style="max-width:350px;">
     <card>
-        <img class="card-img-top" style="max-height:400px;" src="@("Images/" + Product.ImageURL)" />
+        @if (Product.ProductImages != null)
+        {
+            <img class="card-img-top" style="max-height:450px;" src="@("Images/" + Product.ProductImages.First().ImageURL)"/>
+        }
+
         <div class="card-body">
             <div>
                 <h3>@Product.Title</h3>
@@ -16,8 +22,13 @@
     </card>
 </div>
 
-
 @code {
     [Parameter]
     public IProductDisplay Product { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Product = await client.GetFromJsonAsync<ProductDisplay>($"Controller/Products/GetBy/ID/{Product.ProductID}");
+        Product.ProductImages = await client.GetFromJsonAsync<IReadOnlyList<ProductImageBase>>($"Controller/Products/Get/Images/{Product.ProductID}");
+    }
 }
