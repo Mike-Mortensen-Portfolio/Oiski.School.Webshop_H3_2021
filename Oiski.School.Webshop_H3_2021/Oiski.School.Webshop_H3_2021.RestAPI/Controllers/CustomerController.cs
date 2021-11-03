@@ -27,21 +27,21 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Customer/{_customerID:int}")]
+        [Route("Customers/GetBy/ID/{_customerID:int}")]
         public async Task<ICustomer> GetCustomerByIDAsync(int _customerID)
         {
             return await service.Customer.GetByIDAsync(_customerID);
         }
 
         [HttpGet]
-        [Route("Customer/{_customerEmail}")]
+        [Route("Customers/GetBy/Email/{_customerEmail}")]
         public async Task<ICustomer> GetCustomerByEmailAsync(string _customerEmail)
         {
             return await service.Customer.GetByEmailAsync(_customerEmail);
         }
 
         [HttpGet]
-        [Route("Customer/GetLogin/{_customerID:int}")]
+        [Route("Customers/Get/Login/{_customerID:int}")]
         public async Task<IUser> GetLoginFromCustomerAsync(int _customerID)
         {
             ICustomer customer = await service.Customer.GetByIDAsync(_customerID);
@@ -50,21 +50,21 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
         }
 
         [HttpPost]
-        [Route("Customer/Create")]
+        [Route("Customers/Add")]
         public async Task<bool> AddCustomerAsync(CustomerDTO _customer)
         {
             return await service.Customer.AddAsync(_customer);
         }
 
         [HttpPut]
-        [Route("Customer/Update")]
+        [Route("Customers/Update")]
         public async Task<bool> UpdateCustomerAsync(CustomerDTO _customer)
         {
             return await service.Customer.UpdateAsync(_customer);
         }
 
         [HttpDelete]
-        [Route("Customer/Remove/{_customerID_int}")]
+        [Route("Customers/Remove/{_customerID_int}")]
         public async Task<bool> RemoveCustomerAsyn(int _customerID)
         {
             ICustomer customer = await service.Customer.GetByIDAsync(_customerID);

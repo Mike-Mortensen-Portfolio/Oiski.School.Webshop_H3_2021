@@ -25,10 +25,10 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
             return await service.Order.GetAllAsync();
         }
 
-        [HttpGet("Orders/{_id:int}")]
-        public async Task<IOrder> GetByIDAsync(int _id)
+        [HttpGet("Orders/GetBy/ID/{_orderID:int}")]
+        public async Task<IOrder> GetByIDAsync(int _orderID)
         {
-            return await service.Order.GetByIDAsync(_id);
+            return await service.Order.GetByIDAsync(_orderID);
         }
 
         [HttpGet("Orders/GetBy/Customer/{_customerID:int}")]
@@ -81,10 +81,10 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
             return await service.Order.UpdateAsync(_order);
         }
 
-        [HttpDelete("Orders/{_id:int}")]
-        public async Task<bool> RemoveAsync(int _id)
+        [HttpDelete("Orders/Remove/{_orderID:int}")]
+        public async Task<bool> RemoveAsync(int _orderID)
         {
-            IOrder order = await service.Order.GetByIDAsync(_id);
+            IOrder order = await service.Order.GetByIDAsync(_orderID);
 
             if (order == null) return false;
 

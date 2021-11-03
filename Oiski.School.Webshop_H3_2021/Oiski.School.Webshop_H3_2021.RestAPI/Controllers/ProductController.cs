@@ -27,28 +27,28 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Products/{_productID:int}")]
+        [Route("Products/GetBy/ID/{_productID:int}")]
         public async Task<IProduct> GetProductByIDAsync(int _productID)
         {
             return await service.Product.GetByIDAsync(_productID);
         }
 
         [HttpGet]
-        [Route("Products/ByBrand/{_brandID:int}")]
+        [Route("Products/GetBy/Brand/{_brandID:int}")]
         public async Task<IReadOnlyList<IProduct>> GetProductByBrandAsync(int _brandID)
         {
             return await service.Product.GetByBrandAsync(_brandID);
         }
 
         [HttpGet]
-        [Route("Products/ByCategory/{_categoryID:int}")]
+        [Route("Products/GetBy/Category/{_categoryID:int}")]
         public async Task<IReadOnlyList<IProduct>> GetProductByCategoryAsync(int _categoryID)
         {
             return await service.Product.GetByCategoryAsync(_categoryID);
         }
 
         [HttpGet]
-        [Route("Products/GetBrand/{_productID:int}")]
+        [Route("Products/Get/Brand/{_productID:int}")]
         public async Task<IBrand> GetBrandAsync(int _productID)
         {
             IProduct product = await service.Product.GetByIDAsync(_productID);
@@ -58,7 +58,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Products/GetCategory/{_productID:int}")]
+        [Route("Products/Get/Category/{_productID:int}")]
         public async Task<ICategory> GetCategoryAsync(int _productID)
         {
             IProduct product = await service.Product.GetByIDAsync(_productID);
@@ -68,7 +68,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Products/GetImages/{_productID:int}")]
+        [Route("Products/Get/Images/{_productID:int}")]
         public async Task<IReadOnlyList<IProductImage>> GetImagesAsync(int _productID)
         {
             IProduct product = await service.Product.GetByIDAsync(_productID);
@@ -77,7 +77,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Products/GetOrders/{_productID:int}")]
+        [Route("Products/Get/Orders/{_productID:int}")]
         public async Task<IReadOnlyList<IOrder>> GetOrdersAsync(int _productID)
         {
             IProduct product = await service.Product.GetByIDAsync(_productID);
@@ -86,7 +86,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI.Controllers
         }
 
         [HttpPost]
-        [Route("Products/Create")]
+        [Route("Products/Add")]
         public async Task<bool> AddProductAsync(ProductWithImagesDTO _product)
         {
             return await service.Product.AddAsync(_product, _product.ProductImages.ToList());
