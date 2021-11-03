@@ -699,5 +699,7 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
 - **Added**:
    - `Blazored.LocalStorage` NuGet package added.
    - Implementing it in our `Program.cs` to use LocalStorage.
+- **[v2.1.3](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v2.1.3)** \
+  Each **API** call now follows the same structure, which should make it easier to remember and more user friendly.
 
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
