@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@using Blazored.Toast.Configuration
 
 <div class="page">
     <div class="sidebar">
@@ -14,6 +15,14 @@
                 <span class="oi oi-account-login" aria-hidden="true"></span> Login
             </NavLink>
         </div>
+
+        <BlazoredToasts Position="ToastPosition.BottomRight"
+                        Timeout="3"
+                        IconType="IconType.FontAwesome"
+                        SuccessIcon="fas fa-check"
+                        ErrorIcon="fas fa-times-circle"
+                        MaxToastCount="3"></BlazoredToasts>
+
         <div class="content px-4">
             @Body
         </div>

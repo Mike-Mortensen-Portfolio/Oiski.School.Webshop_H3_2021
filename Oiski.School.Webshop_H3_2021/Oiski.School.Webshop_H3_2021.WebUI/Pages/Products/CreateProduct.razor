@@ -1,6 +1,7 @@
 ﻿@page "/Product/Create"
 @inject HttpClient client
 @inject NavigationManager nav
+@inject IToastService toastService
 
 <h3>Create Product</h3>
 
@@ -65,15 +66,16 @@
     {
         ProductForm.ProductImages = productImages;
 
-        var response = await client.PostAsJsonAsync<ProductCreate>("Http://localhost:4020//Controller/Products/Add", ProductForm);
+        var response = await client.PostAsJsonAsync<ProductCreate>("Http://localhost:4020/Controller/Products/Add", ProductForm);
 
         if (response.StatusCode == System.Net.HttpStatusCode.OK)
         {
+            toastService.ShowSuccess($"You've now created a new product!");
             nav.NavigateTo("/");
         }
         else
         {
-            ErrorMessage = $"Couldn't create the product.";
+            toastService.ShowError("Couldn't create the product, try again!");
         }
     }
 }
