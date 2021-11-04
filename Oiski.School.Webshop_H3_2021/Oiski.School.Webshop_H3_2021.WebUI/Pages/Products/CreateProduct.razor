@@ -65,7 +65,7 @@
     {
         ProductForm.ProductImages = productImages;
 
-        var response = await client.PostAsJsonAsync<ProductCreate>("/Controller/Products/Add", ProductForm);
+        var response = await client.PostAsJsonAsync<ProductCreate>("Http://localhost:4020//Controller/Products/Add", ProductForm);
 
         if (response.StatusCode == System.Net.HttpStatusCode.OK)
         {

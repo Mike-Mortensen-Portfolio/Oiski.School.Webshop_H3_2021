@@ -59,6 +59,7 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI
                 {
                     o.AllowAnyOrigin();
                     o.AllowAnyHeader();
+                    o.AllowAnyMethod();
                 });
 
             app.UseAuthorization();

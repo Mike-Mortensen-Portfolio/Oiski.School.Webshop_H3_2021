@@ -1,9 +1,16 @@
 ﻿@page "/cart"
 @inject HttpClient client
+@using Blazored.LocalStorage
+@using System.Text.Json
+@inject ILocalStorageService localStorage
 
-@if (Order == null)
+@if (Order == null && !noCart)
 {
     <p>Loading...</p>
+}
+else if (noCart)
+{
+    <p>No items in cart</p>
 }
 else
 {
@@ -11,39 +18,21 @@ else
 }
 
 @code {
-    public IEditableOrder Order { get; set; } = new OrderDisplay
-    {
-        CustomerID = 1,
-        OrderDate = DateTime.Now,
-        Products = new List<ICartProductBase>
-    {
-            new CartProductBase
-            {
-                ProductID = 1,
-                Quantity = 2
-            },
-            new CartProductBase
-            {
-                ProductID = 2,
-                Quantity = 4
-            }
-        }
-    };
+    public IEditableOrder Order { get; set; }
+
+    public bool noCart = false;
 
     protected async override Task OnInitializedAsync()
     {
-        //IOrderBase order = await client.GetFromJsonAsync<OrderBase>("/Controller/Orders/GetBy/ID/1");   //  Test Call
+        if (await localStorage.ContainKeyAsync("Cart"))
+        {
 
-        //OrderDisplay orderDisplay = new OrderDisplay
-        //{
-        //    CustomerID = order.CustomerID,
-        //    OrderDate = order.OrderDate,
-        //    OrderID = order.OrderID,
-        //    TypeOfDelivery = order.TypeOfDelivery,
-        //    TypeOfPayment = order.TypeOfPayment
-        //};
+            string cartString = await localStorage.GetItemAsStringAsync("Cart");
+            Order = JsonSerializer.Deserialize<OrderDisplay>(cartString);
 
-        //orderDisplay.Products = await client.GetFromJsonAsync<IReadOnlyList<CartProductBase>>($"/Controller/Orders/Get/Products/{orderDisplay.OrderID}");
-        //Order = orderDisplay;
+            return;
+        }
+
+        noCart = true;
     }
 }

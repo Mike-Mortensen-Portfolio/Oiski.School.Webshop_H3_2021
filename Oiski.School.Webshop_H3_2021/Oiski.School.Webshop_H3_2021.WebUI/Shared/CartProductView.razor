@@ -1,9 +1,12 @@
 ﻿@inject HttpClient client
+@using Blazored.LocalStorage
+@using System.Text.Json
+@inject ILocalStorageService localStorage
 @* NOTE:
     This component is a Table Row and must be contained within a table tag
 *@
 
-@if (product != null)
+@if (product != null && CartProduct != null)
 {
     <tr>
         <td>@product.Title</td>
@@ -22,15 +25,12 @@
         <td>$@($"{(product.Price * CartProduct.Quantity):00.00} ")</td>
     </tr>
 }
-else
-{
-    <p>Loading...</p>
-}
 
 @code {
     [Parameter]
     public ICartProductBase CartProduct { get; set; }
     private ICompactProductInfo product;
+    private IEditableOrder order;
 
     [Parameter]
     public bool ReadOnly { get; set; } = false;
@@ -40,13 +40,44 @@ else
         product = await client.GetFromJsonAsync<ProductDisplay>($"Http://localhost:4020/Controller/Products/GetBy/ID/{CartProduct.ProductID}");
     }
 
-    public void AddAmount()
+    public async void AddAmount()
     {
-        CartProduct.Quantity++;
+        string deOrderJson = await localStorage.GetItemAsStringAsync("Cart");
+
+        order = JsonSerializer.Deserialize<OrderDisplay>(deOrderJson);
+
+        var myProdcut = order.Products.SingleOrDefault(cp => cp.ProductID == product.ProductID);
+        myProdcut.Quantity++;
+
+        CartProduct = myProdcut;
+
+        string orderJson = JsonSerializer.Serialize(order);
+
+        await localStorage.SetItemAsStringAsync("Cart", orderJson);
+
+        StateHasChanged();
     }
 
-    public void RemoveAmount()
+    public async void RemoveAmount()
     {
-        CartProduct.Quantity--;
+        string deOrderJson = await localStorage.GetItemAsStringAsync("Cart");
+
+        order = JsonSerializer.Deserialize<OrderDisplay>(deOrderJson);
+
+        var collectedProduct = order.Products.SingleOrDefault(cp => cp.ProductID == product.ProductID);
+
+        if (collectedProduct != null && --collectedProduct.Quantity <= 0)
+        {
+            order.Products.Remove(collectedProduct);
+        }
+
+        var afterProduct = order.Products.SingleOrDefault(cp => cp.ProductID == product.ProductID);
+        CartProduct = afterProduct;
+
+        string orderJson = JsonSerializer.Serialize(order);
+
+        await localStorage.SetItemAsStringAsync("Cart", orderJson);
+
+        StateHasChanged();
     }
 }

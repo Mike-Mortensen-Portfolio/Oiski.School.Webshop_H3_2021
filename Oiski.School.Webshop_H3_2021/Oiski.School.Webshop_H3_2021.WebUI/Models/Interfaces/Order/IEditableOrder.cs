@@ -10,6 +10,6 @@ namespace Oiski.School.Webshop_H3_2021.WebUI
         new public PaymentType TypeOfPayment { get; set; }
         new public DeliveryType TypeOfDelivery { get; set; }
 
-        new IList<ICartProductBase> Products { get; set; }
+        new IList<CartProductBase> Products { get; set; }
     }
 }
