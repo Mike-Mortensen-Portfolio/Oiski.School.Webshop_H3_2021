@@ -1,6 +1,7 @@
-﻿@page "/Products/Details/{ProductID:int}"
+﻿@page "/Products/Delete/{ProductID:int}"
 @inject HttpClient client
 @inject NavigationManager nav
+@inject IToastService toastService
 
 
 @if (Product != null)
@@ -19,7 +20,7 @@
         <div class="border col-8">
             <card>
                 <div class="card-body text-center">
-                    <h3 class="card-title">You are viewing @Product.Title</h3>
+                    <h3 class="card-title">You about to delete: @Product.Title</h3>
                     <hr />
                     <br />
                     <p><b>Description:</b> @Product.Description</p>
@@ -31,7 +32,8 @@
                     <p>Price: <b>$</b>@Product.Price</p>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-success">Add to basket</button> | <button @onclick='() => nav.NavigateTo($"/Products/Edit/{Product.ProductID}")' class="btn btn-primary"><i class="oi oi-tag"></i>Edit Product</button>
+                    <p class="text-danger"><b>Are you sure you wanna do this?</b></p>
+                    <button @onclick='() => nav.NavigateTo($"/Products/Edit/{Product.ProductID}")' class="btn btn-primary">Cancel</button> | <button @onclick="DeletingProduct" class="btn btn-danger">Delete Product</button>
                 </div>
             </card>
         </div>
@@ -43,23 +45,35 @@ else
     <p>Du lort, Jasmin</p>
 }
 
-
 @code {
-
     [Parameter]
     public int ProductID { get; set; }
 
-    private IProductDisplay Product { get; set; }
+    private IEditableProduct Product { get; set; }
     private IBrandBase Brand { get; set; }
     private ICategoryBase Category { get; set; }
 
-    protected async override Task OnInitializedAsync()
+
+    protected override async Task OnInitializedAsync()
     {
-        Product = await client.GetFromJsonAsync<ProductDisplay>($"Http://localhost:4020/Controller/Products/GetBy/ID/{ProductID}");
+        Product = await client.GetFromJsonAsync<EditableProduct>($"Http://localhost:4020/Controller/Products/GetBy/ID/{ProductID}");
         Product.ProductImages = await client.GetFromJsonAsync<IReadOnlyList<ProductImageBase>>($"Http://localhost:4020/Controller/Products/Get/Images/{Product.ProductID}");
         Brand = await client.GetFromJsonAsync<BrandBase>($"Http://localhost:4020/Controller/Products/Get/Brand/{Product.ProductID}");
         Category = await client.GetFromJsonAsync<CategoryBase>($"Http://localhost:4020/Controller/Products/Get/Category/{Product.ProductID}");
+    }
 
-        await base.OnInitializedAsync();
+    public async Task DeletingProduct()
+    {
+        var response = await client.DeleteAsync("Http://localhost:4020/Controller/Products/Remove/{Product.ProductID}");
+
+        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        {
+            toastService.ShowSuccess($"You've deleted the product: {Product.Title}");
+            nav.NavigateTo("/");
+        }
+        else
+        {
+            toastService.ShowError("Couldn't delete the product. Try again.");
+        }
     }
 }

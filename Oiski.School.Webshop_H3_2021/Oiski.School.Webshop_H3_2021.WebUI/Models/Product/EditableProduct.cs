@@ -7,6 +7,6 @@ namespace Oiski.School.Webshop_H3_2021.WebUI
 {
     public class EditableProduct : ProductBase, IEditableProduct
     {
-
+        public IReadOnlyList<IProductImageBase> ProductImages { get; set; }
     }
 }

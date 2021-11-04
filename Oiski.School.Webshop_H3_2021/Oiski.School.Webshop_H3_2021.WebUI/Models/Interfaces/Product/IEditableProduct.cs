@@ -14,5 +14,7 @@ namespace Oiski.School.Webshop_H3_2021.WebUI
         int BrandID { get; set; }
         decimal Price { get; set; }
         int InStock { get; set; }
+
+        public IReadOnlyList<IProductImageBase> ProductImages { get; set; }
     }
 }
