@@ -712,4 +712,14 @@ The syntax for the structure of branch folders must be presented as: [MajorVersi
     - `ProductBase`
     - `IProductDisplay`
     - `ProductDisplay`: Derived from `ProductBase` and serves as a displayable product where all associated images are attached
+- **[v2.2.1](https://github.com/Mike-Mortensen-Portfolio/Oiski.School.Webshop_H3_2021/releases/tag/v2.2.1)** \
+  - **Added**:
+    - `BrandBase` and `IBrandBase` Model and interface. These are used when the `product` are being displayed in the `ProductDetails` page as these aren't shown out on the index page.
+    - `CategoryBase` and `ICategoryBase` has been implemented for the same purpose as above.
+    - `ProductCreate` and `IProductCreate` has been implemented to use over on the `CreateProduct` page for the `EditForm` that is going to be pushed up to the DB. This is to keep our Models unique to óne function.
+   - `EditableProduct` and `IEditableProduct` has been implemented for the same reason as the above but, for out `EditProduct` page instead.
+  - **Modified**:
+    - The index page now have a button with the `CreateProduct` functionality, which will redirect the user over to another page, for them to create a new `Product`.
+    - Changed the `Product.Title` to be a button which will redirect the user to the `ProductDetails` page about that single `Product` with a method `GoToProduct()`.
+
 ## [Oiski.School Namespace Collection](https://github.com/Mike-Mortensen-Portfolio) <-- Click Me
