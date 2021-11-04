@@ -1,7 +1,7 @@
 ﻿@page "/Products/Edit/{ProductID:int}"
 @inject HttpClient client
 @inject NavigationManager nav
-
+@inject IToastService toastService
 
 <h3>Updating Product.</h3>
 
@@ -77,11 +77,12 @@
 
         if (response.StatusCode == System.Net.HttpStatusCode.OK)
         {
+            toastService.ShowSuccess($"You've updated the product: {ProductForm.Title}");
             nav.NavigateTo("/");
         }
         else
         {
-            ErrorMessage = $"Couldn't update the Product.";
+            toastService.ShowError("Couldn't update the product, try again!");
         }
     }
 } 

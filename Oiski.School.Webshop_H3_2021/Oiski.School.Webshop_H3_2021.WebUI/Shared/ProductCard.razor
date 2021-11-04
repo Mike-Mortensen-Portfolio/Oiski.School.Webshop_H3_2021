@@ -3,6 +3,7 @@
 @using Blazored.LocalStorage
 @using System.Text.Json
 @inject ILocalStorageService localStorage
+@inject IToastService toastService
 
 <div class="border rounded text-center col-4 m-3" style="max-width:350px;">
     <card>
@@ -82,6 +83,8 @@
                 Quantity = 1
             });
         }
+
+        toastService.ShowSuccess($"Added {Product.Title} to your basket.");
 
         string restoreCartJson = JsonSerializer.Serialize(order);
 
