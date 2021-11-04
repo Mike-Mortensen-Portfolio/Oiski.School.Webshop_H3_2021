@@ -56,7 +56,5 @@
     {
         Products = await client.GetFromJsonAsync<IReadOnlyList<ProductDisplay>>("Http://localhost:4020/Controller/Products");
         Categories = await client.GetFromJsonAsync<IReadOnlyList<CategoryBase>>("Http://localhost:4020/Controller/Categories");
-
-        await base.OnInitializedAsync();
     }
 }
