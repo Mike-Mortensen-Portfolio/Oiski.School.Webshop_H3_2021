@@ -10,27 +10,34 @@
         <h2>Buyer: @customer.FirstName @customer.LastName</h2>
     }
 
+    <div class="row">
+        <div class="col-10">
+            <EditForm Model="Order" OnValidSubmit="PushOrder">
+                <DataAnnotationsValidator />
 
-    <EditForm Model="Order" OnValidSubmit="PushOrder">
-        <DataAnnotationsValidator />
-
-        <InputSelect DisplayName="Delivery Type" @bind-Value="@Order.TypeOfDelivery">
-            @foreach (var item in Enum.GetValues(typeof(DeliveryType)))
-                {
-                <option value="@item">@item</option>
-                }
-        </InputSelect>
-
-        <InputSelect DisplayName="Delivery Type" @bind-Value="@Order.TypeOfDelivery">
-            @foreach (var item in Enum.GetValues(typeof(DeliveryType)))
-                {
-                <option value="@item">@item</option>
-                }
-        </InputSelect>
-
-        <button type="submit">Checkout</button>
-    </EditForm>
-
+                <div class="col-5">
+                    <InputSelect class="form-control" @bind-Value="@Order.TypeOfDelivery">
+                        @foreach (var item in Enum.GetValues(typeof(DeliveryType)))
+                            {
+                            <option value="@item">@item</option>
+                            }
+                    </InputSelect>
+                </div>
+                <div class="col-5">
+                    <InputSelect class="form-control" @bind-Value="@Order.TypeOfPayment">
+                        @foreach (var item in Enum.GetValues(typeof(PaymentType)))
+                            {
+                            <option value="@item">@item</option>
+                            }
+                    </InputSelect>
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary">Checkout</button>
+                </div>
+            </EditForm>
+        </div>
+        <div class="col-2" />
+    </div>
 
     <table class="table table-striped text-center">
         <thead>
@@ -40,9 +47,16 @@
                 <th>Total Price</th>
             </tr>
         </thead>
-        @foreach (ICartProductBase product in Order.Products)
+        @if (Order.Products != null && Order.Products.Count > 0)
         {
-            <CartProductView CartProduct="product" ReadOnly="Displayed"></CartProductView>
+            foreach (ICartProductBase product in Order.Products)
+            {
+                <CartProductView CartProduct="product" ReadOnly="Displayed"></CartProductView>
+            }
+        }
+        else
+        {
+            <p>No Products in Cart!</p>
         }
     </table>
 }

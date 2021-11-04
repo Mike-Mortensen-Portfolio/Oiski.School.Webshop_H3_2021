@@ -1,5 +1,8 @@
 ﻿@inject HttpClient client
 @inject NavigationManager nav
+@using Blazored.LocalStorage
+@using System.Text.Json
+@inject ILocalStorageService localStorage
 
 <div class="border rounded text-center col-4 m-3" style="max-width:350px;">
     <card>
@@ -18,7 +21,7 @@
             </div>
         </div>
         <div class="card-footer">
-            <button class="btn btn-success">Add to basket</button>
+            <button class="btn btn-success" @onclick="AddToCart">Add to Cart</button>
         </div>
     </card>
 </div>
@@ -36,5 +39,52 @@
     public void GoToProduct()
     {
         nav.NavigateTo($"/Products/Details/{Product.ProductID}");
+    }
+
+    public async void AddToCart()
+    {
+        if (!await localStorage.ContainKeyAsync("Cart"))
+        {
+            OrderDisplay newOrder = new OrderDisplay()
+            {
+                Products = new List<CartProductBase>()
+{
+                    new CartProductBase
+                    {
+                        ProductID = Product.ProductID,
+                        Quantity = 1
+                    }
+                }
+            };
+
+            string cartJson = JsonSerializer.Serialize(newOrder);
+
+            await localStorage.SetItemAsStringAsync("Cart", cartJson);
+
+            return;
+        }
+
+        string deCartJson = await localStorage.GetItemAsStringAsync("Cart");
+
+        IEditableOrder order = JsonSerializer.Deserialize<OrderDisplay>(deCartJson);
+
+        ICartProductBase product = order.Products.SingleOrDefault(p => p.ProductID == Product.ProductID);
+
+        if (product != null)
+        {
+            product.Quantity++;
+        }
+        else
+        {
+            order.Products.Add(new CartProductBase
+            {
+                ProductID = Product.ProductID,
+                Quantity = 1
+            });
+        }
+
+        string restoreCartJson = JsonSerializer.Serialize(order);
+
+        await localStorage.SetItemAsStringAsync("Cart", restoreCartJson);
     }
 }
