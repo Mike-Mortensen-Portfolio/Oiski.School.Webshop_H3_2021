@@ -65,7 +65,7 @@ else
     {
         if (Displayed)
         {
-            customer = await client.GetFromJsonAsync<CustomerBase>($"/Controller/Customers/GetBy/ID/{Order.CustomerID}");
+            customer = await client.GetFromJsonAsync<CustomerBase>($"Http://localhost:4020/Controller/Customers/GetBy/ID/{Order.CustomerID}");
         }
 
         StateHasChanged();

@@ -37,7 +37,7 @@ else
 
     protected async override Task OnInitializedAsync()
     {
-        product = await client.GetFromJsonAsync<ProductDisplay>($"/Controller/Products/GetBy/ID/{CartProduct.ProductID}");
+        product = await client.GetFromJsonAsync<ProductDisplay>($"Http://localhost:4020/Controller/Products/GetBy/ID/{CartProduct.ProductID}");
     }
 
     public void AddAmount()

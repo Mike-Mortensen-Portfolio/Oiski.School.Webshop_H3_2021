@@ -29,11 +29,13 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI
         {
             services.AddRazorPages();
             services.AddControllers();
+
+            services.AddCors();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Oiski's Rest API", Version = "v0.0.0" });
             });
-
             services.AddScoped<IWebshopService, WebshopService>();
         }
 
@@ -52,6 +54,12 @@ namespace Oiski.School.WebShop_H3_2021.RestAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(
+                o =>
+                {
+                    o.AllowAnyOrigin();
+                    o.AllowAnyHeader();
+                });
 
             app.UseAuthorization();
 

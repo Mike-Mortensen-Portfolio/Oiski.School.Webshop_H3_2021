@@ -29,10 +29,8 @@
 
     protected async override Task OnInitializedAsync()
     {
-        Product = await client.GetFromJsonAsync<ProductDisplay>($"Controller/Products/GetBy/ID/{Product.ProductID}");
-        Product.ProductImages = await client.GetFromJsonAsync<IReadOnlyList<ProductImageBase>>($"Controller/Products/Get/Images/{Product.ProductID}");
-
-        await base.OnInitializedAsync();
+        Product = await client.GetFromJsonAsync<ProductDisplay>($"Http://localhost:4020/Controller/Products/GetBy/ID/{Product.ProductID}");
+        Product.ProductImages = await client.GetFromJsonAsync<IReadOnlyList<ProductImageBase>>($"Http://localhost:4020/Controller/Products/Get/Images/{Product.ProductID}");
     }
 
     public void GoToProduct()
