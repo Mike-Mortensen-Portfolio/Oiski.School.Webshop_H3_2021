@@ -35,9 +35,16 @@
     [Parameter]
     public bool ReadOnly { get; set; } = false;
 
+    [CascadingParameter]
+    MainLayout Root { get; set; }
+
     protected async override Task OnInitializedAsync()
     {
         product = await client.GetFromJsonAsync<ProductDisplay>($"Http://localhost:4020/Controller/Products/GetBy/ID/{CartProduct.ProductID}");
+
+        //await Root.UpdateCartIndicator();
+
+        await base.OnInitializedAsync();
     }
 
     public async void AddAmount()
@@ -77,6 +84,8 @@
         string orderJson = JsonSerializer.Serialize(order);
 
         await localStorage.SetItemAsStringAsync("Cart", orderJson);
+
+        //await Root.UpdateCartIndicator()
 
         StateHasChanged();
     }

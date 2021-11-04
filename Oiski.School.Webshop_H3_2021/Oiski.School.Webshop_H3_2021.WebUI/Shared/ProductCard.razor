@@ -30,6 +30,9 @@
     [Parameter]
     public IProductDisplay Product { get; set; }
 
+    [CascadingParameter]
+    public MainLayout Root { get; set; }
+
     protected async override Task OnInitializedAsync()
     {
         Product = await client.GetFromJsonAsync<ProductDisplay>($"Http://localhost:4020/Controller/Products/GetBy/ID/{Product.ProductID}");
@@ -41,7 +44,7 @@
         nav.NavigateTo($"/Products/Details/{Product.ProductID}");
     }
 
-    public async void AddToCart()
+    public async Task AddToCart()
     {
         if (!await localStorage.ContainKeyAsync("Cart"))
         {
@@ -57,9 +60,14 @@
                 }
             };
 
+
             string cartJson = JsonSerializer.Serialize(newOrder);
 
             await localStorage.SetItemAsStringAsync("Cart", cartJson);
+
+            await Root.UpdateCartIndicator();
+
+            StateHasChanged();
 
             return;
         }
@@ -86,5 +94,9 @@
         string restoreCartJson = JsonSerializer.Serialize(order);
 
         await localStorage.SetItemAsStringAsync("Cart", restoreCartJson);
+
+        await Root.UpdateCartIndicator();
+
+        StateHasChanged();
     }
 }

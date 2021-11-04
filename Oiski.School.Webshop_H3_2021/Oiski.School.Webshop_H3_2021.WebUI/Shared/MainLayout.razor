@@ -1,4 +1,7 @@
 ﻿@inherits LayoutComponentBase
+@using Blazored.LocalStorage
+@using System.Text.Json
+@inject ILocalStorageService localStorage
 
 <div class="page">
     <div class="sidebar">
@@ -8,14 +11,49 @@
     <div class="main">
         <div class="top-row px-4">
             <NavLink class="nav-link" href="cart">
-                <span class="oi oi-cart" aria-hidden="true"></span> Cart
+                <span class="oi oi-cart" aria-hidden="true"></span> Cart <span>@((cartAmount > 0)?($"({cartAmount})"):(string.Empty))</span>
             </NavLink>
             <NavLink class="nav-link" href="login">
                 <span class="oi oi-account-login" aria-hidden="true"></span> Login
             </NavLink>
         </div>
         <div class="content px-4">
-            @Body
+            <CascadingValue Value="this">
+                @Body
+            </CascadingValue>
         </div>
     </div>
 </div>
+
+@code{
+    private int cartAmount = 0;
+
+    private async Task GetCartAmount()
+    {
+        if (await localStorage.ContainKeyAsync("Cart"))
+        {
+            string cartJson = await localStorage.GetItemAsStringAsync("Cart");
+
+            IOrderDisplay order = JsonSerializer.Deserialize<OrderDisplay>(cartJson);
+
+            cartAmount = order.Products.Count;
+
+            StateHasChanged();
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetCartAmount();
+
+        StateHasChanged();
+    }
+
+
+    public async Task UpdateCartIndicator()
+    {
+        await GetCartAmount();
+
+        StateHasChanged();
+    }
+}
