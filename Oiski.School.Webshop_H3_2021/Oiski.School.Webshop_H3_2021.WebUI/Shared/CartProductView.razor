@@ -47,7 +47,7 @@
         await base.OnInitializedAsync();
     }
 
-    public async void AddAmount()
+    public async Task AddAmount()
     {
         string deOrderJson = await localStorage.GetItemAsStringAsync("Cart");
 
@@ -65,7 +65,7 @@
         StateHasChanged();
     }
 
-    public async void RemoveAmount()
+    public async Task RemoveAmount()
     {
         string deOrderJson = await localStorage.GetItemAsStringAsync("Cart");
 
@@ -76,6 +76,7 @@
         if (collectedProduct != null && --collectedProduct.Quantity <= 0)
         {
             order.Products.Remove(collectedProduct);
+            //await Root.UpdateCartIndicator();
         }
 
         var afterProduct = order.Products.SingleOrDefault(cp => cp.ProductID == product.ProductID);
@@ -84,8 +85,6 @@
         string orderJson = JsonSerializer.Serialize(order);
 
         await localStorage.SetItemAsStringAsync("Cart", orderJson);
-
-        //await Root.UpdateCartIndicator()
 
         StateHasChanged();
     }
